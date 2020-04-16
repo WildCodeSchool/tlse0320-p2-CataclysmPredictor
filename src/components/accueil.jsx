@@ -11,27 +11,26 @@ class Accueil extends Component {
     };
     this.clickEnter = this.clickEnter.bind(this);
   }
-  clickEnter() {
-    this.setState({ showAppli: !this.state.showAppli });
-  }
 
   componentDidMount() {
-    // URL a changer par https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY
     fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
       .then(response => response.json())
       .then(response => {
-        console.log(response);
         this.setState({ items: response });
-      })
-      .catch(error => alert('Erreur : ' + error));
+      });
+  }
+
+  clickEnter() {
+    const { showAppli } = this.state;
+    this.setState({ showAppli: !showAppli });
   }
 
   render() {
-    //chemain a ajuster pour l'API NASA a partir de .items
-    let chemainImage = this.state.items.url;
+    const { showAppli, items } = this.state;
+    const { chemainImage, copyright, explanation } = items.url;
     return (
       <div>
-        {this.state.showAppli ? (
+        {showAppli ? (
           <div className="contain" style={{ backgroundImage: `url(${chemainImage})` }}>
             <div className="contenu">
               <h1>Catalysme predictor</h1>
@@ -41,8 +40,8 @@ class Accueil extends Component {
               </button>
             </div>
             <div className="information">
-              <p className="texte">{this.state.items.explanation}</p>
-              <p className="texte">Copyright : {this.state.items.copyright}</p>
+              <p className="texte">{explanation}</p>
+              <p className="texte">{`Copyright : ${copyright}`}</p>
             </div>
           </div>
         ) : (
