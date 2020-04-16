@@ -1,12 +1,10 @@
 import React from 'react';
-import MainTitle from './components/MainTitle';
-import UpButtons from './components/UpButtons';
+import Accueil from './components/accueil';
 
 function App() {
   return (
     <div className="App">
-      <MainTitle />
-      <UpButtons />
+      <Accueil />
     </div>
   );
 }

@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&display=swap');
+
+.contain {
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.contenu {
+  position: relative;
+  width: 40%;
+  opacity: 0.7;
+  border-radius: 14px;
+  margin: auto;
+  top: 14%;
+  padding: 30px;
+  background-color: #f1ffff;
+  text-align: center;
+  color: #0dff08;
+  text-shadow: 0 0 20px #15ff95;
+  font-family: 'Electrolize', sans-serif;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #0dff08;
+  transition: 2.6s;
+}
+.contenu:hover {
+  box-shadow: 0 0 70px #15ff95;
+  transform: scale(1.01);
+  transition: 0.3s;
+  text-shadow: 0 0 10px #15ff95;
+}
+
+button {
+  background-color: grey;
+  padding: 9px;
+  border-radius: 4px;
+  color: white;
+  transition: 0.3s;
+}
+button:hover {
+  background-color: red;
+  color: black;
+  transition: 0.3s;
+  box-shadow: 0 0 40px red;
+}
+.information {
+  position: relative;
+  width: 40%;
+  opacity: 0.3;
+  border-radius: 14px;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  top: 12%;
+  padding: 40px;
+  background-color: #f1ffff;
+  text-align: center;
+  color: #0dff08;
+  text-shadow: 0 0 20px #15ff95;
+  font-family: 'Electrolize', sans-serif;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #0dff08;
+  transition: 2.6s;
+}
+.information p {
+  text-align: left;
+  color: red;
+  opacity: 0.9;
+}

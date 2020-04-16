@@ -5,6 +5,11 @@ body {
   font-family: Electrolize, 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /*parametrage du background image */
+  background-color: rgb(0, 0, 0);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(./img/starry-sky-1654074.jpg);
+  background-size: cover;
 }
 
 code {
