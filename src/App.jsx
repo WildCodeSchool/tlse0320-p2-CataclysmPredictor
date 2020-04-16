@@ -1,10 +1,10 @@
 import React from 'react';
-import MainApp from './components/MainApp';
+import Accueil from './components/accueil';
 
 function App() {
   return (
-    <div className="App">
-      <MainApp />
+    <div>
+      <Accueil />
     </div>
   );
 }

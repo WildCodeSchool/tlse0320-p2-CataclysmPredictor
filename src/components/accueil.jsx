@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MainApp from './mainapp';
+import MainApp from './MainApp';
 import './accueil.css';
 
 class Accueil extends Component {
@@ -26,12 +26,11 @@ class Accueil extends Component {
   }
 
   render() {
-    const { showAppli, items } = this.state;
-    const { chemainImage, copyright, explanation } = items.url;
+
     return (
       <div>
-        {showAppli ? (
-          <div className="contain" style={{ backgroundImage: `url(${chemainImage})` }}>
+        {this.state.showAppli ? (
+          <div className="contain" style={{ backgroundImage: `url(${this.state.items.url})` }}>
             <div className="contenu">
               <h1>Catalysme predictor</h1>
               <p>Ne regardez plus les étoiles, elles vont vous tomber sur la tête.</p>
@@ -40,8 +39,8 @@ class Accueil extends Component {
               </button>
             </div>
             <div className="information">
-              <p className="texte">{explanation}</p>
-              <p className="texte">{`Copyright : ${copyright}`}</p>
+              <p className="texte">{this.state.items.explanation}</p>
+              <p className="texte">{`Copyright : ${this.state.items.copyright}`}</p>
             </div>
           </div>
         ) : (
