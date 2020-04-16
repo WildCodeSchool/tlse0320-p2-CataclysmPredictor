@@ -1,7 +1,6 @@
-import React from 'react';
-import UpButtons from './UpButtons';
+import React, { Component } from 'react';
 
-class Button extends UpButtons {
+class Button extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -11,9 +10,7 @@ class Button extends UpButtons {
     const { name } = this.props;
     return (
       <div>
-        <select>
-          <option>{name}</option>
-        </select>
+        <button type="button">{name}</button>
       </div>
     );
   }
