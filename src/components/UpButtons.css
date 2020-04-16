@@ -9,7 +9,7 @@ button {
   color: rgb(89, 247, 247);
   font: bold 18px Electrolize;
   padding: 6px;
-  box-shadow: 1px 1px 3px #999;
+  box-shadow: 1px 1px 3px rgb(89, 247, 247);
   margin: 5px;
   width: 200px;
 }
