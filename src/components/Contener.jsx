@@ -5,6 +5,8 @@ import FooterContent from './FooterContent';
 import ArticleContent from './ArticleContent';
 import ScenariosContent from './ScenariosContent';
 import CriteresContent from './CriteresContent';
+import MainTitle from './MainTitle';
+import UpButtons from './UpButtons';
 import '../style.css';
 
 class Contener extends React.Component {
@@ -37,6 +39,8 @@ class Contener extends React.Component {
 
     return (
       <div className="App">
+        <MainTitle />
+        <UpButtons />
         <MainApp />
         <div className="button-bottom">
           <ButtonBottom
