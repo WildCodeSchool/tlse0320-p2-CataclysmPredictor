@@ -23,12 +23,8 @@ function FooterContent() {
       </ul>
       <ul className="list-none">
         <li className="marge-large link">Nous rejoindre</li>
-        <li className="marge-large inline">
-          <img src="" alt="Facebook" />
-        </li>
-        <li className="marge-large inline">
-          <img src="./img/twitter.png" alt="Tweeter" />
-        </li>
+        <li className="marge-large inline" />
+        <li className="marge-large inline" />
       </ul>
     </div>
   );

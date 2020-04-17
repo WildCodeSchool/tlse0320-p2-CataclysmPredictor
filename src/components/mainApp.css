@@ -1,6 +1,7 @@
 .contentSphere {
-  margin: 30px;
-  height: 80vh;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  margin-left: 20px;
 }
 
 .sphere {
@@ -15,6 +16,7 @@
   box-shadow: 40px -20px 50px 2px #000 inset, 3px -2px 25px -2px rgba(3, 34, 76, 1);
 }
 .moon {
+  margin: 0;
   width: 50px;
   height: 50px;
   background-image: url(https://cdn.pixabay.com/photo/2020/02/04/17/08/map-4818868_960_720.jpg);

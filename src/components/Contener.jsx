@@ -45,23 +45,23 @@ class Contener extends React.Component {
         <div className="button-bottom">
           <ButtonBottom
             handleDisplayContent={this.handleDisplayContent}
-            panelToHandle="displayFooter"
-            name="Liens Utiles"
-          />
-          <ButtonBottom
-            handleDisplayContent={this.handleDisplayContent}
             panelToHandle="displayArticle"
             name="Astéroïdes"
           />
           <ButtonBottom
             handleDisplayContent={this.handleDisplayContent}
             panelToHandle="displayScenarios"
-            name="Scénarios catastrophe"
+            name="Scénarios"
           />
           <ButtonBottom
             handleDisplayContent={this.handleDisplayContent}
             panelToHandle="displayCriteres"
-            name="Critères de dangerosité"
+            name="Critères de danger"
+          />
+          <ButtonBottom
+            handleDisplayContent={this.handleDisplayContent}
+            panelToHandle="displayFooter"
+            name="Liens Utiles"
           />
         </div>
         {displayFooter ? <FooterContent /> : null}

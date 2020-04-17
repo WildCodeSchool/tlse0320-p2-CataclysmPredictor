@@ -34,9 +34,9 @@ class Welcome extends Component {
         {showAppli ? (
           <div className="contain" style={{ backgroundImage: `url(${url})` }}>
             <div className="contenu">
-              <h1>Catalysme predictor</h1>
+              <h1>Cataclysm Predictor</h1>
               <p>Ne regardez plus les étoiles, elles vont vous tomber sur la tête.</p>
-              <button type="button" onClick={this.clickEnter}>
+              <button className="button-nav" type="button" onClick={this.clickEnter}>
                 Entrer
               </button>
             </div>

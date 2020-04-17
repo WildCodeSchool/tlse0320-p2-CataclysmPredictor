@@ -10,7 +10,9 @@ class Button extends Component {
     const { name } = this.props;
     return (
       <div>
-        <button type="button">{name}</button>
+        <button type="button" className="button-nav">
+          {name}
+        </button>
       </div>
     );
   }

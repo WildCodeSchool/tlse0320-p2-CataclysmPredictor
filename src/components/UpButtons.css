@@ -3,7 +3,7 @@
   justify-content: space-around;
 }
 
-button {
+.button-nav {
   border-radius: 12px 0 12px 0;
   border: 1px solid rgb(89, 247, 247);
   color: rgb(89, 247, 247);
@@ -12,4 +12,15 @@ button {
   box-shadow: 1px 1px 3px rgb(89, 247, 247);
   margin: 5px;
   width: 200px;
+  background: none;
+  opacity: 0.6;
+  letter-spacing: 1px;
+}
+.button-nav:hover {
+  /*background-color: rgb(89, 247, 247);*/
+  background: none;
+  opacity: 0.8;
+  color: rgb(89, 247, 247);
+  transition: 0.3s;
+  box-shadow: 0 0 20px rgb(89, 247, 247);
 }
