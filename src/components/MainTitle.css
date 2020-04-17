@@ -1,6 +1,5 @@
 .mainTitle {
-  background-color: black;
-  font-size: 2em;
+  font-size: 2.5em;
   --interval: 1s;
   display: flex;
   justify-content: center;
@@ -8,8 +7,7 @@
     0 0 80px var(--color4);
   will-change: filter, color;
   filter: saturate(60%);
-  animation: flicker steps(100) var(--interval) 1s infinite;
-  color: rgb(89, 247, 247);
+  /*color: rgb(89, 247, 247);*/
   --color1: azure;
   --color2: aqua;
   --color3: dodgerblue;
