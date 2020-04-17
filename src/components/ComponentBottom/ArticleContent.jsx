@@ -1,7 +1,7 @@
 import React from 'react';
-import './FooterContent.css';
+import './Content.css';
 
-function ScenariosContent() {
+function ArticleContent() {
   return (
     <div>
       <div className="heigth" />
@@ -9,4 +9,4 @@ function ScenariosContent() {
   );
 }
 
-export default ScenariosContent;
+export default ArticleContent;

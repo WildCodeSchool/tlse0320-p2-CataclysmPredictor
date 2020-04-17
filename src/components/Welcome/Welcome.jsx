@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Contener from './Contener';
+import GlobalContainer from '../ComponentMain/GlobalContainer';
 import './Welcome.css';
 
 class Welcome extends Component {
@@ -46,7 +46,7 @@ class Welcome extends Component {
             </div>
           </div>
         ) : (
-          <Contener />
+          <GlobalContainer />
         )}
       </div>
     );
