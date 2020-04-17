@@ -21,4 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 package-lock.json
+=======
+package-lock.json
+>>>>>>> origin/initUI

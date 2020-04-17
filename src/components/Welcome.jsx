@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import MainApp from './MainApp';
-import './accueil.css';
+import Contener from './Contener';
+import './Welcome.css';
 
-class Accueil extends Component {
+class Welcome extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,10 +26,16 @@ class Accueil extends Component {
   }
 
   render() {
+<<<<<<< HEAD:src/components/accueil.jsx
+=======
+    const { showAppli } = this.state;
+    const { items } = this.state;
+    const { url, explanation, copyright } = items;
+>>>>>>> origin/initUI:src/components/Welcome.jsx
     return (
       <div>
-        {this.state.showAppli ? (
-          <div className="contain" style={{ backgroundImage: `url(${this.state.items.url})` }}>
+        {showAppli ? (
+          <div className="contain" style={{ backgroundImage: `url(${url})` }}>
             <div className="contenu">
               <h1>Catalysme predictor</h1>
               <p>Ne regardez plus les étoiles, elles vont vous tomber sur la tête.</p>
@@ -38,16 +44,16 @@ class Accueil extends Component {
               </button>
             </div>
             <div className="information">
-              <p className="texte">{this.state.items.explanation}</p>
-              <p className="texte">{`Copyright : ${this.state.items.copyright}`}</p>
+              <p className="texte">{explanation}</p>
+              <p className="texte">{`Copyright : ${copyright}`}</p>
             </div>
           </div>
         ) : (
-          <MainApp />
+          <Contener />
         )}
       </div>
     );
   }
 }
 
-export default Accueil;
+export default Welcome;
