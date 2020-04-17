@@ -26,12 +26,9 @@ class Welcome extends Component {
   }
 
   render() {
-<<<<<<< HEAD:src/components/accueil.jsx
-=======
     const { showAppli } = this.state;
     const { items } = this.state;
     const { url, explanation, copyright } = items;
->>>>>>> origin/initUI:src/components/Welcome.jsx
     return (
       <div>
         {showAppli ? (
