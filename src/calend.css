@@ -1,0 +1,17 @@
+.text {
+  color: white;
+}
+
+button {
+  padding: 9px;
+  margin: 9px;
+  border-radius: 5x;
+}
+
+button:hover {
+  background-color: red;
+}
+
+button:active {
+  background-color: green;
+}
