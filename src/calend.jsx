@@ -27,7 +27,7 @@ class Calend extends React.Component {
       moiEnCour: [],
       shMounth: false,
       showDay: true,
-      dateFinal: 'non'
+      dateFinal: 'Error try again...'
     };
     this.addYear = this.addYear.bind(this);
     this.monthClick = this.monthClick.bind(this);
@@ -46,8 +46,6 @@ class Calend extends React.Component {
   monthClick() {
     const mois = this.state.mois;
     this.state.moiEnCour = [];
-    console.log(this.state.mois);
-    console.log(mois);
     if (mois == 1) {
       if (
         this.state.annee % 4 === 0 &&
@@ -98,7 +96,7 @@ class Calend extends React.Component {
     } else {
       moisF = this.state.mois + 1;
     }
-    if (this.state.daySelect < 9) {
+    if (this.state.daySelect < 10) {
       jourF = `0${this.state.daySelect}`;
     } else {
       jourF = this.state.daySelect;
@@ -133,7 +131,7 @@ class Calend extends React.Component {
             <p className="text"> Selectionner une date </p>
           </button>
           <div className="mois">
-            {shMounth ? (
+            {this.state.shMounth ? (
               <div>
                 {arrMois.map((moi, i) => (
                   <button
@@ -166,7 +164,7 @@ class Calend extends React.Component {
         </div>
         <p className="text">
           Votre date choisi : {this.state.annee}-{this.state.mois < 9 ? <a>0</a> : null}
-          {this.state.mois + 1}-{this.state.daySelect < 9 ? <a>0</a> : null}
+          {this.state.mois + 1}-{this.state.daySelect < 10 ? <a>0</a> : null}
           {this.state.daySelect}
         </p>
         <p>{this.state.dateFinal}</p>
