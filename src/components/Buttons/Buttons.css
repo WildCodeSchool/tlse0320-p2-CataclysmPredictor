@@ -17,7 +17,6 @@
   letter-spacing: 1px;
 }
 .button-nav:hover {
-  /*background-color: rgb(89, 247, 247);*/
   background: none;
   opacity: 0.8;
   color: rgb(89, 247, 247);
