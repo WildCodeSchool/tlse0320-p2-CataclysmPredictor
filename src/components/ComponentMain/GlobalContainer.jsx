@@ -1,15 +1,15 @@
 import React from 'react';
 import MainApp from './MainApp';
-import ButtonBottom from './ButtonBottom';
-import FooterContent from './FooterContent';
-import ArticleContent from './ArticleContent';
-import ScenariosContent from './ScenariosContent';
-import CriteresContent from './CriteresContent';
+import ButtonBottom from '../Buttons/Button';
+import UpButtons from '../Buttons/ButtonTop';
+import FooterContent from '../ComponentBottom/FooterContent';
+import ArticleContent from '../ComponentBottom/ArticleContent';
+import ScenariosContent from '../ComponentBottom/ScenariosContent';
+import CriteresContent from '../ComponentBottom/CriteresContent';
 import MainTitle from './MainTitle';
-import UpButtons from './UpButtons';
-import '../style.css';
+import './GlobalContainer.css';
 
-class Contener extends React.Component {
+class GlobalContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,11 +24,8 @@ class Contener extends React.Component {
   handleDisplayContent(panelToDisplay) {
     const { [panelToDisplay]: isPanelDisplayed } = this.state;
     this.setState({ [panelToDisplay]: !isPanelDisplayed });
-    for (const i in this.state) {
-      if (i !== panelToDisplay) {
-        this.setState({ [i]: false });
-      }
-    }
+    const keys = Object.keys(this.state);
+    keys.filter(item => item !== panelToDisplay).map(item => this.setState({ [item]: false }));
   }
 
   render() {
@@ -73,4 +70,4 @@ class Contener extends React.Component {
     );
   }
 }
-export default Contener;
+export default GlobalContainer;

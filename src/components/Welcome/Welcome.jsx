@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Contener from './Contener';
+import GlobalContainer from '../ComponentMain/GlobalContainer';
 import './Welcome.css';
 const date = '2020-01-01';
 class Welcome extends Component {
@@ -52,7 +52,7 @@ class Welcome extends Component {
             </div>
           </div>
         ) : (
-          <Contener />
+          <GlobalContainer />
         )}
       </div>
     );

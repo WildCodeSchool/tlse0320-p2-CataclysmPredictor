@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './Button';
-import './UpButtons.css';
+import './Buttons.css';
 
 const UpButtons = () => {
   return (
