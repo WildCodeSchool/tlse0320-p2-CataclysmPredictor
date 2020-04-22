@@ -95,15 +95,17 @@ class Calend extends React.Component {
     const anneeF = this.state.annee;
     let jourF = '';
     let moisF = '';
+
     if (this.state.mois < 9) {
-      jourF = `0${this.state.mois}`;
+      let moisR = this.state.mois + 1;
+      moisF = `0${moisR}`;
     } else {
-      jourF = this.state.mois;
+      moisF = this.state.mois + 1;
     }
     if (this.state.daySelect < 9) {
-      moisF = `0${this.state.daySelect}`;
+      jourF = `0${this.state.daySelect}`;
     } else {
-      moisF = this.state.mois;
+      jourF = this.state.daySelect;
     }
     this.setState({ dateFinal: `${anneeF}-${moisF}-${jourF}` });
   }
