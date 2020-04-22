@@ -2,7 +2,6 @@ import React from 'react';
 import './calend.css';
 
 const arrMois = [
-  'Mois à choisir',
   'janvier',
   'fevrier',
   'mars',
@@ -26,30 +25,25 @@ class Calend extends React.Component {
       JourParMois: 30,
       showAppli: false,
       daySelect: 'Pas encore choisis',
-      moiEnCour: []
+      moiEnCour: [],
+      shMounth: false
     };
     this.addYear = this.addYear.bind(this);
     this.monthClick = this.monthClick.bind(this);
     this.clickEnter = this.clickEnter.bind(this);
-    this.ok = this.ok.bind(this);
     this.reset = this.reset.bind(this);
+    this.showMonth = this.showMonth.bind(this);
+    this.notShowMonth = this.notShowMonth.bind(this);
   }
 
-  addYear() {
-    this.setState(() => (this.state.annee += 1));
+  addYear(nombre) {
+    this.setState(() => (this.state.annee += nombre));
     const { mois } = this.state;
     this.setState({ mois: 0 });
   }
 
   monthClick() {
-    if (this.state.mois > 11) {
-      this.setState(() => (this.state.mois = 1));
-    } else {
-      this.setState(() => (this.state.mois += 1));
-    }
-
-    this.state.moiEnCour = [];
-    const egal = this.state.mois;
+    const egal = this.state.mois + 1;
 
     if (this.state.mois === 1) {
       if (
@@ -57,20 +51,20 @@ class Calend extends React.Component {
         (this.state.annee % 100 != 0 || this.state.annee % 400 === 0)
       ) {
         for (let i = 1; i <= 29; i++) {
-          this.state.moiEnCour.push(i);
+          this.setState({ moiEnCour: [this.state.moiEnCour.push(i)] });
         }
       } else {
         for (let i = 1; i <= 28; i++) {
-          this.state.moiEnCour.push(i);
+          this.setState({ moiEnCour: [this.state.moiEnCour.push(i)] });
         }
       }
     } else if (egal === 1 || egal === 3 || egal === 5 || egal === 8 || egal === 10 || egal === 12) {
       for (let i = 1; i <= 30; i++) {
-        this.state.moiEnCour.push(i);
+        this.setState({ moiEnCour: [this.state.moiEnCour.push(i)] });
       }
     } else {
       for (let i = 1; i <= 31; i++) {
-        this.state.moiEnCour.push(i);
+        this.setState({ moiEnCour: [this.state.moiEnCour.push(i)] });
       }
     }
   }
@@ -79,45 +73,76 @@ class Calend extends React.Component {
     const { showAppli } = this.state;
     this.setState({ showAppli: !showAppli });
   }
-
-  ok() {
-    this.setState(() => (this.okay = true));
+  showMonth() {
+    const { shMounth } = this.state;
+    this.setState({ shMounth: true });
+  }
+  notShowMonth() {
+    const { shMounth } = this.state;
+    this.setState({ shMounth: false });
   }
 
   reset() {
     const { annee } = this.state;
-    this.setState({ annee: 2020 });
+    this.setState({ annee: 2020, mois: -1 });
   }
 
   render() {
-    const { annee, mois } = this.state;
+    const { annee, mois, shMounth } = this.state;
+    {
+      this.monthClick();
+    }
     return (
       <div>
-        <p className="text">
+        // Gestion de l'année.
+        <p className="text">{annee}</p>
+        <button className="red" onClick={() => this.addYear(-10)}>
           {' '}
-          Choix année : <button onClick={this.addYear}>{annee}</button>
-          Le mois : <button onClick={this.monthClick}>{arrMois[mois]}</button>{' '}
-          <button onClick={this.clickEnter}>Ok</button>
-        </p>
-        {this.state.showAppli ? (
+          --{' '}
+        </button>
+        <button className="red" onClick={() => this.addYear(-1)}>
+          {' '}
+          -{' '}
+        </button>
+        <button className="green" onClick={() => this.addYear(1)}>
+          {' '}
+          +{' '}
+        </button>
+        <button className="green" onClick={() => this.addYear(10)}>
+          {' '}
+          ++{' '}
+        </button>
+        // Gestion des mois.
+        <p className="text">{arrMois[this.state.mois]}</p>
+        <div className="red" onMouseEnter={this.showMonth} onMouseLeave={this.notShowMonth}>
+          <p className="text"> Select mois</p>
+
+          {this.state.shMounth ? (
+            <div>
+              {arrMois.map((moi, i) => (
+                <button className="green" onClick={() => this.setState({ mois: [i] })}>
+                  {arrMois[i]}
+                </button>
+              ))}
+            </div>
+          ) : null}
+          <p className="text">{mois} </p>
+        </div>
+        //le jour :
+        {this.state.mois >= 0 ? (
           <div>
             <p className="text">
               Quel jour ?{' '}
-              {this.state.moiEnCour.map((jour, i) => (
-                <button onClick={() => (this.state.daySelect = jour)}>{jour}</button>
+              {this.state.moiEnCour.map((jour, j) => (
+                <button className="green" onClick={() => this.setState({ daySelect: [j + 1] })}>
+                  {jour}
+                </button>
               ))}
             </p>
-            <div>
-              {' '}
-              <p className="text">
-                <button onClick={this.clickEnter}>Ok</button>
-              </p>
-            </div>
+            <div></div>
           </div>
         ) : null}
-
         <p className="text">
-          {' '}
           Votre date choisi : {this.state.daySelect} {arrMois[this.state.mois]} {this.state.annee}
         </p>
         <button onClick={this.reset}> Reset </button>

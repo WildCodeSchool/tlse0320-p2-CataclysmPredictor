@@ -5,7 +5,7 @@
 button {
   padding: 9px;
   margin: 9px;
-  border-radius: 5x;
+  border-radius: 5px;
 }
 
 button:hover {
@@ -13,5 +13,18 @@ button:hover {
 }
 
 button:active {
+  background-color: green;
+}
+
+.red {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 4px;
+  background-color: red;
+}
+.green {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 4px;
   background-color: green;
 }
