@@ -2,7 +2,6 @@
   color: white;
 }
 .containCalend {
-  background-color: grey;
   width: 450px;
   margin: auto;
 }
@@ -15,7 +14,7 @@ button {
 }
 
 button:hover {
-  background-color: red;
+  background-color: #ff6354;
 }
 
 button:active {
@@ -23,16 +22,18 @@ button:active {
 }
 
 .red {
-  padding: 10px;
+  width: 50px;
+  height: 50px;
   margin: 10px;
-  border-radius: 4px;
-  background-color: red;
+  border-radius: 50%;
+  background-color: #ffe75f;
 }
 .green {
-  padding: 10px;
+  width: 50px;
+  height: 50px;
   margin: 10px;
-  border-radius: 4px;
-  background-color: green;
+  border-radius: 50%;
+  background-color: #c7ffc8;
 }
 .fondBlanc {
   background-color: white;
@@ -40,5 +41,53 @@ button:active {
   width: 200px;
   transition: 0.3s;
   text-align: center;
-  justify-content: flex-start;
+  justify-content: center;
+}
+.year {
+  margin-top: 20px;
+  padding: 8px;
+  border-radius: 20px;
+  background-color: #f4ffff;
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+}
+.moisSelect {
+  margin-top: 20px;
+  padding: 8px;
+  border-radius: 20px;
+  background-color: #9fffc5;
+  flex-direction: row;
+  justify-content: center;
+}
+.mois {
+  margin-top: 20px;
+  padding: 8px;
+  border-radius: 20px;
+  justify-content: space-around;
+}
+.btnSelector {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #e4b0ff;
+}
+.btndaySelector {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  background-color: #e4b0ff;
+}
+.btnMonthSelector {
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #e4b0ff;
+}
+.btnvalidator {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }

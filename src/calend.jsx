@@ -49,7 +49,6 @@ class Calend extends React.Component {
     console.log(this.state.mois);
     console.log(mois);
     if (mois == 1) {
-      console.log('fevrier');
       if (
         this.state.annee % 4 === 0 &&
         (this.state.annee % 100 != 0 || this.state.annee % 400 === 0)
@@ -63,12 +62,10 @@ class Calend extends React.Component {
         }
       }
     } else if (mois === 3 || mois === 5 || mois === 8 || mois === 10) {
-      console.log('30');
       for (let i = 1; i <= 30; i++) {
         this.state.moiEnCour.push(i);
       }
     } else {
-      console.log('Else 31');
       for (let i = 1; i <= 31; i++) {
         this.state.moiEnCour.push(i);
       }
@@ -91,7 +88,6 @@ class Calend extends React.Component {
   }
 
   reset() {
-    this.setState({ annee: 2020 });
     const anneeF = this.state.annee;
     let jourF = '';
     let moisF = '';
@@ -108,6 +104,7 @@ class Calend extends React.Component {
       jourF = this.state.daySelect;
     }
     this.setState({ dateFinal: `${anneeF}-${moisF}-${jourF}` });
+    console.log(this.state.dateFinal);
   }
 
   returnFormat() {}
@@ -116,7 +113,7 @@ class Calend extends React.Component {
     const { annee, mois, shMounth } = this.state;
     return (
       <div className="containCalend">
-        <div className="fondBlanc">
+        <div className="year">
           <button className="red" onClick={() => this.addYear(-10)}>
             --
           </button>
@@ -131,29 +128,31 @@ class Calend extends React.Component {
             ++
           </button>
         </div>
-        <div className="fondBlanc">
-          <button className="red" onMouseEnter={this.showMonth}>
+        <div className="moisSelect">
+          <button className="btnSelector" onMouseEnter={this.showMonth}>
             <p className="text"> Selectionner une date </p>
           </button>
-          {this.state.shMounth ? (
-            <div>
-              {arrMois.map((moi, i) => (
-                <button
-                  className="green"
-                  onMouseEnter={() => this.setState({ mois: i })}
-                  onClick={this.monthClick}
-                >
-                  {arrMois[i]}
-                </button>
-              ))}
-            </div>
-          ) : null}
+          <div className="mois">
+            {shMounth ? (
+              <div>
+                {arrMois.map((moi, i) => (
+                  <button
+                    className="btnMonthSelector"
+                    onMouseEnter={() => this.setState({ mois: i })}
+                    onClick={this.monthClick}
+                  >
+                    {arrMois[i]}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </div>
           {this.state.showDay ? (
             <div>
               <p className="text">
                 {this.state.moiEnCour.map((jour, j) => (
                   <button
-                    className="green"
+                    className="btndaySelector"
                     onMouseEnter={() => this.setState({ daySelect: [j + 1] })}
                     onClick={() => this.setState({ showDay: false })}
                   >
@@ -171,7 +170,10 @@ class Calend extends React.Component {
           {this.state.daySelect}
         </p>
         <p>{this.state.dateFinal}</p>
-        <button onClick={this.reset}> Ok </button>
+        <button className="btnvalidator" onClick={this.reset}>
+          {' '}
+          Ok{' '}
+        </button>
       </div>
     );
   }
