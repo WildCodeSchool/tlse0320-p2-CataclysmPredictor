@@ -1,6 +1,11 @@
 .text {
   color: white;
 }
+.containCalend {
+  background-color: grey;
+  width: 450px;
+  margin: auto;
+}
 
 button {
   padding: 9px;
@@ -31,11 +36,9 @@ button:active {
 }
 .fondBlanc {
   background-color: white;
-
   display: table-row;
+  width: 200px;
   transition: 0.3s;
   text-align: center;
-}
-.containCalend {
-  background-color: grey;
+  justify-content: flex-start;
 }

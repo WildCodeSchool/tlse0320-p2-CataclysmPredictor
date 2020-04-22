@@ -26,7 +26,8 @@ class Calend extends React.Component {
       daySelect: 1,
       moiEnCour: [],
       shMounth: false,
-      showDay: true
+      showDay: true,
+      dateFinal: 'non'
     };
     this.addYear = this.addYear.bind(this);
     this.monthClick = this.monthClick.bind(this);
@@ -90,8 +91,21 @@ class Calend extends React.Component {
   }
 
   reset() {
-    const { annee } = this.state;
     this.setState({ annee: 2020 });
+    const anneeF = this.state.annee;
+    let jourF = '';
+    let moisF = '';
+    if (this.state.mois < 9) {
+      jourF = `0${this.state.mois}`;
+    } else {
+      jourF = this.state.mois;
+    }
+    if (this.state.daySelect < 9) {
+      moisF = `0${this.state.daySelect}`;
+    } else {
+      moisF = this.state.mois;
+    }
+    this.setState({ dateFinal: `${anneeF}-${moisF}-${jourF}` });
   }
 
   returnFormat() {}
@@ -101,13 +115,13 @@ class Calend extends React.Component {
     return (
       <div className="containCalend">
         <div className="fondBlanc">
-          <p>{annee}</p>
           <button className="red" onClick={() => this.addYear(-10)}>
             --
           </button>
           <button className="red" onClick={() => this.addYear(-1)}>
             -
           </button>
+          <p>{annee}</p>
           <button className="green" onClick={() => this.addYear(1)}>
             +
           </button>
@@ -154,7 +168,8 @@ class Calend extends React.Component {
           {this.state.mois + 1}-{this.state.daySelect < 9 ? <a>0</a> : null}
           {this.state.daySelect}
         </p>
-        <button onClick={this.reset}> Reset </button>
+        <p>{this.state.dateFinal}</p>
+        <button onClick={this.reset}> Ok </button>
       </div>
     );
   }
