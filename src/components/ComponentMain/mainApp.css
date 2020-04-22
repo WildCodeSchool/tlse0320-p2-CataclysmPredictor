@@ -1,0 +1,35 @@
+.contentSphere {
+  margin-top: 70px;
+  margin-bottom: 70px;
+  margin-left: 20px;
+}
+
+.sphere {
+  margin-top: 100px; /*A supprimer pour le repositionner*/
+  border-radius: 50%;
+  background-size: cover;
+}
+.earth {
+  width: 300px;
+  height: 300px;
+  background-image: url(https://cdn.pixabay.com/photo/2013/01/05/20/55/map-of-the-world-74045_960_720.jpg);
+  box-shadow: 40px -20px 50px 2px #000 inset, 3px -2px 25px -2px rgba(3, 34, 76, 1);
+}
+.moon {
+  margin: 0;
+  width: 50px;
+  height: 50px;
+  background-image: url(https://cdn.pixabay.com/photo/2020/02/04/17/08/map-4818868_960_720.jpg);
+  box-shadow: 5px -3px 8px 0px #000 inset;
+}
+.rotate {
+  animation: spin 50s linear infinite;
+}
+@keyframes spin {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
