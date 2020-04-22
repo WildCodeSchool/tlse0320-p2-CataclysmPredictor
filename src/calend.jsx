@@ -2,6 +2,7 @@ import React from 'react';
 import './calend.css';
 
 const arrMois = [
+  'moi à choisir',
   'janvier',
   'fevrier',
   'mars',
@@ -13,7 +14,8 @@ const arrMois = [
   'septembre',
   'octobre',
   'novembre',
-  'decembre'
+  'decembre',
+  'moi à choisir'
 ];
 
 class Calend extends React.Component {
@@ -29,6 +31,7 @@ class Calend extends React.Component {
       showDay: true
     };
     this.addYear = this.addYear.bind(this);
+    this.addMounth = this.addMounth.bind(this);
     this.monthClick = this.monthClick.bind(this);
     this.clickEnter = this.clickEnter.bind(this);
     this.reset = this.reset.bind(this);
@@ -37,22 +40,30 @@ class Calend extends React.Component {
   }
 
   addYear(nombre) {
-    this.setState(() => (this.state.annee += nombre));
+    const { annee } = this.state;
+    const nombreUp = annee + nombre;
+    this.setState({ annee: nombreUp });
+  }
+
+  addMounth(nombre) {
     const { mois } = this.state;
-    this.setState({ mois: 0 });
+    const nombreUp = mois + nombre;
+    this.setState({ mois: nombreUp });
+    if (mois > 12) {
+      this.setState({ mois: 1 });
+      this.addYear(1);
+    }
+    if (mois < 1) {
+      this.setState({ mois: 12 });
+      this.addYear(-1);
+    }
   }
 
   monthClick() {
-    const mois = this.state.mois;
+    const { annee, mois } = this.state;
     this.state.moiEnCour = [];
-    console.log(this.state.mois);
-    console.log(mois);
-    if (mois == 1) {
-      console.log('fevrier');
-      if (
-        this.state.annee % 4 === 0 &&
-        (this.state.annee % 100 != 0 || this.state.annee % 400 === 0)
-      ) {
+    if (mois === 1) {
+      if (annee % 4 === 0 && (annee % 100 !== 0 || annee % 400 === 0)) {
         for (let i = 1; i <= 29; i++) {
           this.state.moiEnCour.push(i);
         }
@@ -62,12 +73,10 @@ class Calend extends React.Component {
         }
       }
     } else if (mois === 3 || mois === 5 || mois === 8 || mois === 10) {
-      console.log('30');
       for (let i = 1; i <= 30; i++) {
         this.state.moiEnCour.push(i);
       }
     } else {
-      console.log('Else 31');
       for (let i = 1; i <= 31; i++) {
         this.state.moiEnCour.push(i);
       }
@@ -80,81 +89,69 @@ class Calend extends React.Component {
     const { showAppli } = this.state;
     this.setState({ showAppli: !showAppli });
   }
+
   showMonth() {
-    const { shMounth } = this.state;
     this.setState({ shMounth: true });
   }
+
   notShowMonth() {
-    const { shMounth } = this.state;
     this.setState({ shMounth: false });
   }
 
   reset() {
-    const { annee } = this.state;
     this.setState({ annee: 2020 });
   }
 
-  returnFormat() {}
-
   render() {
-    const { annee, mois, shMounth } = this.state;
+    const { annee, mois, shMounth, showDay, moiEnCour, daySelect } = this.state;
     return (
       <div className="containCalend">
         <div className="fondBlanc">
-          <p>{annee}</p>
-          <button className="red" onClick={() => this.addYear(-10)}>
+          <button type="button" className="red" onClick={() => this.addYear(-10)}>
             --
           </button>
-          <button className="red" onClick={() => this.addYear(-1)}>
+          <button type="button" className="red" onClick={() => this.addYear(-1)}>
             -
           </button>
-          <button className="green" onClick={() => this.addYear(1)}>
+          <p>{annee}</p>
+          <button type="button" className="green" onClick={() => this.addYear(1)}>
             +
           </button>
-          <button className="green" onClick={() => this.addYear(10)}>
+          <button type="button" className="green" onClick={() => this.addYear(10)}>
             ++
           </button>
         </div>
         <div className="fondBlanc">
-          <button className="red" onMouseEnter={this.showMonth}>
-            <p className="text"> Selectionner une date </p>
+          <button type="button" className="red" onClick={() => this.addMounth(-1)}>
+            -
           </button>
-          {this.state.shMounth ? (
-            <div>
-              {arrMois.map((moi, i) => (
-                <button
-                  className="green"
-                  onMouseEnter={() => this.setState({ mois: i })}
-                  onClick={this.monthClick}
-                >
-                  {arrMois[i]}
-                </button>
-              ))}
-            </div>
-          ) : null}
-          {this.state.showDay ? (
-            <div>
-              <p className="text">
-                {this.state.moiEnCour.map((jour, j) => (
-                  <button
-                    className="green"
-                    onMouseEnter={() => this.setState({ daySelect: [j + 1] })}
-                    onClick={() => this.setState({ showDay: false })}
-                  >
-                    {jour}
-                  </button>
-                ))}
-              </p>
-              <div></div>
-            </div>
-          ) : null}
+          <button type="button" className="red">
+            {arrMois[mois]}
+          </button>
+          <button type="button" className="red" onClick={() => this.addMounth(1)}>
+            +
+          </button>
+          <div>
+            {moiEnCour.map((jour, j) => (
+              <button
+                type="button"
+                className="green"
+                onMouseEnter={() => this.setState({ daySelect: [j + 1] })}
+                onClick={() => this.setState({ showDay: false })}
+              >
+                {jour}
+              </button>
+            ))}
+          </div>
         </div>
         <p className="text">
-          Votre date choisi : {this.state.annee}-{this.state.mois < 9 ? <a>0</a> : null}
-          {this.state.mois + 1}-{this.state.daySelect < 9 ? <a>0</a> : null}
-          {this.state.daySelect}
+          Votre date choisi : {annee}-{mois < 9 ? <a>0</a> : null}
+          {this.state.mois}-{daySelect < 9 ? <a>0</a> : null}
+          {daySelect}
         </p>
-        <button onClick={this.reset}> Reset </button>
+        <button type="button" onClick={this.reset}>
+          Reset
+        </button>
       </div>
     );
   }
