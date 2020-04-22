@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Contener from './Contener';
 import './Welcome.css';
-
+const date = '2020-01-01';
 class Welcome extends Component {
   constructor(props) {
     super(props);
@@ -12,13 +12,14 @@ class Welcome extends Component {
     this.clickEnter = this.clickEnter.bind(this);
   }
 
-  componentDidMount() {
-    fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
-      .then(response => response.json())
-      .then(response => {
-        this.setState({ items: response });
-      });
-  }
+  // componentDidMount() {
+  //   fetch()
+  //     .then(response => response.json())
+  //     .then(response => {
+  //
+  //       this.setState({ items: response });
+  //     });
+  // }
 
   clickEnter() {
     const { showAppli } = this.state;
@@ -26,6 +27,11 @@ class Welcome extends Component {
   }
 
   render() {
+    //  console.log(typeof(this.state.items));
+    const neo = this.state.items;
+    const neoAgain = neo.near_earth_objects;
+    console.log('le type est :' + typeof neoAgain);
+
     const { showAppli } = this.state;
     const { items } = this.state;
     const { url, explanation, copyright } = items;
@@ -41,7 +47,7 @@ class Welcome extends Component {
               </button>
             </div>
             <div className="information">
-              <p className="texte">{explanation}</p>
+              <p className="texte">{this.state.items.near_earth_objets}</p>
               <p className="texte">{`Copyright : ${copyright}`}</p>
             </div>
           </div>
