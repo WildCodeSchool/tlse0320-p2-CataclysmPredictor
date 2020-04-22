@@ -23,9 +23,10 @@ class Calend extends React.Component {
       annee: 2020,
       mois: 0,
       showAppli: false,
-      daySelect: 'Pas encore choisis',
+      daySelect: 1,
       moiEnCour: [],
-      shMounth: false
+      shMounth: false,
+      showDay: true
     };
     this.addYear = this.addYear.bind(this);
     this.monthClick = this.monthClick.bind(this);
@@ -72,6 +73,7 @@ class Calend extends React.Component {
       }
     }
     this.setState({ shMounth: false });
+    this.setState({ showDay: true });
   }
 
   clickEnter() {
@@ -97,56 +99,60 @@ class Calend extends React.Component {
   render() {
     const { annee, mois, shMounth } = this.state;
     return (
-      <div>
-        // Gestion de l'année.
-        <p className="text">{annee}</p>
-        <button className="red" onClick={() => this.addYear(-10)}>
-          --
-        </button>
-        <button className="red" onClick={() => this.addYear(-1)}>
-          -
-        </button>
-        <button className="green" onClick={() => this.addYear(1)}>
-          +
-        </button>
-        <button className="green" onClick={() => this.addYear(10)}>
-          ++
-        </button>
-        // Gestion des mois.
-        <p className="text">{arrMois[this.state.mois]}</p>
-        <div className="red" onMouseEnter={this.showMonth}>
-          <p className="text"> Select mois</p>
+      <div className="containCalend">
+        <div className="fondBlanc">
+          <p>{annee}</p>
+          <button className="red" onClick={() => this.addYear(-10)}>
+            --
+          </button>
+          <button className="red" onClick={() => this.addYear(-1)}>
+            -
+          </button>
+          <button className="green" onClick={() => this.addYear(1)}>
+            +
+          </button>
+          <button className="green" onClick={() => this.addYear(10)}>
+            ++
+          </button>
         </div>
-        {this.state.shMounth ? (
-          <div>
-            {arrMois.map((moi, i) => (
-              <button
-                className="green"
-                onMouseEnter={() => this.setState({ mois: i })}
-                onClick={this.monthClick}
-              >
-                {arrMois[i]}
-              </button>
-            ))}
-          </div>
-        ) : null}
-        <p className="text">{mois} </p>
-        //le jour :
-        {this.state.mois >= 0 ? (
-          <div>
-            <p className="text">
-              Quel jour ?
-              {this.state.moiEnCour.map((jour, j) => (
-                <button className="green" onClick={() => this.setState({ daySelect: [j + 1] })}>
-                  {jour}
+        <div className="fondBlanc">
+          <button className="red" onMouseEnter={this.showMonth}>
+            <p className="text"> Selectionner une date </p>
+          </button>
+          {this.state.shMounth ? (
+            <div>
+              {arrMois.map((moi, i) => (
+                <button
+                  className="green"
+                  onMouseEnter={() => this.setState({ mois: i })}
+                  onClick={this.monthClick}
+                >
+                  {arrMois[i]}
                 </button>
               ))}
-            </p>
-            <div></div>
-          </div>
-        ) : null}
+            </div>
+          ) : null}
+          {this.state.showDay ? (
+            <div>
+              <p className="text">
+                {this.state.moiEnCour.map((jour, j) => (
+                  <button
+                    className="green"
+                    onMouseEnter={() => this.setState({ daySelect: [j + 1] })}
+                    onClick={() => this.setState({ showDay: false })}
+                  >
+                    {jour}
+                  </button>
+                ))}
+              </p>
+              <div></div>
+            </div>
+          ) : null}
+        </div>
         <p className="text">
-          Votre date choisi : {this.state.annee}-{this.state.mois}-{this.state.daySelect}
+          Votre date choisi : {this.state.annee}-{this.state.mois < 9 ? <a>0</a> : null}
+          {this.state.mois + 1}-{this.state.daySelect < 9 ? <a>0</a> : null}
+          {this.state.daySelect}
         </p>
         <button onClick={this.reset}> Reset </button>
       </div>

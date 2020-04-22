@@ -6,6 +6,7 @@ button {
   padding: 9px;
   margin: 9px;
   border-radius: 5px;
+  transition: 0.6s;
 }
 
 button:hover {
@@ -27,4 +28,14 @@ button:active {
   margin: 10px;
   border-radius: 4px;
   background-color: green;
+}
+.fondBlanc {
+  background-color: white;
+
+  display: table-row;
+  transition: 0.3s;
+  text-align: center;
+}
+.containCalend {
+  background-color: grey;
 }
