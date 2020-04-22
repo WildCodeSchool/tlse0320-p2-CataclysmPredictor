@@ -6,7 +6,7 @@ function ButtonBottom({ handleDisplayContent, panelToHandle, name }) {
       <button
         type="submit"
         className="button-nav"
-        value="item"
+        value={name}
         onClick={() => handleDisplayContent(panelToHandle)}
       >
         {name}
