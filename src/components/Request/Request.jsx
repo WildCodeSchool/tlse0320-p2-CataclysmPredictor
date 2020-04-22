@@ -15,7 +15,7 @@ class Request extends React.Component {
   }
 
   loadNeow() {
-    const date = '2020-12-08';
+    const date = '2020-04-22';
     const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=DEMO_KEY`;
     axios
       .get(url)

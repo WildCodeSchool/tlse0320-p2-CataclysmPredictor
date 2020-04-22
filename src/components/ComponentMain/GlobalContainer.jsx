@@ -7,6 +7,7 @@ import ArticleContent from '../ComponentBottom/ArticleContent';
 import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import CriteresContent from '../ComponentBottom/CriteresContent';
 import MainTitle from './MainTitle';
+import Request from '../Request/Request';
 import './GlobalContainer.css';
 
 class GlobalContainer extends React.Component {
@@ -66,6 +67,7 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
+        <Request />
       </div>
     );
   }
