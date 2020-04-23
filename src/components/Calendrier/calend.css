@@ -6,6 +6,9 @@
   background-color: rgb(0, 0, 0, 0.7);
   border-radius: 12px 0 12px 0;
   border: 1px solid rgb(89, 247, 247);
+  position: absolute;
+  top: 27%;
+  left: 4%;
 }
 .year {
   display: flex;
@@ -60,12 +63,4 @@
 }
 .noMarge {
   margin: 0;
-}
-.footCalendar {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-.footCalendar p {
-  width: 100%;
 }

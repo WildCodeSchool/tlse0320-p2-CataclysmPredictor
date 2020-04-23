@@ -125,7 +125,11 @@ class Calend extends React.Component {
                   type="button"
                   className="calendarWidth formatItem"
                   onMouseEnter={() => this.setState({ daySelect: [j + 1] })}
-                  onClick={() => this.setState({ showDay: false })}
+                  onClick={() => {
+                    this.setState({ showDay: false });
+                    this.props.reset(this.state);
+                    this.props.periodeChecked();
+                  }}
                 >
                   {jour}
                 </button>
@@ -139,24 +143,6 @@ class Calend extends React.Component {
             {mois + 1}-{daySelect < 10 ? <a>0</a> : null}
             {daySelect}
           </p>
-          <button
-            type="button"
-            className="formatItem btnWidth"
-            onClick={() => {
-              this.props.reset(this.state);
-            }}
-          >
-            Valider
-          </button>
-          <button
-            type="button"
-            className="formatItem btnWidth"
-            onClick={() => {
-              this.setState({ shMounth: true });
-            }}
-          >
-            Choisir une autre date
-          </button>
         </div>
       </div>
     );
