@@ -32,7 +32,6 @@ class Calend extends React.Component {
     this.addYear = this.addYear.bind(this);
     this.monthClick = this.monthClick.bind(this);
     this.clickEnter = this.clickEnter.bind(this);
-    this.reset = this.reset.bind(this);
     this.showMonth = this.showMonth.bind(this);
     this.notShowMonth = this.notShowMonth.bind(this);
   }
@@ -43,7 +42,7 @@ class Calend extends React.Component {
   }
 
   monthClick() {
-    const mois = this.state.mois;
+    const { mois } = this.state;
     this.state.moiEnCour = [];
     if (mois == 1) {
       if (
@@ -82,25 +81,6 @@ class Calend extends React.Component {
 
   notShowMonth() {
     this.setState({ shMounth: false });
-  }
-
-  reset() {
-    const anneeF = this.state.annee;
-    let jourF = '';
-    let moisF = '';
-
-    if (this.state.mois < 9) {
-      let moisR = this.state.mois + 1;
-      moisF = `0${moisR}`;
-    } else {
-      moisF = this.state.mois + 1;
-    }
-    if (this.state.daySelect < 10) {
-      jourF = `0${this.state.daySelect}`;
-    } else {
-      jourF = this.state.daySelect;
-    }
-    this.setState({ dateFinal: `${anneeF}-${moisF}-${jourF}` });
   }
 
   render() {
@@ -165,7 +145,7 @@ class Calend extends React.Component {
           {daySelect}
         </p>
         <p>{dateFinal}</p>
-        <button type="button" className="btnvalidator" onClick={this.reset}>
+        <button type="button" className="btnvalidator" onClick={() => this.props.reset(this.state)}>
           Ok
         </button>
       </div>
