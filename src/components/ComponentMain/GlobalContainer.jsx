@@ -21,9 +21,9 @@ class GlobalContainer extends React.Component {
         displayScenarios: false,
         displayCriteres: false
       },
-      date: '2015-08-09',
+      date: null,
       data: null,
-      periodeChecked: true
+      periodeChecked: false
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
@@ -96,12 +96,21 @@ class GlobalContainer extends React.Component {
     const { displayCriteres } = this.state.displayBottomContent;
     const { displayScenarios } = this.state.displayBottomContent;
     const { periodeChecked } = this.state;
+    const { date } = this.state;
 
     return (
       <div className="App">
         <MainTitle />
         <UpButtons periodeChecked={this.periodeChecked} />
-        <MainApp />
+        <div className="flex">
+          <MainApp />
+          {date ? (
+            <h2 className="colorText">
+              Astéroïdes en approche à partir du :&#141;
+              {this.state.date}
+            </h2>
+          ) : null}
+        </div>
         <div className="button-bottom">
           <ButtonBottom
             handleDisplayContent={this.handleDisplayContent}

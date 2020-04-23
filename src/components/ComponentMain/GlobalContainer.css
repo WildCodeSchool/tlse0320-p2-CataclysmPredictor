@@ -2,3 +2,11 @@
   display: flex;
   justify-content: space-around;
 }
+.colorText {
+  color: rgb(89, 247, 247);
+  margin-right: 20px;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
