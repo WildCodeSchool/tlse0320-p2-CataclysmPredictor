@@ -7,6 +7,7 @@ import FooterContent from '../ComponentBottom/FooterContent';
 import ArticleContent from '../ComponentBottom/ArticleContent';
 import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import CriteresContent from '../ComponentBottom/CriteresContent';
+import Calend from '../Calendrier/Calend';
 import MainTitle from './MainTitle';
 import './GlobalContainer.css';
 
@@ -25,6 +26,7 @@ class GlobalContainer extends React.Component {
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   handleDisplayContent(panelToDisplay) {
@@ -60,6 +62,25 @@ class GlobalContainer extends React.Component {
       .then(data => {
         this.setState({ data: data.near_earth_objects });
       });
+  }
+
+  reset(localState) {
+    const anneeF = localState.annee;
+    let jourF = '';
+    let moisF = '';
+
+    if (localState.mois < 9) {
+      const moisR = localState.mois + 1;
+      moisF = `0${moisR}`;
+    } else {
+      moisF = localState.mois + 1;
+    }
+    if (localState.daySelect < 10) {
+      jourF = `0${localState.daySelect}`;
+    } else {
+      jourF = localState.daySelect;
+    }
+    this.setState({ date: `${anneeF}-${moisF}-${jourF}` });
   }
 
   render() {
@@ -100,6 +121,7 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
+        <Calend reset={this.reset} />
       </div>
     );
   }
