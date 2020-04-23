@@ -1,10 +1,11 @@
 import React from 'react';
-import Welcome from './components/Welcome/Welcome';
+
+import GlobalContainer from './components/ComponentMain/GlobalContainer';
 
 function App() {
   return (
     <div>
-      <Welcome />
+      <GlobalContainer />
     </div>
   );
 }

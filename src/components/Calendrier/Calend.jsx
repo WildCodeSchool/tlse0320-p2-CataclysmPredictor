@@ -25,7 +25,7 @@ class Calend extends React.Component {
       showAppli: false,
       daySelect: 1,
       moiEnCour: [],
-      shMounth: false,
+      shMounth: true,
       showDay: true,
       dateFinal: 'Error try again...'
     };
@@ -103,9 +103,6 @@ class Calend extends React.Component {
           </button>
         </div>
         <div className="moisSelect">
-          <button type="button" className="btnSelector" onMouseEnter={this.showMonth}>
-            <p className="text"> Selectionner une date </p>
-          </button>
           <div className="mois">
             {shMounth ? (
               <div>
@@ -145,8 +142,23 @@ class Calend extends React.Component {
           {daySelect}
         </p>
         <p>{dateFinal}</p>
-        <button type="button" className="btnvalidator" onClick={() => this.props.reset(this.state)}>
-          Ok
+        <button
+          type="button"
+          className="btnvalidator"
+          onClick={() => {
+            this.props.reset(this.state);
+          }}
+        >
+          Valider
+        </button>
+        <button
+          type="button"
+          className="btnvalidator"
+          onClick={() => {
+            this.setState({ shMounth: true });
+          }}
+        >
+          Choisir une autre date
         </button>
       </div>
     );
