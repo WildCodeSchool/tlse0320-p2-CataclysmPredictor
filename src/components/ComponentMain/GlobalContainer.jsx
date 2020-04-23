@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import MainApp from './MainApp';
 import ButtonBottom from '../Buttons/ButtonBottom';
 import UpButtons from '../Buttons/ButtonTop';
@@ -19,9 +20,10 @@ class GlobalContainer extends React.Component {
         displayScenarios: false,
         displayCriteres: false
       },
-      date: '2015-08-09'
+      date: '2015-08-09',
+      data: null
     };
-
+    this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
   }
 
@@ -45,6 +47,19 @@ class GlobalContainer extends React.Component {
         }))
       );
     // Le code ci-dessus permet de mettre toute les valeur de state de l'objet displayBottomContent à false quand un est sélectionné.
+  }
+
+  loadNeoByDate() {
+    const { date } = this.state;
+    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=DEMO_KEY`;
+    axios
+      .get(url)
+      .then(res => {
+        return res.data;
+      })
+      .then(data => {
+        this.setState({ data: data.near_earth_objects });
+      });
   }
 
   render() {
