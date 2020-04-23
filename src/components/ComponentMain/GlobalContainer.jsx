@@ -22,11 +22,13 @@ class GlobalContainer extends React.Component {
         displayCriteres: false
       },
       date: '2015-08-09',
-      data: null
+      data: null,
+      periodeChecked: false
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
     this.reset = this.reset.bind(this);
+    this.periodeChecked = this.periodeChecked.bind(this);
   }
 
   handleDisplayContent(panelToDisplay) {
@@ -49,6 +51,11 @@ class GlobalContainer extends React.Component {
         }))
       );
     // Le code ci-dessus permet de mettre toute les valeur de state de l'objet displayBottomContent à false quand un est sélectionné.
+  }
+
+  periodeChecked() {
+    const { periodeChecked: isChecked } = this.state;
+    this.setState({ periodeChecked: !isChecked });
   }
 
   loadNeoByDate() {
@@ -88,11 +95,12 @@ class GlobalContainer extends React.Component {
     const { displayArticle } = this.state.displayBottomContent;
     const { displayCriteres } = this.state.displayBottomContent;
     const { displayScenarios } = this.state.displayBottomContent;
+    const { periodeChecked } = this.state;
 
     return (
       <div className="App">
         <MainTitle />
-        <UpButtons />
+        <UpButtons periodeChecked={this.periodeChecked} />
         <MainApp />
         <div className="button-bottom">
           <ButtonBottom
@@ -121,7 +129,7 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
-        <Calend reset={this.reset} />
+        {periodeChecked ? <Calend reset={this.reset} /> : null}
       </div>
     );
   }
