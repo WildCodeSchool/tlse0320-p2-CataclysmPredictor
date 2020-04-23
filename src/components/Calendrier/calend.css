@@ -1,93 +1,71 @@
-.text {
-  color: white;
-}
 .containCalend {
-  width: 450px;
+  width: 670px;
   margin: auto;
-}
-
-button {
-  padding: 9px;
-  margin: 9px;
-  border-radius: 5px;
-  transition: 0.6s;
-}
-
-button:hover {
-  background-color: #ff6354;
-}
-
-button:active {
-  background-color: green;
-}
-
-.red {
-  width: 50px;
-  height: 50px;
-  margin: 10px;
-  border-radius: 50%;
-  background-color: #ffe75f;
-}
-.green {
-  width: 50px;
-  height: 50px;
-  margin: 10px;
-  border-radius: 50%;
-  background-color: #c7ffc8;
-}
-.fondBlanc {
-  background-color: white;
-  display: table-row;
-  width: 200px;
-  transition: 0.3s;
-  text-align: center;
-  justify-content: center;
+  padding: 10px;
+  color: rgb(89, 247, 247);
+  background-color: rgb(0, 0, 0, 0.7);
+  border-radius: 12px 0 12px 0;
+  border: 1px solid rgb(89, 247, 247);
 }
 .year {
-  margin-top: 20px;
-  padding: 8px;
-  border-radius: 20px;
-  background-color: #f4ffff;
   display: flex;
   align-content: center;
   justify-content: space-around;
 }
 .moisSelect {
-  margin-top: 20px;
-  padding: 8px;
-  border-radius: 20px;
-  background-color: #9fffc5;
-  flex-direction: row;
-  justify-content: center;
+  height: 200px;
 }
 .mois {
+  height: 200px;
   margin-top: 20px;
-  padding: 8px;
-  border-radius: 20px;
-  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
 }
-.btnSelector {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: #e4b0ff;
-}
-.btndaySelector {
-  border-radius: 50%;
-  width: 45px;
-  height: 45px;
-  background-color: #e4b0ff;
-}
-.btnMonthSelector {
-  border-radius: 50%;
+
+.calendarWidth {
   width: 75px;
-  height: 75px;
-  text-align: center;
-  border-radius: 15px;
-  background-color: #e4b0ff;
+  height: 30px;
 }
-.btnvalidator {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+.calendar:hover,
+.formatItem:hover {
+  color: rgb(89, 247, 247);
+  transition: 0.3s;
+  box-shadow: 0 0 20px rgb(89, 247, 247);
+}
+.formatItem {
+  margin: 5px 10px 5px 10px;
+  border-radius: 12px 0 12px 0;
+  border: 1px solid rgb(89, 247, 247);
+  color: rgb(89, 247, 247);
+  font: bold Electrolize;
+  background: none;
+}
+.btnWidth {
+  width: 100px;
+  height: 50px;
+}
+.btnSelect {
+  border: none;
+  background: none;
+  height: 20px;
+  color: rgb(89, 247, 247);
+  padding: 0px 10px 0px 10px;
+  margin: 0px 10px 0px 10px;
+}
+.btnSelect:hover {
+  background-color: rgb(89, 247, 247, 0.4);
+  color: white;
+}
+.noMarge {
+  margin: 0;
+}
+.footCalendar {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.footCalendar p {
+  width: 100%;
 }

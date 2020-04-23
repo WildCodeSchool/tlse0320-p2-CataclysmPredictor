@@ -23,7 +23,7 @@ class GlobalContainer extends React.Component {
       },
       date: '2015-08-09',
       data: null,
-      periodeChecked: false
+      periodeChecked: true
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);

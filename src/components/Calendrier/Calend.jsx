@@ -2,18 +2,18 @@ import React from 'react';
 import './calend.css';
 
 const arrMois = [
-  'janvier',
-  'fevrier',
-  'mars',
-  'avril',
-  'mai',
-  'juin',
-  'juillet',
-  'aout',
-  'septembre',
-  'octobre',
-  'novembre',
-  'decembre'
+  'Janvier',
+  'Fevrier',
+  'Mars',
+  'Avril',
+  'Mai',
+  'Juin',
+  'Juillet',
+  'Aout',
+  'Septembre',
+  'Octobre',
+  'Novembre',
+  'Decembre'
 ];
 
 class Calend extends React.Component {
@@ -86,80 +86,78 @@ class Calend extends React.Component {
   render() {
     const { annee, mois, shMounth, showDay, moiEnCour, daySelect, dateFinal } = this.state;
     return (
-      <div className="containCalend">
+      <div className="containCalend border">
         <div className="year">
-          <button type="button" className="red" onClick={() => this.addYear(-10)}>
-            --
+          <button type="button" className="btnSelect" onClick={() => this.addYear(-10)}>
+            &#60;&#60;
           </button>
-          <button type="button" className="red" onClick={() => this.addYear(-1)}>
-            -
+          <button type="button" className="btnSelect" onClick={() => this.addYear(-1)}>
+            &#60;
           </button>
-          <p>{annee}</p>
-          <button type="button" className="green" onClick={() => this.addYear(1)}>
-            +
+          <p className="noMarge">{annee}</p>
+          <button type="button" className="btnSelect" onClick={() => this.addYear(1)}>
+            &#62;
           </button>
-          <button type="button" className="green" onClick={() => this.addYear(10)}>
-            ++
+          <button type="button" className="btnSelect" onClick={() => this.addYear(10)}>
+            &#62;&#62;
           </button>
         </div>
         <div className="moisSelect">
-          <div className="mois">
-            {shMounth ? (
-              <div>
-                {arrMois.map((moi, i) => (
-                  <button
-                    type="button"
-                    className="btnMonthSelector"
-                    onMouseEnter={() => this.setState({ mois: i })}
-                    onClick={this.monthClick}
-                  >
-                    {arrMois[i]}
-                  </button>
-                ))}
-              </div>
-            ) : null}
-          </div>
+          {shMounth ? (
+            <div className="mois">
+              {arrMois.map((moi, i) => (
+                <button
+                  type="button"
+                  className="calendarWidth formatItem"
+                  onMouseEnter={() => this.setState({ mois: i })}
+                  onClick={this.monthClick}
+                >
+                  {arrMois[i]}
+                </button>
+              ))}
+            </div>
+          ) : null}
+
           {showDay ? (
-            <div>
-              <p className="text">
-                {moiEnCour.map((jour, j) => (
-                  <button
-                    type="button"
-                    className="btndaySelector"
-                    onMouseEnter={() => this.setState({ daySelect: [j + 1] })}
-                    onClick={() => this.setState({ showDay: false })}
-                  >
-                    {jour}
-                  </button>
-                ))}
-              </p>
+            <div className="mois">
+              {moiEnCour.map((jour, j) => (
+                <button
+                  type="button"
+                  className="calendarWidth formatItem"
+                  onMouseEnter={() => this.setState({ daySelect: [j + 1] })}
+                  onClick={() => this.setState({ showDay: false })}
+                >
+                  {jour}
+                </button>
+              ))}
             </div>
           ) : null}
         </div>
-        <p className="text">
-          Votre date choisi :{annee}-{mois < 9 ? <a>0</a> : null}
-          {mois + 1}-{daySelect < 10 ? <a>0</a> : null}
-          {daySelect}
-        </p>
-        <p>{dateFinal}</p>
-        <button
-          type="button"
-          className="btnvalidator"
-          onClick={() => {
-            this.props.reset(this.state);
-          }}
-        >
-          Valider
-        </button>
-        <button
-          type="button"
-          className="btnvalidator"
-          onClick={() => {
-            this.setState({ shMounth: true });
-          }}
-        >
-          Choisir une autre date
-        </button>
+        <div className="footCalendar">
+          <p>
+            Votre date choisi :{annee}-{mois < 9 ? <a>0</a> : null}
+            {mois + 1}-{daySelect < 10 ? <a>0</a> : null}
+            {daySelect}
+          </p>
+          <button
+            type="button"
+            className="formatItem btnWidth"
+            onClick={() => {
+              this.props.reset(this.state);
+            }}
+          >
+            Valider
+          </button>
+          <button
+            type="button"
+            className="formatItem btnWidth"
+            onClick={() => {
+              this.setState({ shMounth: true });
+            }}
+          >
+            Choisir une autre date
+          </button>
+        </div>
       </div>
     );
   }
