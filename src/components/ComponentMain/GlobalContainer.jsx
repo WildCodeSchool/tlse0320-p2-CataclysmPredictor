@@ -1,6 +1,6 @@
 import React from 'react';
 import MainApp from './MainApp';
-import ButtonBottom from '../Buttons/Button';
+import ButtonBottom from '../Buttons/ButtonBottom';
 import UpButtons from '../Buttons/ButtonTop';
 import FooterContent from '../ComponentBottom/FooterContent';
 import ArticleContent from '../ComponentBottom/ArticleContent';
