@@ -13,26 +13,43 @@ class GlobalContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayFooter: false,
-      displayArticle: false,
-      displayScenarios: false,
-      displayCriteres: false
+      displayBottomContent: {
+        displayFooter: false,
+        displayArticle: false,
+        displayScenarios: false,
+        displayCriteres: false
+      }
     };
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
   }
 
   handleDisplayContent(panelToDisplay) {
-    const { [panelToDisplay]: isPanelDisplayed } = this.state;
-    this.setState({ [panelToDisplay]: !isPanelDisplayed });
-    const keys = Object.keys(this.state);
-    keys.filter(item => item !== panelToDisplay).map(item => this.setState({ [item]: false }));
+    const { [panelToDisplay]: isPanelDisplayed } = this.state.displayBottomContent;
+    this.setState(prevState => ({
+      ...prevState,
+      displayBottomContent: {
+        ...prevState.displayBottomContent,
+        [panelToDisplay]: !isPanelDisplayed
+      }
+    }));
+    // Le code ci-dessus permet d'aller chercher la valeur de state situer dans L OBJET DE UNE PROPRIÉTÉ DU STATE DE LA CLASSE ici displayFooter ou display article par exemple
+    const keys = Object.keys(this.state.displayBottomContent);
+    keys
+      .filter(item => item !== panelToDisplay)
+      .map(item =>
+        this.setState(prevState => ({
+          ...prevState,
+          displayBottomContent: { ...prevState.displayBottomContent, [item]: false }
+        }))
+      );
+    // Le code ci-dessus permet de mettre toute les valeur de state de l'objet displayBottomContent à false quand un est sélectionné.
   }
 
   render() {
-    const { displayFooter } = this.state;
-    const { displayArticle } = this.state;
-    const { displayCriteres } = this.state;
-    const { displayScenarios } = this.state;
+    const { displayFooter } = this.state.displayBottomContent;
+    const { displayArticle } = this.state.displayBottomContent;
+    const { displayCriteres } = this.state.displayBottomContent;
+    const { displayScenarios } = this.state.displayBottomContent;
 
     return (
       <div className="App">
