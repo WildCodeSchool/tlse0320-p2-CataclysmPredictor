@@ -128,7 +128,6 @@ class Calend extends React.Component {
                   onClick={() => {
                     this.setState({ showDay: false });
                     this.props.reset(this.state);
-                    this.props.loadNeoByDate();
                     this.props.periodeChecked();
                   }}
                 >

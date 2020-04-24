@@ -9,7 +9,9 @@ class NeoDisplay extends React.Component {
   render() {
     return (
       <div>
-        <button type="submit">click here</button>
+        <button type="submit" onClick={() => console.log(this.props.data)}>
+          click here
+        </button>
       </div>
     );
   }

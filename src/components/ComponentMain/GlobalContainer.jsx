@@ -32,9 +32,20 @@ class GlobalContainer extends React.Component {
     this.periodeChecked = this.periodeChecked.bind(this);
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     this.loadNeoByDate();
+    console.log('mount');
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevState.date);
+    console.log(this.state.date);
+    if (prevState.date !== this.state.date) {
+      this.loadNeoByDate();
+    }
+  }
+
+  componentWillUnmount() {}
 
   handleDisplayContent(panelToDisplay) {
     const { [panelToDisplay]: isPanelDisplayed } = this.state.displayBottomContent;
@@ -84,7 +95,7 @@ class GlobalContainer extends React.Component {
 
   loadNeoByDate() {
     const { date } = this.state;
-    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=BapitUNP1XW9Ln8ki9YvBXgJlUeLj1UDofZ5ewc8`;
+    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=8UnDAhZSrXjM60o9icI4tiFzXvjGsAhHBBhA7m6d`;
     axios
       .get(url)
       .then(res => {
@@ -145,13 +156,7 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
-        {periodeChecked ? (
-          <Calend
-            reset={this.reset}
-            periodeChecked={this.periodeChecked}
-            loadNeoByDate={this.loadNeoByDate}
-          />
-        ) : null}
+        {periodeChecked ? <Calend reset={this.reset} periodeChecked={this.periodeChecked} /> : null}
       </div>
     );
   }
