@@ -9,6 +9,7 @@ import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import CriteresContent from '../ComponentBottom/CriteresContent';
 import Calend from '../Calendrier/Calend';
 import MainTitle from './MainTitle';
+import NeoDisplay from './NeoDisplay';
 import './GlobalContainer.css';
 
 class GlobalContainer extends React.Component {
@@ -29,6 +30,10 @@ class GlobalContainer extends React.Component {
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
     this.reset = this.reset.bind(this);
     this.periodeChecked = this.periodeChecked.bind(this);
+  }
+
+  componentDidUpdate() {
+    this.loadNeoByDate();
   }
 
   handleDisplayContent(panelToDisplay) {
@@ -58,19 +63,6 @@ class GlobalContainer extends React.Component {
     this.setState({ periodeChecked: !isChecked });
   }
 
-  loadNeoByDate() {
-    const { date } = this.state;
-    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=DEMO_KEY`;
-    axios
-      .get(url)
-      .then(res => {
-        return res.data;
-      })
-      .then(data => {
-        this.setState({ data: data.near_earth_objects });
-      });
-  }
-
   reset(localState) {
     const anneeF = localState.annee;
     let jourF = '';
@@ -90,6 +82,19 @@ class GlobalContainer extends React.Component {
     this.setState({ date: `${anneeF}-${moisF}-${jourF}` });
   }
 
+  loadNeoByDate() {
+    const { date } = this.state;
+    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=BapitUNP1XW9Ln8ki9YvBXgJlUeLj1UDofZ5ewc8`;
+    axios
+      .get(url)
+      .then(res => {
+        return res.data;
+      })
+      .then(data => {
+        this.setState({ data: data.near_earth_objects });
+      });
+  }
+
   render() {
     const { displayFooter } = this.state.displayBottomContent;
     const { displayArticle } = this.state.displayBottomContent;
@@ -97,6 +102,7 @@ class GlobalContainer extends React.Component {
     const { displayScenarios } = this.state.displayBottomContent;
     const { periodeChecked } = this.state;
     const { date } = this.state;
+    const { data } = this.state;
 
     return (
       <div className="App">
@@ -110,6 +116,7 @@ class GlobalContainer extends React.Component {
               {this.state.date}
             </h2>
           ) : null}
+          <NeoDisplay data={data} />
         </div>
         <div className="button-bottom">
           <ButtonBottom
@@ -138,7 +145,13 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
-        {periodeChecked ? <Calend reset={this.reset} periodeChecked={this.periodeChecked} /> : null}
+        {periodeChecked ? (
+          <Calend
+            reset={this.reset}
+            periodeChecked={this.periodeChecked}
+            loadNeoByDate={this.loadNeoByDate}
+          />
+        ) : null}
       </div>
     );
   }
