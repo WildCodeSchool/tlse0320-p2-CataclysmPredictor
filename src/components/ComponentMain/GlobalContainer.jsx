@@ -34,18 +34,13 @@ class GlobalContainer extends React.Component {
 
   componentDidMount() {
     this.loadNeoByDate();
-    console.log('mount');
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(prevState.date);
-    console.log(this.state.date);
     if (prevState.date !== this.state.date) {
       this.loadNeoByDate();
     }
   }
-
-  componentWillUnmount() {}
 
   handleDisplayContent(panelToDisplay) {
     const { [panelToDisplay]: isPanelDisplayed } = this.state.displayBottomContent;
