@@ -1,11 +1,13 @@
 import React from 'react';
 import './mainApp.css';
+import Sort from './Sort';
 
 function MainApp() {
   return (
     <div className="contentSphere">
-      <div className="sphere moon rotate" />
-      <div className="sphere rotate earth" />
+      <Sort />
+      <div className="sphere moon rotate"></div>
+      <div className="sphere rotate earth"></div>
     </div>
   );
 }
