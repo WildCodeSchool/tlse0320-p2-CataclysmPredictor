@@ -63,10 +63,7 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
-    const { displayFooter } = this.state.displayBottomContent;
-    const { displayArticle } = this.state.displayBottomContent;
-    const { displayCriteres } = this.state.displayBottomContent;
-    const { displayScenarios } = this.state.displayBottomContent;
+    const { displayFooter, displayArticle, displayCriteres, displayScenarios } = this.state.displayBottomContent
 
     return (
       <div className="App">
