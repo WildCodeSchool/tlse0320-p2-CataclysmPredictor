@@ -44,10 +44,10 @@ class Calend extends React.Component {
   monthClick() {
     const { mois } = this.state;
     this.state.moiEnCour = [];
-    if (mois == 1) {
+    if (mois === 1) {
       if (
         this.state.annee % 4 === 0 &&
-        (this.state.annee % 100 != 0 || this.state.annee % 400 === 0)
+        (this.state.annee % 100 !== 0 || this.state.annee % 400 === 0)
       ) {
         for (let i = 1; i <= 29; i++) {
           this.state.moiEnCour.push(i);

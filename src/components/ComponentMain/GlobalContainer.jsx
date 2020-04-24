@@ -116,13 +116,15 @@ class GlobalContainer extends React.Component {
         <UpButtons periodeChecked={this.periodeChecked} />
         <div className="flex">
           <MainApp />
-          {date ? (
-            <h2 className="colorText">
-              Astéroïdes en approche à partir du :&#141;
-              {this.state.date}
-            </h2>
-          ) : null}
-          <NeoDisplay data={data} />
+          <div className="flex direction">
+            {date ? (
+              <h2 className="colorText">
+                Astéroïdes en approche à partir du :&#141;
+                {this.state.date}
+              </h2>
+            ) : null}
+            {data ? <NeoDisplay data={data} /> : null}
+          </div>
         </div>
         <div className="button-bottom">
           <ButtonBottom

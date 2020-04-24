@@ -10,3 +10,8 @@
   display: flex;
   justify-content: space-between;
 }
+.direction {
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}

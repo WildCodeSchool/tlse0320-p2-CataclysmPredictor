@@ -1,4 +1,5 @@
 import React from 'react';
+import Neo from './Neo';
 
 class NeoDisplay extends React.Component {
   constructor(props) {
@@ -6,7 +7,18 @@ class NeoDisplay extends React.Component {
     this.state = {
       arrFilter: []
     };
+
     this.formatNeosData = this.formatNeosData.bind(this);
+  }
+
+  componentDidMount() {
+    this.formatNeosData(this.props.data);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.formatNeosData(this.props.data);
+    }
   }
 
   formatNeosData(data) {
@@ -39,19 +51,9 @@ class NeoDisplay extends React.Component {
     const { arrFilter } = this.state;
     return (
       <div>
-        <button
-          type="submit"
-          onClick={() => {
-            this.formatNeosData(this.props.data);
-          }}
-        >
-          click here
-        </button>
-        <div>
-          {arrFilter.map((neo, i) => (
-            <button type="submit">i</button>
-          ))}
-        </div>
+        {arrFilter.map((neo, i) => (
+          <Neo />
+        ))}
       </div>
     );
   }
