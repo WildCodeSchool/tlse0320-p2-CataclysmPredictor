@@ -33,9 +33,8 @@
 }
 .calendar:hover,
 .formatItem:hover {
-  color: rgb(89, 247, 247);
-  transition: 0.3s;
-  box-shadow: 0 0 20px rgb(89, 247, 247);
+  background-color: rgb(89, 247, 247, 0.4);
+  color: white;
 }
 .formatItem {
   margin: 5px 10px 5px 10px;
@@ -44,10 +43,6 @@
   color: rgb(89, 247, 247);
   font: bold Electrolize;
   background: none;
-}
-.btnWidth {
-  width: 100px;
-  height: 50px;
 }
 .btnSelect {
   border: none;

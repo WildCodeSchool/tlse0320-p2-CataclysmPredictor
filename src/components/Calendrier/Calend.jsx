@@ -3,17 +3,17 @@ import './calend.css';
 
 const arrMois = [
   'Janvier',
-  'Fevrier',
+  'Février',
   'Mars',
   'Avril',
   'Mai',
   'Juin',
   'Juillet',
-  'Aout',
+  'Août',
   'Septembre',
   'Octobre',
   'Novembre',
-  'Decembre'
+  'Décembre'
 ];
 
 class Calend extends React.Component {
@@ -84,7 +84,7 @@ class Calend extends React.Component {
   }
 
   render() {
-    const { annee, mois, shMounth, showDay, moiEnCour, daySelect, dateFinal } = this.state;
+    const { annee, mois, shMounth, showDay, moiEnCour, daySelect } = this.state;
     return (
       <div className="containCalend border">
         <div className="year">
@@ -139,7 +139,7 @@ class Calend extends React.Component {
         </div>
         <div className="footCalendar">
           <p>
-            Votre date choisi :{annee}-{mois < 9 ? <a>0</a> : null}
+            Votre date choisie :{annee}-{mois < 9 ? <a>0</a> : null}
             {mois + 1}-{daySelect < 10 ? <a>0</a> : null}
             {daySelect}
           </p>
