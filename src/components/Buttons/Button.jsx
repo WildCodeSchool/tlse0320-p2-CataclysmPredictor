@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Button({ name, periodeCheck }) {
   return (
@@ -9,5 +10,10 @@ function Button({ name, periodeCheck }) {
     </div>
   );
 }
+
+Button.propTypes = {
+  name: PropTypes.string.isRequired,
+  periodeCheck: PropTypes.func.isRequired
+};
 
 export default Button;

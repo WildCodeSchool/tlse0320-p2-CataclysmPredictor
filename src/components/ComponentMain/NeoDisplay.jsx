@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Neo from './Neo';
 
 class NeoDisplay extends React.Component {
@@ -12,18 +13,20 @@ class NeoDisplay extends React.Component {
   }
 
   componentDidMount() {
-    this.formatNeosData(this.props.data);
+    const { data } = this.props;
+    this.formatNeosData(data);
   }
 
   componentDidUpdate(prevProps) {
+    const { data } = this.props;
     if (prevProps !== this.props) {
-      this.formatNeosData(this.props.data);
+      this.formatNeosData(data);
     }
   }
 
   formatNeosData(data) {
     const formattedData = Object.keys(data);
-    console.log(data);
+    /* console.log(data); */
     const neosMatrix = formattedData.map(date => {
       // date ==> "2015-09-08"
       return data[date].map(neo => {
@@ -41,9 +44,9 @@ class NeoDisplay extends React.Component {
       current.forEach(neo => carry.push(neo));
       return carry;
     }, []);
-    console.log(flattenMatrix);
+    /* console.log(flattenMatrix); */
     const filter = flattenMatrix.filter(item => item.danger === true);
-    console.log(filter);
+    /* console.log(filter); */
     this.setState({ arrFilter: filter });
   }
 
@@ -51,12 +54,15 @@ class NeoDisplay extends React.Component {
     const { arrFilter } = this.state;
     return (
       <div>
-        {arrFilter.map((neo, i) => (
-          <Neo />
+        {arrFilter.map(neo => (
+          <Neo keys={neo.name} />
         ))}
       </div>
     );
   }
 }
+NeoDisplay.propTypes = {
+  data: PropTypes.shape.isRequired
+};
 
 export default NeoDisplay;

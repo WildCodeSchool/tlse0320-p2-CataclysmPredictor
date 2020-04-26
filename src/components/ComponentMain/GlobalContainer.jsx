@@ -37,13 +37,15 @@ class GlobalContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.date !== this.state.date) {
+    const { date } = this.state;
+    if (prevState.date !== date) {
       this.loadNeoByDate();
     }
   }
 
   handleDisplayContent(panelToDisplay) {
-    const { [panelToDisplay]: isPanelDisplayed } = this.state.displayBottomContent;
+    const { displayBottomContent } = this.state;
+    const { [panelToDisplay]: isPanelDisplayed } = displayBottomContent;
     this.setState(prevState => ({
       ...prevState,
       displayBottomContent: {
@@ -52,7 +54,7 @@ class GlobalContainer extends React.Component {
       }
     }));
     // Le code ci-dessus permet d'aller chercher la valeur de state situer dans L OBJET DE UNE PROPRIÉTÉ DU STATE DE LA CLASSE ici displayFooter ou display article par exemple
-    const keys = Object.keys(this.state.displayBottomContent);
+    const keys = Object.keys({ [panelToDisplay]: isPanelDisplayed });
     keys
       .filter(item => item !== panelToDisplay)
       .map(item =>
@@ -71,15 +73,8 @@ class GlobalContainer extends React.Component {
 
   reset(localState) {
     const anneeF = localState.annee;
+    const moisF = localState.mois;
     let jourF = '';
-    let moisF = '';
-
-    if (localState.mois < 9) {
-      const moisR = localState.mois + 1;
-      moisF = `0${moisR}`;
-    } else {
-      moisF = localState.mois + 1;
-    }
     if (localState.daySelect < 10) {
       jourF = `0${localState.daySelect}`;
     } else {
@@ -102,10 +97,13 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
-    const { displayFooter } = this.state.displayBottomContent;
-    const { displayArticle } = this.state.displayBottomContent;
-    const { displayCriteres } = this.state.displayBottomContent;
-    const { displayScenarios } = this.state.displayBottomContent;
+    const { displayBottomContent } = this.state;
+    const {
+      displayFooter,
+      displayArticle,
+      displayCriteres,
+      displayScenarios
+    } = displayBottomContent;
     const { periodeChecked } = this.state;
     const { date } = this.state;
     const { data } = this.state;
@@ -120,7 +118,7 @@ class GlobalContainer extends React.Component {
             {date ? (
               <h2 className="colorText">
                 Astéroïdes en approche à partir du :&#141;
-                {this.state.date}
+                {date}
               </h2>
             ) : null}
             {data ? <NeoDisplay data={data} /> : null}

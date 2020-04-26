@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function ButtonBottom({ handleDisplayContent, panelToHandle, name }) {
   return (
@@ -14,5 +15,10 @@ function ButtonBottom({ handleDisplayContent, panelToHandle, name }) {
     </div>
   );
 }
+ButtonBottom.propTypes = {
+  name: PropTypes.string.isRequired,
+  panelToHandle: PropTypes.string.isRequired,
+  handleDisplayContent: PropTypes.func.isRequired
+};
 
 export default ButtonBottom;
