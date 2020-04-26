@@ -25,12 +25,14 @@ class GlobalContainer extends React.Component {
       },
       date: null,
       data: null,
-      periodeChecked: false
+      periodeChecked: false,
+      dataFormated: null
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
     this.reset = this.reset.bind(this);
     this.periodeChecked = this.periodeChecked.bind(this);
+    this.formatNeosData = this.formatNeosData.bind(this);
   }
 
   componentDidMount() {
@@ -41,6 +43,7 @@ class GlobalContainer extends React.Component {
     const { date } = this.state;
     if (prevState.date !== date) {
       this.loadNeoByDate();
+      setInterval(this.formatNeosData, 1000);
     }
   }
 
@@ -97,8 +100,40 @@ class GlobalContainer extends React.Component {
       });
   }
 
+  formatNeosData() {
+    const { data } = this.state;
+    const formattedData = Object.keys(data);
+    /* console.log(data); */
+    const neosMatrix = formattedData.map(date => {
+      // date ==> "2015-09-08"<s
+      return data[date].map(neo => {
+        // neo ==> {...}
+        return {
+          name: neo.name,
+          speed: Math.round(neo.close_approach_data[0].relative_velocity.kilometers_per_hour),
+          size: neo.estimated_diameter.kilometers.estimated_diameter_max,
+          magnitude: neo.absolute_magnitude_h,
+          distanceKm: Math.round(neo.close_approach_data[0].miss_distance.kilometers),
+          distanceLunar: Math.round(neo.close_approach_data[0].miss_distance.lunar),
+          closeDate: neo.close_approach_data[0].close_approach_date,
+          closeDateFull: neo.close_approach_data[0].close_approach_date_full,
+          danger: neo.is_potentially_hazardous_asteroid
+        };
+      });
+    });
+    const flattenMatrix = neosMatrix.reduce((carry, current) => {
+      // current ==> [{...},{...}]
+      current.forEach(neo => carry.push(neo));
+      return carry;
+    }, []);
+    /* console.log(flattenMatrix); */
+    const filter = flattenMatrix.filter(item => item.danger === true);
+    /* console.log(filter); */
+    this.setState({ dataFormated: filter });
+  }
+
   render() {
-    const { displayBottomContent } = this.state;
+    const { displayBottomContent, dataFormated } = this.state;
     const {
       displayFooter,
       displayArticle,
@@ -122,7 +157,7 @@ class GlobalContainer extends React.Component {
                 {date}
               </h2>
             ) : null}
-            {data ? <NeoDisplay data={data} /> : null}
+            {data ? <NeoDisplay data={dataFormated} /> : null}
           </div>
         </div>
         <div className="button-bottom">
