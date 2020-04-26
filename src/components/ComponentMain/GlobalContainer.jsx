@@ -188,7 +188,7 @@ class GlobalContainer extends React.Component {
         {displayCriteres ? <CriteresContent /> : null}
         <div />
         {periodeChecked ? <Calend reset={this.reset} periodeChecked={this.periodeChecked} /> : null}
-        <Id />
+        {dataFormated ? <Id dataFormated={dataFormated} /> : null}
       </div>
     );
   }
