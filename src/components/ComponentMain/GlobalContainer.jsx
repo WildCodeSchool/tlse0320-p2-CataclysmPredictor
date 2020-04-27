@@ -6,19 +6,24 @@ import FooterContent from '../ComponentBottom/FooterContent';
 import ArticleContent from '../ComponentBottom/ArticleContent';
 import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import CriteresContent from '../ComponentBottom/CriteresContent';
+import Calend from '../Calendrier/Calend';
 import MainTitle from './MainTitle';
 import './GlobalContainer.css';
 
 class GlobalContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    (this.state = {
       displayFooter: false,
       displayArticle: false,
       displayScenarios: false,
-      displayCriteres: false
-    };
-    this.handleDisplayContent = this.handleDisplayContent.bind(this);
+      displayCriteres: false,
+      date: null,
+      periodeChecked: false
+    }),
+      (this.handleDisplayContent = this.handleDisplayContent.bind(this)),
+      (this.reset = this.reset.bind(this));
+    this.periodeChecked = this.periodeChecked.bind(this);
   }
 
   handleDisplayContent(panelToDisplay) {
@@ -28,11 +33,30 @@ class GlobalContainer extends React.Component {
     keys.filter(item => item !== panelToDisplay).map(item => this.setState({ [item]: false }));
   }
 
+  periodeChecked() {
+    const { periodeChecked: isChecked } = this.state;
+    this.setState({ periodeChecked: !isChecked });
+  }
+
+  reset(localState) {
+    const anneeF = localState.annee;
+    const moisF = localState.mois;
+    let jourF = '';
+    if (localState.daySelect < 10) {
+      jourF = `0${localState.daySelect}`;
+    } else {
+      jourF = localState.daySelect;
+    }
+    this.setState({ date: `${anneeF}-${moisF}-${jourF}` });
+  }
+
   render() {
     const { displayFooter } = this.state;
     const { displayArticle } = this.state;
     const { displayCriteres } = this.state;
     const { displayScenarios } = this.state;
+    const { periodeChecked } = this.state;
+    const { date, data } = this.state;
 
     return (
       <div className="App">
@@ -66,6 +90,7 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
+        {periodeChecked ? <Calend reset={this.reset} periodeChecked={this.periodeChecked} /> : null}
       </div>
     );
   }
