@@ -10,7 +10,6 @@ import CriteresContent from '../ComponentBottom/CriteresContent';
 import Calend from '../Calendrier/Calend';
 import MainTitle from './MainTitle';
 import NeoDisplay from './NeoDisplay';
-import Id from '../Id/Id';
 import './GlobalContainer.css';
 
 class GlobalContainer extends React.Component {
@@ -188,7 +187,6 @@ class GlobalContainer extends React.Component {
         {displayCriteres ? <CriteresContent /> : null}
         <div />
         {periodeChecked ? <Calend reset={this.reset} periodeChecked={this.periodeChecked} /> : null}
-        {dataFormated ? <Id dataFormated={dataFormated} /> : null}
       </div>
     );
   }

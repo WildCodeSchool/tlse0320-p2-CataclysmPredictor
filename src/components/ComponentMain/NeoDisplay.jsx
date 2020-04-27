@@ -11,7 +11,7 @@ class NeoDisplay extends React.Component {
   // mettre a jour le state arrFilter avec data(la props qu'on envoie de GlobalContainer) avec setState
   render() {
     const { data } = this.props;
-    return <div>{data ? data.map(neo => <Neo keys={neo.name} />) : 'No-Data'}</div>;
+    return <div>{data ? data.map(neo => <Neo keys={neo.name} dataNeo={neo} />) : 'No-Data'}</div>;
   }
 }
 NeoDisplay.propTypes = {
