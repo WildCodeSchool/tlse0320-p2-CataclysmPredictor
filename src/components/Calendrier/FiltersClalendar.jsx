@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const arrMois = [
+const arrMois2 = [
   {
     id: '01',
     month: 'Janvier'
@@ -60,8 +59,7 @@ class FiltersCalendar extends React.Component {
       mois: 0,
       showAppli: false,
       moisEnCours: [],
-      shMounth: true,
-      dateFinal: 'Error try again...'
+      shMounth: true
     };
     this.addYear = this.addYear.bind(this);
     this.monthClick = this.monthClick.bind(this);
@@ -114,8 +112,7 @@ class FiltersCalendar extends React.Component {
   }
 
   render() {
-    const { annee, mois, shMounth, moisEnCours, dateFinal } = this.state;
-    const { reset, periodeChecked } = this.props;
+    const { annee, mois, shMounth } = this.state;
     return (
       <div className="containCalend">
         <div className="year">
@@ -150,17 +147,11 @@ class FiltersCalendar extends React.Component {
           ) : null}
         </div>
         <div className="footCalendar">
-          <p>
-            {`Votre date choisie : ${annee}-${mois}-${daySelect <= 9 ? 0 + daySelect : daySelect}`}
-          </p>
+          <p>{`Votre date choisie : ${annee}-${mois}`}</p>
         </div>
       </div>
     );
   }
 }
-FiltersCalendar.propTypes = {
-  reset: PropTypes.func.isRequired,
-  periodeChecked: PropTypes.func.isRequired
-};
 
 export default FiltersCalendar;
