@@ -7,7 +7,7 @@ import FooterContent from '../ComponentBottom/FooterContent';
 import ArticleContent from '../ComponentBottom/ArticleContent';
 import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import CriteresContent from '../ComponentBottom/CriteresContent';
-import Calend from '../Calendrier/Calend';
+import Calend from '../Calendrier/calend.jsx';
 import MainTitle from './MainTitle';
 import NeoDisplay from './NeoDisplay';
 import './GlobalContainer.css';
