@@ -76,26 +76,6 @@ class FiltersCalendar extends React.Component {
   }
 
   monthClick() {
-    const { mois, annee, moisEnCours } = this.state;
-    if (mois === '02') {
-      if (annee % 4 === 0 && (annee % 100 !== 0 || annee % 400 === 0)) {
-        for (let i = 1; i <= 29; i += 1) {
-          moisEnCours.push(i);
-        }
-      } else {
-        for (let i = 1; i <= 28; i += 1) {
-          moisEnCours.push(i);
-        }
-      }
-    } else if (mois === '04' || mois === '06' || mois === '09' || mois === '11') {
-      for (let i = 1; i <= 30; i += 1) {
-        moisEnCours.push(i);
-      }
-    } else {
-      for (let i = 1; i <= 31; i += 1) {
-        moisEnCours.push(i);
-      }
-    }
     this.setState({ shMounth: false });
   }
 
