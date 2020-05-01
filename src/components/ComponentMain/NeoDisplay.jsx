@@ -6,7 +6,9 @@ class NeoDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrFilter: []
+      arrFilter: [],
+      magnitudeTab: null,
+      maxDistance: null
     };
 
     this.formatNeosData = this.formatNeosData.bind(this);
@@ -51,16 +53,41 @@ class NeoDisplay extends React.Component {
     }, []);
     /* console.log(flattenMatrix); */
     const filter = flattenMatrix.filter(item => item.danger === true);
+    /* Extraire maxMagnitude */
+    const magnitude = filter.map(neo => neo.magnitude);
+    const max = magnitude.reduce((a, b) => {
+      return Math.max(a, b);
+    });
+    /* Extraire distance max */
+    const distance = filter.map(neo => neo.distanceLunar);
+    const maxDistance = distance.reduce((a, b) => {
+      return Math.max(a, b);
+    });
+
     /* console.log(filter); */
-    this.setState({ arrFilter: filter });
+    this.setState({ arrFilter: filter, magnitudeTab: max, maxDistance });
+  }
+
+  // Un tableau de valeur contenant toute les magnitudes
+  magnitudeTab(data) {
+    const magnitude = data.map(neo => neo.magnitude);
+    const max = magnitude.reduce((a, b) => {
+      return Math.max(a, b);
+    });
+    this.setState({ magnitudeTab: max });
   }
 
   render() {
-    const { arrFilter } = this.state;
+    const { arrFilter, magnitudeTab, maxDistance } = this.state;
     return (
       <div>
         {arrFilter.map(neo => (
-          <Neo keys={neo.name} dataNeo={neo} />
+          <Neo
+            keys={neo.name}
+            dataNeo={neo}
+            magnitudeTab={magnitudeTab}
+            maxDistance={maxDistance}
+          />
         ))}
       </div>
     );
