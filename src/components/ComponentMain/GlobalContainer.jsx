@@ -1,6 +1,7 @@
 import React from 'react';
+import axios from 'axios';
 import MainApp from './MainApp';
-import ButtonBottom from '../Buttons/Button';
+import ButtonBottom from '../Buttons/ButtonBottom';
 import UpButtons from '../Buttons/ButtonTop';
 import FooterContent from '../ComponentBottom/FooterContent';
 import ArticleContent from '../ComponentBottom/ArticleContent';
@@ -13,26 +14,56 @@ class GlobalContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayFooter: false,
-      displayArticle: false,
-      displayScenarios: false,
-      displayCriteres: false
+      displayBottomContent: {
+        displayFooter: false,
+        displayArticle: false,
+        displayScenarios: false,
+        displayCriteres: false
+      },
+      date: '2015-08-09',
+      data: null
     };
+    this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
   }
 
   handleDisplayContent(panelToDisplay) {
-    const { [panelToDisplay]: isPanelDisplayed } = this.state;
-    this.setState({ [panelToDisplay]: !isPanelDisplayed });
-    const keys = Object.keys(this.state);
-    keys.filter(item => item !== panelToDisplay).map(item => this.setState({ [item]: false }));
+    const { [panelToDisplay]: isPanelDisplayed } = this.state.displayBottomContent;
+    this.setState(prevState => ({
+      ...prevState,
+      displayBottomContent: {
+        ...prevState.displayBottomContent,
+        [panelToDisplay]: !isPanelDisplayed
+      }
+    }));
+    // Le code ci-dessus permet d'aller chercher la valeur de state situer dans L OBJET DE UNE PROPRIÉTÉ DU STATE DE LA CLASSE ici displayFooter ou display article par exemple
+    const keys = Object.keys(this.state.displayBottomContent);
+    keys
+      .filter(item => item !== panelToDisplay)
+      .map(item =>
+        this.setState(prevState => ({
+          ...prevState,
+          displayBottomContent: { ...prevState.displayBottomContent, [item]: false }
+        }))
+      );
+    // Le code ci-dessus permet de mettre toute les valeur de state de l'objet displayBottomContent à false quand un est sélectionné.
+  }
+
+  loadNeoByDate() {
+    const { date } = this.state;
+    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=DEMO_KEY`;
+    axios
+      .get(url)
+      .then(res => {
+        return res.data;
+      })
+      .then(data => {
+        this.setState({ data: data.near_earth_objects });
+      });
   }
 
   render() {
-    const { displayFooter } = this.state;
-    const { displayArticle } = this.state;
-    const { displayCriteres } = this.state;
-    const { displayScenarios } = this.state;
+    const { displayFooter, displayArticle, displayCriteres, displayScenarios } = this.state.displayBottomContent
 
     return (
       <div className="App">
