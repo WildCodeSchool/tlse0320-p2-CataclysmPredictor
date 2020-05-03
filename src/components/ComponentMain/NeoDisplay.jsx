@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Neo from './Neo';
+import './GlobalContainer.css';
 
 class NeoDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrFilter: [],
-      magnitudeTab: null,
-      maxDistance: null
+      arrFilter: []
     };
 
     this.formatNeosData = this.formatNeosData.bind(this);
@@ -53,38 +52,41 @@ class NeoDisplay extends React.Component {
     }, []);
     /* console.log(flattenMatrix); */
     const filter = flattenMatrix.filter(item => item.danger === true);
-    /* Extraire maxMagnitude */
+    /* Ajout de la proprité d'indice magnitude */
     const magnitude = filter.map(neo => neo.magnitude);
-    const max = magnitude.reduce((a, b) => {
-      return Math.max(a, b);
-    });
-    /* Extraire distance max */
+    const magnitudeTri = magnitude.sort((a, b) => a - b);
+    filter.map(neo =>
+      Object.defineProperty(neo, 'indiceMagnitude', {
+        value: magnitudeTri.indexOf(neo.magnitude) + 1,
+        enumerable: true
+      })
+    );
+    /* Ajout de la propriété indice distance */
     const distance = filter.map(neo => neo.distanceLunar);
-    const maxDistance = distance.reduce((a, b) => {
-      return Math.max(a, b);
-    });
+    const distanceTri = distance.sort((a, b) => a - b);
+    filter.map(neo =>
+      Object.defineProperty(neo, 'indiceDistance', {
+        value: distanceTri.indexOf(neo.distanceLunar) + 1,
+        enumerable: true
+      })
+    );
 
-    /* console.log(filter); */
-    this.setState({ arrFilter: filter, magnitudeTab: max, maxDistance });
-  }
-
-  // Un tableau de valeur contenant toute les magnitudes
-  magnitudeTab(data) {
-    const magnitude = data.map(neo => neo.magnitude);
-    const max = magnitude.reduce((a, b) => {
-      return Math.max(a, b);
-    });
-    this.setState({ magnitudeTab: max });
+    this.setState({ arrFilter: filter });
   }
 
   render() {
     const { arrFilter, magnitudeTab, maxDistance } = this.state;
+    const grid = {
+      display: 'grid',
+      gridGap: '10px'
+    };
     return (
-      <div>
+      <div className="grid" style={grid}>
         {arrFilter.map(neo => (
           <Neo
             keys={neo.name}
             dataNeo={neo}
+            nbOfNeos={arrFilter.length - 1}
             magnitudeTab={magnitudeTab}
             maxDistance={maxDistance}
           />

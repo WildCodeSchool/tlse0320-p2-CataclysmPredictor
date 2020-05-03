@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Neo({ dataNeo, magnitudeTab, maxDistance }) {
-  const top = (dataNeo.magnitude / magnitudeTab) * 100;
-  const left = (dataNeo.distanceLunar / maxDistance) * 100;
+function Neo({ dataNeo }) {
   const neoStyle = {
-    position: 'relative',
-    top: `${top}px`,
-    left: `${left}px`,
-    margin: '30px'
+    gridRow: dataNeo.indiceMagnitude,
+    gridColumn: dataNeo.indiceDistance
   };
   return (
     <button type="submit" className={dataNeo.name} style={neoStyle}>
@@ -17,9 +13,7 @@ function Neo({ dataNeo, magnitudeTab, maxDistance }) {
   );
 }
 Neo.propTypes = {
-  dataNeo: PropTypes.shape.isRequired,
-  magnitudeTab: PropTypes.number.isRequired,
-  maxDistance: PropTypes.number.isRequired
+  dataNeo: PropTypes.shape.isRequired
 };
 
 export default Neo;

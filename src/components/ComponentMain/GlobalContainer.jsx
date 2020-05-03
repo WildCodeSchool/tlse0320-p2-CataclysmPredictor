@@ -114,7 +114,7 @@ class GlobalContainer extends React.Component {
         <UpButtons periodeChecked={this.periodeChecked} />
         <div className="flex">
           <MainApp />
-          <div className="flex direction">
+          <div className="flex direction parent">
             {date ? (
               <h2 className="colorText">
                 Astéroïdes en approche à partir du :&#141;
