@@ -8,15 +8,15 @@
 }
 .flex {
   display: flex;
+  margin: 5px 10px;
 }
 .direction {
   flex-direction: column;
   align-items: flex-end;
-  justify-content: start;
   width: 100%;
 }
 .grid {
   margin-right: 20px;
   width: 90%;
-  height: 35vh;
+  height: 50vh;
 }

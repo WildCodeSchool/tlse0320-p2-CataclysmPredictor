@@ -77,8 +77,7 @@ class NeoDisplay extends React.Component {
   render() {
     const { arrFilter, magnitudeTab, maxDistance } = this.state;
     const grid = {
-      display: 'grid',
-      gridGap: '10px'
+      display: 'grid'
     };
     return (
       <div className="grid" style={grid}>

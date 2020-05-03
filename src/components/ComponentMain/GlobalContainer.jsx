@@ -150,7 +150,6 @@ class GlobalContainer extends React.Component {
         {displayArticle ? <ArticleContent /> : null}
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
-        <div />
         {periodeChecked ? <Calend reset={this.reset} periodeChecked={this.periodeChecked} /> : null}
       </div>
     );
