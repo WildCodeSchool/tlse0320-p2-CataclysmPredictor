@@ -70,6 +70,17 @@ class NeoDisplay extends React.Component {
         enumerable: true
       })
     );
+    /* Ajout d'un indiceSize */
+    const size = filter.map(neo => neo.size);
+    const sizeTri = size.sort((a, b) => a - b);
+    console.log(sizeTri);
+
+    filter.map(neo =>
+      Object.defineProperty(neo, 'indiceSize', {
+        value: sizeTri.indexOf(neo.size),
+        enumerable: true
+      })
+    );
 
     this.setState({ arrFilter: filter });
   }
