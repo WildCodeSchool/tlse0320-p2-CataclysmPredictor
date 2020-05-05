@@ -15,3 +15,49 @@
   align-items: center;
   justify-content: start;
 }
+.border {
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(89, 247, 247);
+  border-radius: 12px 0 12px 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.color {
+  color: whitesmoke;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+.position {
+  position: absolute;
+  top: auto;
+  left: 35%;
+}
+
+.padding {
+  padding: 20px;
+}
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.list li {
+  line-height: 2em;
+}
+/*td, tr {
+    margin: 20px;
+    border: solid 1px
+ }*/
+.table {
+  text-align: right;
+  border-spacing: 30px;
+  color: white;
+}
+.table tbody tr td:nth-child(2) {
+  text-align: left;
+  color: rgb(139, 138, 138);
+}
+.table tbody tr td:nth-child(3) {
+  text-align: right;
+  color: rgb(139, 138, 138);
+}
