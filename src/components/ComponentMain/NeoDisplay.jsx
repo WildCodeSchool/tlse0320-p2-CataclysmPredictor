@@ -1,5 +1,6 @@
 import React from 'react';
 import Neo from './Neo';
+import './GlobalContainer.css';
 
 class NeoDisplay extends React.Component {
   constructor(props) {
@@ -60,10 +61,11 @@ class NeoDisplay extends React.Component {
 
   render() {
     const { arrFilter } = this.state;
+
     return (
-      <div>
+      <div className="grid">
         {arrFilter.map(neo => (
-          <Neo keys={neo.name} />
+          <Neo keys={neo.name} dataNeo={neo} />
         ))}
       </div>
     );
