@@ -110,7 +110,7 @@ class GlobalContainer extends React.Component {
         return {
           name: neo.name,
           speed: Math.round(neo.close_approach_data[0].relative_velocity.kilometers_per_hour),
-          size: neo.estimated_diameter.kilometers.estimated_diameter_max,
+          size: neo.estimated_diameter.kilometers.estimated_diameter_max.toFixed(2),
           magnitude: neo.absolute_magnitude_h,
           distanceKm: Math.round(neo.close_approach_data[0].miss_distance.kilometers),
           distanceLunar: Math.round(neo.close_approach_data[0].miss_distance.lunar),
