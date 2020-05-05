@@ -73,7 +73,6 @@ class NeoDisplay extends React.Component {
     /* Ajout d'un indiceSize */
     const size = filter.map(neo => neo.size);
     const sizeTri = size.sort((a, b) => a - b);
-    console.log(sizeTri);
 
     filter.map(neo =>
       Object.defineProperty(neo, 'indiceSize', {
@@ -86,20 +85,14 @@ class NeoDisplay extends React.Component {
   }
 
   render() {
-    const { arrFilter, magnitudeTab, maxDistance } = this.state;
+    const { arrFilter } = this.state;
     const grid = {
       display: 'grid'
     };
     return (
       <div className="grid" style={grid}>
         {arrFilter.map(neo => (
-          <Neo
-            keys={neo.name}
-            dataNeo={neo}
-            nbOfNeos={arrFilter.length - 1}
-            magnitudeTab={magnitudeTab}
-            maxDistance={maxDistance}
-          />
+          <Neo keys={neo.name} dataNeo={neo} />
         ))}
       </div>
     );
