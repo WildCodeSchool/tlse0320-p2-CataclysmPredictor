@@ -4,9 +4,11 @@ import meteor from '../../img/meteor.png';
 import './mainApp.css';
 import './GlobalContainer.css';
 import Id from '../Id/Id';
+import MiniId from '../Id/MiniId';
 
-function Neo({ dataNeo }) {
-  const [displayID, setDisplay] = useState(false);
+function Neo({ dataNeo, showAlert }) {
+  const [displayID, setDisplayID] = useState(false);
+  const [displayMiniId, setDisplayMiniId] = useState(false);
   const defSize = size => {
     if (size < 7 && size >= 3) {
       return 45;
@@ -27,10 +29,19 @@ function Neo({ dataNeo }) {
         className="spin"
         src={meteor}
         alt={dataNeo.name}
-        onClick={() => setDisplay(!displayID)}
+        onClick={() => setDisplayID(!displayID)}
+        onMouseOver={() => {
+          setDisplayMiniId(!displayMiniId);
+          showAlert();
+        }}
+        onMouseOut={() => {
+          setDisplayMiniId(!displayMiniId);
+          showAlert();
+        }}
         width={defSize(dataNeo.indiceSize)}
       />
-      {displayID ? <Id dataNeo={dataNeo} setDisplay={() => setDisplay(!displayID)} /> : null}
+      {displayMiniId ? <MiniId dataNeo={dataNeo} /> : null}
+      {displayID ? <Id dataNeo={dataNeo} setDisplay={() => setDisplayID(!displayID)} /> : null}
     </div>
   );
 }

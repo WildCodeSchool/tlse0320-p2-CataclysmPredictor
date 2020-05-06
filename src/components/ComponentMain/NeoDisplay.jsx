@@ -87,17 +87,19 @@ class NeoDisplay extends React.Component {
   // mettre a jour le state arrFilter avec data(la props qu'on envoie de GlobalContainer) avec setState
   render() {
     const { arrFilter } = this.state;
+    const { showAlert } = this.props;
     return (
       <div className="grid">
         {arrFilter.map(neo => (
-          <Neo keys={neo.name} dataNeo={neo} />
+          <Neo keys={neo.name} dataNeo={neo} showAlert={showAlert} />
         ))}
       </div>
     );
   }
 }
 NeoDisplay.propTypes = {
-  data: PropTypes.shape.isRequired
+  data: PropTypes.shape.isRequired,
+  showAlert: PropTypes.func.isRequired
 };
 
 export default NeoDisplay;

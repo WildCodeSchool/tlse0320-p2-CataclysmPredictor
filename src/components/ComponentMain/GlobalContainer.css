@@ -16,6 +16,12 @@
   align-items: flex-end;
   width: 100%;
 }
+.right-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .grid {
   display: grid;
   margin: auto 0 auto 0;
@@ -31,7 +37,6 @@
 .color {
   color: whitesmoke;
   margin-top: 0;
-  margin-bottom: 30px;
 }
 .position {
   position: absolute;
@@ -73,4 +78,9 @@
 .fake-button {
   border: none;
   background: none;
+}
+.absolute {
+  position: absolute;
+  top: auto;
+  left: auto;
 }
