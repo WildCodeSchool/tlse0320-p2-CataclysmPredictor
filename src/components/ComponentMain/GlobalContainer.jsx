@@ -24,7 +24,8 @@ class GlobalContainer extends React.Component {
       },
       date: null,
       data: null,
-      periodeChecked: false
+      periodeChecked: false,
+      bigCheked: false
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
@@ -70,6 +71,10 @@ class GlobalContainer extends React.Component {
     const { periodeChecked: isChecked } = this.state;
     this.setState({ periodeChecked: !isChecked });
   }
+  biggerChecked() {
+    const { bigCheked: isChecked } = this.state;
+    this.setState({ bigCheked: !isChecked });
+  }
 
   reset(localState) {
     const anneeF = localState.annee;
@@ -111,7 +116,7 @@ class GlobalContainer extends React.Component {
     return (
       <div className="App">
         <MainTitle />
-        <UpButtons periodeChecked={this.periodeChecked} />
+        <UpButtons periodeChecked={this.periodeChecked} bigger={this.biggerChecked} />
         <div className="flex">
           <MainApp />
           <div className="flex direction">
