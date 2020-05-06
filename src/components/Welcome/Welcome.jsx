@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import GlobalContainer from '../ComponentMain/GlobalContainer';
 import './Welcome.css';
 
@@ -13,10 +14,11 @@ class Welcome extends Component {
   }
 
   componentDidMount() {
-    fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
-      .then(response => response.json())
+    axios
+      .get('https://api.nasa.gov/planetary/apod?api_key=BapitUNP1XW9Ln8ki9YvBXgJlUeLj1UDofZ5ewc8')
+      .then(response => response)
       .then(response => {
-        this.setState({ items: response });
+        this.setState({ items: response.data });
       });
   }
 

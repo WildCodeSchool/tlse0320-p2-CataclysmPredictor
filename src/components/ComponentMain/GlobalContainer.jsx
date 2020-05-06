@@ -7,8 +7,11 @@ import FooterContent from '../ComponentBottom/FooterContent';
 import ArticleContent from '../ComponentBottom/ArticleContent';
 import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import CriteresContent from '../ComponentBottom/CriteresContent';
+import Calend from '../Calendrier/Calend';
 import MainTitle from './MainTitle';
+import NeoDisplay from './NeoDisplay';
 import './GlobalContainer.css';
+import FiltersCalendar from '../Calendrier/calendfilter';
 
 class GlobalContainer extends React.Component {
   constructor(props) {
@@ -20,15 +23,31 @@ class GlobalContainer extends React.Component {
         displayScenarios: false,
         displayCriteres: false
       },
-      date: '2015-08-09',
-      data: null
+      date: null,
+      data: null,
+      periodeChecked: false,
+      bigCheked: false
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
+    this.reset = this.reset.bind(this);
+    this.periodeChecked = this.periodeChecked.bind(this);
+  }
+
+  componentDidMount() {
+    this.loadNeoByDate();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { date } = this.state;
+    if (prevState.date !== date) {
+      this.loadNeoByDate();
+    }
   }
 
   handleDisplayContent(panelToDisplay) {
-    const { [panelToDisplay]: isPanelDisplayed } = this.state.displayBottomContent;
+    const { displayBottomContent } = this.state;
+    const { [panelToDisplay]: isPanelDisplayed } = displayBottomContent;
     this.setState(prevState => ({
       ...prevState,
       displayBottomContent: {
@@ -37,7 +56,7 @@ class GlobalContainer extends React.Component {
       }
     }));
     // Le code ci-dessus permet d'aller chercher la valeur de state situer dans L OBJET DE UNE PROPRIÉTÉ DU STATE DE LA CLASSE ici displayFooter ou display article par exemple
-    const keys = Object.keys(this.state.displayBottomContent);
+    const keys = Object.keys({ [panelToDisplay]: isPanelDisplayed });
     keys
       .filter(item => item !== panelToDisplay)
       .map(item =>
@@ -49,9 +68,30 @@ class GlobalContainer extends React.Component {
     // Le code ci-dessus permet de mettre toute les valeur de state de l'objet displayBottomContent à false quand un est sélectionné.
   }
 
+  periodeChecked() {
+    const { periodeChecked: isChecked } = this.state;
+    this.setState({ periodeChecked: !isChecked });
+  }
+  biggerChecked() {
+    const { bigCheked: isChecked } = this.state;
+    this.setState({ bigCheked: !isChecked });
+  }
+
+  reset(localState) {
+    const anneeF = localState.annee;
+    const moisF = localState.mois;
+    let jourF = '';
+    if (localState.daySelect < 10) {
+      jourF = `0${localState.daySelect}`;
+    } else {
+      jourF = localState.daySelect;
+    }
+    this.setState({ date: `${anneeF}-${moisF}-${jourF}` });
+  }
+
   loadNeoByDate() {
     const { date } = this.state;
-    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=DEMO_KEY`;
+    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=8UnDAhZSrXjM60o9icI4tiFzXvjGsAhHBBhA7m6d`;
     axios
       .get(url)
       .then(res => {
@@ -63,13 +103,33 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
-    const { displayFooter, displayArticle, displayCriteres, displayScenarios } = this.state.displayBottomContent
+    const { displayBottomContent } = this.state;
+    const {
+      displayFooter,
+      displayArticle,
+      displayCriteres,
+      displayScenarios
+    } = displayBottomContent;
+    const { periodeChecked } = this.state;
+    const { date } = this.state;
+    const { data } = this.state;
 
     return (
       <div className="App">
         <MainTitle />
-        <UpButtons />
-        <MainApp />
+        <UpButtons periodeChecked={this.periodeChecked} bigger={this.biggerChecked} />
+        <div className="flex">
+          <MainApp />
+          <div className="flex direction">
+            {date ? (
+              <h2 className="colorText">
+                Astéroïdes en approche à partir du :&#141;
+                {date}
+              </h2>
+            ) : null}
+            {data ? <NeoDisplay data={data} /> : null}
+          </div>
+        </div>
         <div className="button-bottom">
           <ButtonBottom
             handleDisplayContent={this.handleDisplayContent}
@@ -97,6 +157,8 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
+        <FiltersCalendar />
+        {periodeChecked ? <Calend reset={this.reset} periodeChecked={this.periodeChecked} /> : null}
       </div>
     );
   }
