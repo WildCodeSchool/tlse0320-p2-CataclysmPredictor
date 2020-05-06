@@ -23,7 +23,7 @@ class GlobalContainer extends React.Component {
       },
       date: '2015-08-09',
       data: null,
-      periodeChecked: false
+      isPeriodeChecked: false
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
@@ -55,13 +55,12 @@ class GlobalContainer extends React.Component {
   }
 
   periodeChecked() {
-    const { periodeChecked: isChecked } = this.state;
-    this.setState({ periodeChecked: !isChecked });
+    const { isPeriodeChecked: isChecked } = this.state;
+    this.setState({ isPeriodeChecked: !isChecked });
   }
 
   reset(localState) {
-    const anneeF = localState.annee;
-    const moisF = localState.mois;
+    const { annee: anneeF, mois: moisF } = localState;
     let jourF = '';
     if (localState.daySelect < 10) {
       jourF = `0${localState.daySelect}`;
@@ -85,7 +84,7 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
-    const { periodeChecked, displayBottomContent } = this.state;
+    const { isPeriodeChecked, displayBottomContent } = this.state;
     const {
       displayFooter,
       displayArticle,
@@ -125,7 +124,9 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
-        {periodeChecked ? <Calend reset={this.reset} periodeChecked={this.periodeChecked} /> : null}
+        {isPeriodeChecked ? (
+          <Calend reset={this.reset} periodeChecked={this.periodeChecked} />
+        ) : null}
       </div>
     );
   }
