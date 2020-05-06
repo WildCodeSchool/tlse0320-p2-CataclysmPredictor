@@ -1,13 +1,38 @@
 import React from 'react';
-import './mainApp.css';
+import PropTypes from 'prop-types';
+import Planets from './Planet';
+import NeoDisplay from './NeoDisplay';
+import './GlobalContainer.css';
 
-function MainApp() {
-  return (
-    <div className="contentSphere">
-      <div className="sphere moon rotate" />
-      <div className="sphere rotate earth" />
-    </div>
-  );
+class MainApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    const { date, data } = this.props;
+
+    return (
+      <div className="flex">
+        <Planets />
+        <div className="flex direction parent">
+          {date ? (
+            <h2 className="colorText">
+              Astéroïdes en approche à partir du :&#141;
+              {date}
+            </h2>
+          ) : null}
+          {data ? <NeoDisplay data={data} /> : null}
+        </div>
+      </div>
+    );
+  }
 }
+
+MainApp.propTypes = {
+  date: PropTypes.string.isRequired,
+  data: PropTypes.shape.isRequired
+};
 
 export default MainApp;

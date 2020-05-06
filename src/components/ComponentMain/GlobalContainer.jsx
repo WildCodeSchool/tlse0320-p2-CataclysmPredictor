@@ -10,7 +10,6 @@ import CriteresContent from '../ComponentBottom/CriteresContent';
 import Calend from '../Calendrier/Calend';
 import MainTitle from './MainTitle';
 import NeoDisplay from './NeoDisplay';
-import './GlobalContainer.css';
 
 class GlobalContainer extends React.Component {
   constructor(props) {
@@ -113,18 +112,7 @@ class GlobalContainer extends React.Component {
       <div className="App">
         <MainTitle />
         <UpButtons periodeChecked={this.periodeChecked} />
-        <div className="flex">
-          <MainApp />
-          <div className="flex direction parent">
-            {date ? (
-              <h2 className="colorText">
-                Astéroïdes en approche à partir du :&#141;
-                {date}
-              </h2>
-            ) : null}
-            {data ? <NeoDisplay data={data} /> : null}
-          </div>
-        </div>
+        <MainApp date={date} data={data} />
         <div className="button-bottom">
           <ButtonBottom
             handleDisplayContent={this.handleDisplayContent}
