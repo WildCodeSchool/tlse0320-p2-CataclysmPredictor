@@ -11,6 +11,7 @@ import Calend from '../Calendrier/Calend';
 import MainTitle from './MainTitle';
 import NeoDisplay from './NeoDisplay';
 import './GlobalContainer.css';
+import FiltersCalendar from '../Calendrier/calendfilter';
 
 class GlobalContainer extends React.Component {
   constructor(props) {
@@ -156,6 +157,7 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
+        <FiltersCalendar />
         {periodeChecked ? <Calend reset={this.reset} periodeChecked={this.periodeChecked} /> : null}
       </div>
     );
