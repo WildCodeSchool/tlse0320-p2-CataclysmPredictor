@@ -27,6 +27,17 @@ class GlobalContainer extends React.Component {
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
   }
 
+  componentDidMount() {
+    this.loadNeoByDate();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { date } = this.state;
+    if (prevState.date !== date) {
+      this.loadNeoByDate();
+    }
+  }
+
   handleDisplayContent(panelToDisplay) {
     const { [panelToDisplay]: isPanelDisplayed } = this.state.displayBottomContent;
     this.setState(prevState => ({
@@ -63,7 +74,12 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
-    const { displayFooter, displayArticle, displayCriteres, displayScenarios } = this.state.displayBottomContent
+    const {
+      displayFooter,
+      displayArticle,
+      displayCriteres,
+      displayScenarios
+    } = this.state.displayBottomContent;
 
     return (
       <div className="App">
