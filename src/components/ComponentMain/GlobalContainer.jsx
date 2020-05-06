@@ -8,6 +8,7 @@ import ArticleContent from '../ComponentBottom/ArticleContent';
 import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import CriteresContent from '../ComponentBottom/CriteresContent';
 import MainTitle from './MainTitle';
+import NeoDisplay from './NeoDisplay';
 import './GlobalContainer.css';
 
 class GlobalContainer extends React.Component {
@@ -85,7 +86,18 @@ class GlobalContainer extends React.Component {
       <div className="App">
         <MainTitle />
         <UpButtons />
-        <MainApp />
+        <div className="flex">
+          <MainApp />
+          <div className="flex direction">
+            {date ? (
+              <h2 className="colorText">
+                Astéroïdes en approche à partir du :&#141;
+                {date}
+              </h2>
+            ) : null}
+            {data ? <NeoDisplay data={data} /> : null}
+          </div>
+        </div>
         <div className="button-bottom">
           <ButtonBottom
             handleDisplayContent={this.handleDisplayContent}
