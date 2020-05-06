@@ -82,6 +82,8 @@ class GlobalContainer extends React.Component {
       displayScenarios
     } = this.state.displayBottomContent;
 
+    const { date, data } = this.state;
+
     return (
       <div className="App">
         <MainTitle />
