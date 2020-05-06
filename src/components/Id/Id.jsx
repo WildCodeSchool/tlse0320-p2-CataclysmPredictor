@@ -40,6 +40,3 @@ Id.propTypes = {
 };
 
 export default Id;
-
-/*
- */
