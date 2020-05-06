@@ -2,11 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../ComponentMain/GlobalContainer.css';
 
-function Id({ dataNeo }) {
+function Id({ dataNeo, setDisplay }) {
   return (
-    <div className="border position padding">
-      <h2 className="color">Informations</h2>
+    <div className="border position padding layout1">
       <table className="color table">
+        <thead>
+          <tr>
+            <td>
+              <h2 className="color">Informations</h2>
+            </td>
+            <td></td>
+            <td>
+              <button type="submit" className="color fake-button" onClick={setDisplay}>
+                close [X]
+              </button>
+            </td>
+          </tr>
+        </thead>
         <tbody>
           <tr>
             <td>Nom :</td>

@@ -9,7 +9,6 @@ import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import CriteresContent from '../ComponentBottom/CriteresContent';
 import Calend from '../Calendrier/Calend';
 import MainTitle from './MainTitle';
-import NeoDisplay from './NeoDisplay';
 
 class GlobalContainer extends React.Component {
   constructor(props) {

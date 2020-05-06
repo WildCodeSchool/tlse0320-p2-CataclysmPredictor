@@ -35,7 +35,7 @@
 }
 .position {
   position: absolute;
-  top: auto;
+  top: 35vh;
   left: 35%;
 }
 
@@ -66,4 +66,11 @@
 .table tbody tr td:nth-child(3) {
   text-align: right;
   color: rgb(139, 138, 138);
+}
+.layout1 {
+  z-index: 99;
+}
+.fake-button {
+  border: none;
+  background: none;
 }

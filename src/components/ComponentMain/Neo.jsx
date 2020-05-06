@@ -22,13 +22,16 @@ function Neo({ dataNeo }) {
     gridColumn: dataNeo.indiceDistance
   };
   return (
-    <img
-      className="spin"
-      src={meteor}
-      alt={dataNeo.name}
-      onClick={() => setDisplay(!displayID)}
-      style={neoStyle}
-    />
+    <div style={neoStyle}>
+      <img
+        className="spin"
+        src={meteor}
+        alt={dataNeo.name}
+        onClick={() => setDisplay(!displayID)}
+        width={defSize(dataNeo.indiceSize)}
+      />
+      {displayID ? <Id dataNeo={dataNeo} setDisplay={() => setDisplay(!displayID)} /> : null}
+    </div>
   );
 }
 Neo.propTypes = {
