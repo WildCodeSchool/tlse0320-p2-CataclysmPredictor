@@ -46,7 +46,8 @@ function Neo({ dataNeo, showAlert }) {
   );
 }
 Neo.propTypes = {
-  dataNeo: PropTypes.shape.isRequired
+  dataNeo: PropTypes.shape.isRequired,
+  showAlert: PropTypes.func.isRequired
 };
 
 export default Neo;

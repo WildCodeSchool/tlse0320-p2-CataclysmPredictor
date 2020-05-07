@@ -9,6 +9,8 @@ import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import CriteresContent from '../ComponentBottom/CriteresContent';
 import Calend from '../Calendrier/Calend';
 import MainTitle from './MainTitle';
+import './GlobalContainer.css';
+import FiltersCalendar from '../Calendrier/calendfilter';
 
 class GlobalContainer extends React.Component {
   constructor(props) {
@@ -22,7 +24,8 @@ class GlobalContainer extends React.Component {
       },
       date: null,
       data: null,
-      periodeChecked: false
+      periodeChecked: false,
+      bigCheked: false
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
@@ -68,6 +71,11 @@ class GlobalContainer extends React.Component {
   periodeChecked() {
     const { periodeChecked: isChecked } = this.state;
     this.setState({ periodeChecked: !isChecked });
+  }
+
+  biggerChecked() {
+    const { bigCheked: isChecked } = this.state;
+    this.setState({ bigCheked: !isChecked });
   }
 
   reset(localState) {
@@ -138,6 +146,8 @@ class GlobalContainer extends React.Component {
         {displayArticle ? <ArticleContent /> : null}
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
+        <div />
+        <FiltersCalendar />
         {periodeChecked ? <Calend reset={this.reset} periodeChecked={this.periodeChecked} /> : null}
       </div>
     );
