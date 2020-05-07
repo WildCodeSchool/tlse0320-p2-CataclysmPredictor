@@ -102,26 +102,27 @@ class FiltersCalendar extends React.Component {
     const arrNeo = [];
 
     let datares = [];
+    for (let tour = 0; tour < tableauSemaines.length; tour++) {
+      const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${tableauSemaines[tour]}&api_key=VBuMuKA3LLAglIreoC8fhw2IJIjlaH3Tck8G2Sz8`;
+      axios
+        .get(url)
+        .then(res => {
+          return res.data;
+        })
+        .then(data => {
+          const newtab = Object.entries(data.near_earth_objects);
 
-    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${tableauSemaines[1]}&api_key=VBuMuKA3LLAglIreoC8fhw2IJIjlaH3Tck8G2Sz8`;
-    axios
-      .get(url)
-      .then(res => {
-        return res.data;
-      })
-      .then(data => {
-        const newtab = Object.entries(data.near_earth_objects);
-
-        for (let i = 0; i < newtab.length; i++) {
-          for (let j = 0; j < newtab[i].length; j++) {
-            for (let k = 0; k < newtab[i][j].length; k++) {
-              if (typeof newtab[i][j][k] === 'object') {
-                this.state.tableauNeo.push(newtab[i][j][k]);
+          for (let i = 0; i < newtab.length; i++) {
+            for (let j = 0; j < newtab[i].length; j++) {
+              for (let k = 0; k < newtab[i][j].length; k++) {
+                if (typeof newtab[i][j][k] === 'object') {
+                  this.state.tableauNeo.push(newtab[i][j][k]);
+                }
               }
             }
           }
-        }
-      });
+        });
+    }
     console.log(this.state.tableauNeo);
     setTimeout(() => {
       this.state.tableauNeo.sort(
