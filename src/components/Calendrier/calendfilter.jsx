@@ -67,7 +67,7 @@ class FiltersCalendar extends React.Component {
       semaine4: null,
       dataSemaine: [],
       data: null,
-      tableauNeo: []
+      objet: { tableauNeo: [] }
       /* semaine1 "2020-08" => "2020-08-28"
        semaine2 "2020-08" => "2020-08-21"
        console.log(this.setState({ semaine1: this.state.semaine1 + "-28"})); */
@@ -103,7 +103,7 @@ class FiltersCalendar extends React.Component {
 
     let datares = [];
     for (let tour = 0; tour < tableauSemaines.length; tour++) {
-      const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${tableauSemaines[tour]}&api_key=VBuMuKA3LLAglIreoC8fhw2IJIjlaH3Tck8G2Sz8`;
+      const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${tableauSemaines[tour]}&api_key=8UnDAhZSrXjM60o9icI4tiFzXvjGsAhHBBhA7m6d`;
       axios
         .get(url)
         .then(res => {
@@ -116,22 +116,29 @@ class FiltersCalendar extends React.Component {
             for (let j = 0; j < newtab[i].length; j++) {
               for (let k = 0; k < newtab[i][j].length; k++) {
                 if (typeof newtab[i][j][k] === 'object') {
-                  this.state.tableauNeo.push(newtab[i][j][k]);
+                  this.state.objet.tableauNeo.push(newtab[i][j][k]);
                 }
               }
             }
           }
         });
     }
-    console.log(this.state.tableauNeo);
+    console.log(this.state.objet.tableauNeo);
     setTimeout(() => {
-      this.state.tableauNeo.sort(
+      this.state.objet.tableauNeo.sort(
         (a, b) =>
           a.close_approach_data[0].miss_distance.lunar -
           b.close_approach_data[0].miss_distance.lunar
       );
-      console.log(this.state.tableauNeo.length);
-      console.log(this.state.tableauNeo.slice(0, 10));
+      console.log(this.state.objet.tableauNeo.length);
+      const preResult = this.state.objet.tableauNeo.filter(
+        neo => neo.is_potentially_hazardous_asteroid === true
+      );
+
+      const result = preResult.slice(0, 10);
+      console.log(result);
+      this.setState({ tableauNeo: result });
+      this.props.data(this.state.tableauNeo);
     }, 10000);
   }
 
@@ -189,10 +196,6 @@ class FiltersCalendar extends React.Component {
         </div>
         <div className="footCalendar">
           <p>{`Votre mois choisi : ${annee}-${mois}`}</p>
-          <p>{this.state.semaine4}</p>
-          <p>{this.state.semaine3}</p>
-          <p>{this.state.semaine2}</p>
-          <p>{this.state.semaine1}</p>
         </div>
       </div>
     );

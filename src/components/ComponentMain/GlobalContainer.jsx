@@ -32,6 +32,7 @@ class GlobalContainer extends React.Component {
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
     this.reset = this.reset.bind(this);
     this.periodeChecked = this.periodeChecked.bind(this);
+    this.setData = this.setData.bind(this);
   }
 
   componentDidMount() {
@@ -75,6 +76,13 @@ class GlobalContainer extends React.Component {
   biggerChecked() {
     const { bigCheked: isChecked } = this.state;
     this.setState({ bigCheked: !isChecked });
+  }
+
+  setData(localState) {
+    const datare = { date: localState };
+    console.log(datare);
+    this.setState({ data: datare });
+    console.log(this.state.data);
   }
 
   reset(localState) {
@@ -157,7 +165,7 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
-        <FiltersCalendar />
+        <FiltersCalendar data={this.setData} />
         {periodeChecked ? <Calend reset={this.reset} periodeChecked={this.periodeChecked} /> : null}
       </div>
     );
