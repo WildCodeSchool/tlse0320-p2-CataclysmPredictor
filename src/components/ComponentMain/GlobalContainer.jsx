@@ -22,7 +22,7 @@ class GlobalContainer extends React.Component {
         displayScenarios: false,
         displayCriteres: false
       },
-      date: '2015-08-09',
+      date: null,
       data: null,
       isPeriodeChecked: false
     };
@@ -84,7 +84,7 @@ class GlobalContainer extends React.Component {
 
   loadNeoByDate() {
     const { date } = this.state;
-    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=DEMO_KEY`;
+    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=BapitUNP1XW9Ln8ki9YvBXgJlUeLj1UDofZ5ewc8`;
     axios
       .get(url)
       .then(res => {
@@ -103,7 +103,6 @@ class GlobalContainer extends React.Component {
       displayCriteres,
       displayScenarios
     } = displayBottomContent;
-    
     return (
       <div className="App">
         <MainTitle />
