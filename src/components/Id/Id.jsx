@@ -11,7 +11,6 @@ function Id({ dataNeo, setDisplay }) {
             <td>
               <h2 className="color">Informations</h2>
             </td>
-            <td></td>
             <td>
               <button type="submit" className="color fake-button" onClick={setDisplay}>
                 close [X]
@@ -26,21 +25,21 @@ function Id({ dataNeo, setDisplay }) {
           </tr>
           <tr>
             <td>Diamètre :</td>
-            <td>{dataNeo.size} Km</td>
+            <td>{`${dataNeo.size} Km`}</td>
             <td>soit ....</td>
           </tr>
           <tr>
             <td>Vitesse :</td>
-            <td>{dataNeo.speed} Km/h</td>
+            <td>{`${dataNeo.speed} Km/h`}</td>
           </tr>
           <tr>
-            <td>Date d'approche :</td>
+            <td>Date d approche :</td>
             <td>{dataNeo.closeDate}</td>
           </tr>
           <tr>
             <td>Distance :</td>
-            <td>{dataNeo.distanceKm} Km</td>
-            <td>{dataNeo.distanceLunar} Terre=>Lune</td>
+            <td>{`${dataNeo.distanceKm} Km`}</td>
+            <td>{`${dataNeo.distanceLunar} Terre=>Lune`}</td>
           </tr>
         </tbody>
       </table>
@@ -48,7 +47,8 @@ function Id({ dataNeo, setDisplay }) {
   );
 }
 Id.propTypes = {
-  dataNeo: PropTypes.shape.isRequired
+  dataNeo: PropTypes.shape.isRequired,
+  setDisplay: PropTypes.func.isRequired
 };
 
 export default Id;
