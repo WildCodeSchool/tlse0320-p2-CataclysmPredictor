@@ -9,6 +9,7 @@ import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import CriteresContent from '../ComponentBottom/CriteresContent';
 import MainTitle from './MainTitle';
 import NeoDisplay from './NeoDisplay';
+import Calend from '../Calendrier/Calend';
 import './GlobalContainer.css';
 
 class GlobalContainer extends React.Component {
@@ -22,10 +23,13 @@ class GlobalContainer extends React.Component {
         displayCriteres: false
       },
       date: '2015-08-09',
-      data: null
+      data: null,
+      isPeriodeChecked: false
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
+    this.reset = this.reset.bind(this);
+    this.periodeChecked = this.periodeChecked.bind(this);
   }
 
   componentDidMount() {
@@ -40,7 +44,8 @@ class GlobalContainer extends React.Component {
   }
 
   handleDisplayContent(panelToDisplay) {
-    const { [panelToDisplay]: isPanelDisplayed } = this.state.displayBottomContent;
+    const { displayBottomContent } = this.state;
+    const { [panelToDisplay]: isPanelDisplayed } = displayBottomContent;
     this.setState(prevState => ({
       ...prevState,
       displayBottomContent: {
@@ -49,7 +54,7 @@ class GlobalContainer extends React.Component {
       }
     }));
     // Le code ci-dessus permet d'aller chercher la valeur de state situer dans L OBJET DE UNE PROPRIÉTÉ DU STATE DE LA CLASSE ici displayFooter ou display article par exemple
-    const keys = Object.keys(this.state.displayBottomContent);
+    const keys = Object.keys(displayBottomContent);
     keys
       .filter(item => item !== panelToDisplay)
       .map(item =>
@@ -59,6 +64,22 @@ class GlobalContainer extends React.Component {
         }))
       );
     // Le code ci-dessus permet de mettre toute les valeur de state de l'objet displayBottomContent à false quand un est sélectionné.
+  }
+
+  periodeChecked() {
+    const { isPeriodeChecked: isChecked } = this.state;
+    this.setState({ isPeriodeChecked: !isChecked });
+  }
+
+  reset(localState) {
+    const { annee: anneeF, mois: moisF } = localState;
+    let jourF = '';
+    if (localState.daySelect < 10) {
+      jourF = `0${localState.daySelect}`;
+    } else {
+      jourF = localState.daySelect;
+    }
+    this.setState({ date: `${anneeF}-${moisF}-${jourF}` });
   }
 
   loadNeoByDate() {
@@ -75,19 +96,18 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
+    const { isPeriodeChecked, displayBottomContent, date, data } = this.state;
     const {
       displayFooter,
       displayArticle,
       displayCriteres,
       displayScenarios
-    } = this.state.displayBottomContent;
-
-    const { date, data } = this.state;
-
+    } = displayBottomContent;
+    
     return (
       <div className="App">
         <MainTitle />
-        <UpButtons />
+        <UpButtons periodeChecked={this.periodeChecked} />
         <div className="flex">
           <MainApp />
           <div className="flex direction">
@@ -127,6 +147,9 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
+        {isPeriodeChecked ? (
+          <Calend reset={this.reset} periodeChecked={this.periodeChecked} />
+        ) : null}
       </div>
     );
   }

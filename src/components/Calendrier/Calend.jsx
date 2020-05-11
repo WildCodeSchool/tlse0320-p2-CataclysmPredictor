@@ -1,72 +1,7 @@
 import React from 'react';
 import './calend.css';
 import PropTypes from 'prop-types';
-
-/* const arrMois = [
-  'Janvier',
-  'Février',
-  'Mars',
-  'Avril',
-  'Mai',
-  'Juin',
-  'Juillet',
-  'Août',
-  'Septembre',
-  'Octobre',
-  'Novembre',
-  'Décembre'
-]; */
-
-const arrMois2 = [
-  {
-    id: '01',
-    month: 'Janvier'
-  },
-  {
-    id: '02',
-    month: 'Février'
-  },
-  {
-    id: '03',
-    month: 'Mars'
-  },
-  {
-    id: '04',
-    month: 'Avril'
-  },
-  {
-    id: '05',
-    month: 'Mai'
-  },
-  {
-    id: '06',
-    month: 'Juin'
-  },
-  {
-    id: '07',
-    month: 'Juillet'
-  },
-  {
-    id: '08',
-    month: 'Août'
-  },
-  {
-    id: '09',
-    month: 'Septembre'
-  },
-  {
-    id: '10',
-    month: 'Octobre'
-  },
-  {
-    id: '11',
-    month: 'Novembre'
-  },
-  {
-    id: '12',
-    month: 'Décembre'
-  }
-];
+import ArrMonths from '../Const';
 
 class Calend extends React.Component {
   constructor(props) {
@@ -155,7 +90,7 @@ class Calend extends React.Component {
         <div className="moisSelect">
           {shMounth ? (
             <div className="mois">
-              {arrMois2.map(item => (
+              {ArrMonths.map(item => (
                 <button
                   type="button"
                   className="calendarWidth formatItem"
@@ -196,17 +131,10 @@ class Calend extends React.Component {
     );
   }
 }
+
 Calend.propTypes = {
   reset: PropTypes.func.isRequired,
   periodeChecked: PropTypes.func.isRequired
 };
 
-/*
-Votre date choisie :
-{' '}
-{annee}-
-{mois < 9 ? <p>0</p> : null}
-            {mois + 1}-
-{daySelect < 10 ? <p>0</p> : null}
-            {daySelect} */
 export default Calend;
