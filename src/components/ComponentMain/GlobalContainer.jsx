@@ -11,6 +11,7 @@ import MainTitle from './MainTitle';
 import NeoDisplay from './NeoDisplay';
 import Calend from '../Calendrier/Calend';
 import './GlobalContainer.css';
+import MonthsCalendar from '../Calendrier/MonthsCalendar';
 
 class GlobalContainer extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class GlobalContainer extends React.Component {
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
     this.handleCheckedButton = this.handleCheckedButton.bind(this);
+    this.setData = this.setData.bind(this);
     this.reset = this.reset.bind(this);
   }
 
@@ -46,6 +48,17 @@ class GlobalContainer extends React.Component {
     if (prevState.date !== date) {
       this.loadNeoByDate();
     }
+  }
+
+  setData(localState) {
+    const { buttonChecked } = this.state;
+    this.setState({ data: localState });
+    const keys = Object.keys(buttonChecked);
+    const buttonActive = keys.filter(key => buttonChecked[key] == true);
+    this.setState(prevState => ({
+      ...prevState,
+      buttonChecked: { ...prevState.buttonChecked, [buttonActive]: false }
+    }));
   }
 
   handleDisplayContent(panelToDisplay) {
@@ -115,6 +128,12 @@ class GlobalContainer extends React.Component {
   render() {
     const { buttonChecked, displayBottomContent, date, data } = this.state;
     const {
+      isPeriodeChecked,
+      isBiggerChecked,
+      isCloserChecked,
+      isDangerousChecked
+    } = buttonChecked;
+    const {
       displayFooter,
       displayArticle,
       displayCriteres,
@@ -164,12 +183,15 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
-        {buttonChecked.isPeriodeChecked ? (
+        {isPeriodeChecked ? (
           <Calend
             reset={this.reset}
             handleCheckedButton={this.handleCheckedButton}
             ButtonActive="isPeriodeChecked"
           />
+        ) : null}
+        {isCloserChecked || isBiggerChecked || isDangerousChecked ? (
+          <MonthsCalendar data={this.setData} />
         ) : null}
       </div>
     );
