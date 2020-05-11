@@ -1,7 +1,7 @@
 import React from 'react';
 import './calend.css';
 import axios from 'axios';
-import ArrMonths from '../Component/Const';
+import ArrMonths from '../Const';
 
 /*
 need in Globalcontainer:
