@@ -22,14 +22,19 @@ class GlobalContainer extends React.Component {
         displayScenarios: false,
         displayCriteres: false
       },
-      date: '2015-08-09',
+      date: null,
       data: null,
-      isPeriodeChecked: false
+      buttonChecked: {
+        isPeriodeChecked: false,
+        isBiggerChecked: false,
+        isCloserChecked: false,
+        isDangerousChecked: false
+      }
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
+    this.handleCheckedButton = this.handleCheckedButton.bind(this);
     this.reset = this.reset.bind(this);
-    this.periodeChecked = this.periodeChecked.bind(this);
   }
 
   componentDidMount() {
@@ -66,9 +71,21 @@ class GlobalContainer extends React.Component {
     // Le code ci-dessus permet de mettre toute les valeur de state de l'objet displayBottomContent à false quand un est sélectionné.
   }
 
-  periodeChecked() {
-    const { isPeriodeChecked: isChecked } = this.state;
-    this.setState({ isPeriodeChecked: !isChecked });
+  handleCheckedButton(buttonActive) {
+    const { buttonChecked } = this.state;
+    const { [buttonActive]: isActive } = buttonChecked;
+    this.setState(prevState => ({
+      ...prevState,
+      buttonChecked: { ...prevState.buttonChecked, [buttonActive]: !isActive }
+    }));
+    const keys = Object.keys(buttonChecked)
+      .filter(item => item !== buttonActive)
+      .map(item =>
+        this.setState(prevState => ({
+          ...prevState,
+          buttonChecked: { ...prevState.buttonChecked, [item]: false }
+        }))
+      );
   }
 
   reset(localState) {
@@ -84,7 +101,7 @@ class GlobalContainer extends React.Component {
 
   loadNeoByDate() {
     const { date } = this.state;
-    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=DEMO_KEY`;
+    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=BapitUNP1XW9Ln8ki9YvBXgJlUeLj1UDofZ5ewc8`;
     axios
       .get(url)
       .then(res => {
@@ -96,7 +113,8 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
-    const { isPeriodeChecked, displayBottomContent, date, data } = this.state;
+    const { buttonChecked, displayBottomContent, date, data } = this.state;
+    const { isPeriodeChecked } = buttonChecked;
     const {
       displayFooter,
       displayArticle,
@@ -107,7 +125,7 @@ class GlobalContainer extends React.Component {
     return (
       <div className="App">
         <MainTitle />
-        <UpButtons periodeChecked={this.periodeChecked} />
+        <UpButtons buttonChecked={buttonChecked} handleCheckedButton={this.handleCheckedButton} />
         <div className="flex">
           <MainApp />
           <div className="flex direction">
