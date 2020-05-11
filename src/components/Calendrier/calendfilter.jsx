@@ -111,6 +111,7 @@ class FiltersCalendar extends React.Component {
         })
         .then(data => {
           const newtab = Object.entries(data.near_earth_objects);
+          console.log(newtab);
 
           for (let i = 0; i < newtab.length; i++) {
             for (let j = 0; j < newtab[i].length; j++) {
@@ -124,6 +125,9 @@ class FiltersCalendar extends React.Component {
         });
     }
     console.log(this.state.tableauNeo);
+    /*
+    mettre au format
+    */
     setTimeout(() => {
       this.state.tableauNeo.sort(
         (a, b) =>

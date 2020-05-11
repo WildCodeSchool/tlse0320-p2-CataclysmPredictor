@@ -30,6 +30,7 @@ class NeoDisplay extends React.Component {
     /* console.log(data); */
     const neosMatrix = formattedData.map(date => {
       // date ==> "2015-09-08"
+
       return data[date].map(neo => {
         // neo ==> {...}
         return {
