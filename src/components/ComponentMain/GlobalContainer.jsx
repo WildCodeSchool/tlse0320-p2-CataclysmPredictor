@@ -103,7 +103,7 @@ class GlobalContainer extends React.Component {
       displayCriteres,
       displayScenarios
     } = displayBottomContent;
-    
+
     return (
       <div className="App">
         <MainTitle />
