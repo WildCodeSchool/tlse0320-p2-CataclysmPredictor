@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Neo from './Neo';
 import './GlobalContainer.css';
 
@@ -88,5 +89,8 @@ class NeoDisplay extends React.Component {
     );
   }
 }
+NeoDisplay.propTypes = {
+  data: PropTypes.shape.isRequired
+};
 
 export default NeoDisplay;
