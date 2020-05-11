@@ -7,9 +7,11 @@ const UpButtons = ({ periodeChecked }) => {
   return (
     <div className="upButtons">
       <Button name="Période" className="calendar" periodeChecked={periodeChecked} />
-      <Button name="Les plus gros" className="big" />
-      <Button name="Les plus proches" className="close" />
-      <Button name="Les plus dangereux" className="dangerous" />
+      <div className="filtersButtons">
+        <Button name="Les plus gros" className="big" />
+        <Button name="Les plus proches" className="close" />
+        <Button name="Les plus dangereux" className="dangerous" />
+      </div>
     </div>
   );
 };

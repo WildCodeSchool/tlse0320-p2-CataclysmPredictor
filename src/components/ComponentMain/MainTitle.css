@@ -14,3 +14,9 @@
   --color4: blue;
   text-decoration: underline;
 }
+
+@media screen and (max-width: 850px) {
+  .mainTitle {
+    font-size: 1em;
+  }
+}

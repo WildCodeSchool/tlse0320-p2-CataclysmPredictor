@@ -19,3 +19,6 @@
   align-items: center;
   justify-content: start;
 }
+
+@media screen and (max-width: 850px) {
+}

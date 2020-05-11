@@ -1,5 +1,10 @@
 .upButtons {
   display: flex;
+  justify-content: center;
+}
+
+.filtersButtons {
+  display: flex;
   justify-content: space-around;
 }
 
@@ -10,7 +15,7 @@
   font: bold 18px Electrolize;
   padding: 6px;
   box-shadow: 1px 1px 3px rgb(89, 247, 247);
-  margin: 5px;
+  margin: 5px 30px;
   width: 200px;
   background: none;
   opacity: 0.6;
@@ -23,4 +28,14 @@
   color: rgb(89, 247, 247);
   transition: 0.3s;
   box-shadow: 0 0 20px rgb(89, 247, 247);
+}
+
+@media screen and (max-width: 850px) {
+  .button-nav {
+    width: 6em;
+    height: 2.7em;
+    font-size: 1em;
+    letter-spacing: normal;
+    padding: 3px;
+  }
 }
