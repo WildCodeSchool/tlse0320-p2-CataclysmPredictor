@@ -25,12 +25,15 @@ function Neo({ dataNeo, showAlert }) {
   };
   return (
     <div style={neoStyle}>
-      <img
-        className="spin"
-        src={meteor}
-        alt={dataNeo.name}
+      <button
+        type="submit"
+        className="fake-button"
         onClick={() => setDisplayID(!displayID)}
         onMouseOver={() => {
+          setDisplayMiniId(!displayMiniId);
+          showAlert();
+        }}
+        onFocus={() => {
           setDisplayMiniId(!displayMiniId);
           showAlert();
         }}
@@ -38,8 +41,13 @@ function Neo({ dataNeo, showAlert }) {
           setDisplayMiniId(!displayMiniId);
           showAlert();
         }}
-        width={defSize(dataNeo.indiceSize)}
-      />
+        onBlur={() => {
+          setDisplayMiniId(!displayMiniId);
+          showAlert();
+        }}
+      >
+        <img className="spin" src={meteor} alt={dataNeo.name} width={defSize(dataNeo.indiceSize)} />
+      </button>
       {displayMiniId ? <MiniId dataNeo={dataNeo} /> : null}
       {displayID ? <Id dataNeo={dataNeo} setDisplay={() => setDisplayID(!displayID)} /> : null}
     </div>
