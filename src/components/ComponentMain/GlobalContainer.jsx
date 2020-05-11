@@ -114,7 +114,6 @@ class GlobalContainer extends React.Component {
 
   render() {
     const { buttonChecked, displayBottomContent, date, data } = this.state;
-    const { isPeriodeChecked } = buttonChecked;
     const {
       displayFooter,
       displayArticle,
@@ -165,8 +164,12 @@ class GlobalContainer extends React.Component {
         {displayScenarios ? <ScenariosContent /> : null}
         {displayCriteres ? <CriteresContent /> : null}
         <div />
-        {isPeriodeChecked ? (
-          <Calend reset={this.reset} periodeChecked={this.periodeChecked} />
+        {buttonChecked.isPeriodeChecked ? (
+          <Calend
+            reset={this.reset}
+            handleCheckedButton={this.handleCheckedButton}
+            ButtonActive="isPeriodeChecked"
+          />
         ) : null}
       </div>
     );

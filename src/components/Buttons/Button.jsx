@@ -16,7 +16,8 @@ function Button({ name, handleCheckedButton, buttonActive }) {
 }
 Button.propTypes = {
   name: PropTypes.string.isRequired,
-  handleCheckedButton: PropTypes.func.isRequired
+  handleCheckedButton: PropTypes.func.isRequired,
+  buttonActive: PropTypes.string.isRequired
 };
 
 export default Button;

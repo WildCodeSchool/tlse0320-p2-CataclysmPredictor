@@ -69,7 +69,7 @@ class Calend extends React.Component {
 
   render() {
     const { annee, mois, shMounth, showDay, moiEnCour, daySelect } = this.state;
-    const { reset, periodeChecked } = this.props;
+    const { reset, handleCheckedButton, buttonActive } = this.props;
     return (
       <div className="containCalend border">
         <div className="year">
@@ -113,7 +113,7 @@ class Calend extends React.Component {
                   onClick={() => {
                     this.setState({ showDay: false });
                     reset(this.state);
-                    periodeChecked();
+                    handleCheckedButton(buttonActive);
                   }}
                 >
                   {jour}
@@ -134,7 +134,7 @@ class Calend extends React.Component {
 
 Calend.propTypes = {
   reset: PropTypes.func.isRequired,
-  periodeChecked: PropTypes.func.isRequired
+  handleCheckedButton: PropTypes.func.isRequired
 };
 
 export default Calend;
