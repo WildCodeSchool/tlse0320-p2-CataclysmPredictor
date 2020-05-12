@@ -3,6 +3,7 @@
   justify-content: space-around;
 }
 .grid {
+  display: grid;
   margin: auto 0 auto 0;
   width: 90%;
 }

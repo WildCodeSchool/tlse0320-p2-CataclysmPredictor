@@ -13,7 +13,7 @@ class Welcome extends Component {
   }
 
   componentDidMount() {
-    fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY')
+    fetch('https://api.nasa.gov/planetary/apod?api_key=BapitUNP1XW9Ln8ki9YvBXgJlUeLj1UDofZ5ewc8')
       .then(response => response.json())
       .then(response => {
         this.setState({ items: response });
