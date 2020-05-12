@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 import MainApp from './MainApp';
 import ButtonBottom from '../Buttons/ButtonBottom';
 import UpButtons from '../Buttons/ButtonTop';
@@ -163,10 +162,5 @@ class GlobalContainer extends React.Component {
     );
   }
 }
-
-GlobalContainer.propTypes = {
-  date: PropTypes.string.isRequired,
-  data: PropTypes.shape.isRequired
-};
 
 export default GlobalContainer;

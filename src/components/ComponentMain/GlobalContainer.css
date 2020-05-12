@@ -9,7 +9,6 @@
 .flex {
   display: flex;
   margin: 5px 10px;
-  height: 65vh;
 }
 .direction {
   flex-direction: column;
