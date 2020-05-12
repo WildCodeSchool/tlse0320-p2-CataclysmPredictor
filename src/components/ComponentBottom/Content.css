@@ -44,3 +44,15 @@
   padding-top: 50px;
   padding-bottom: 50px;
 }
+
+.dino-container {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+}
+
+.dino {
+  width: 40%;
+  height: auto;
+  border-radius: 12px 0 12px 0;
+}

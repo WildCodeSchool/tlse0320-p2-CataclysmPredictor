@@ -1,5 +1,6 @@
 import React from 'react';
 import './Content.css';
+import dino from '../../img/dino.jpg';
 
 function ScenariosContent() {
   return (
@@ -36,13 +37,16 @@ function ScenariosContent() {
           </li>
         </ul>
         <h2>Retour sur l&apos; extinction des dinosaures</h2>
-        <p>
-          L&apos; objet céleste qui a frappé la Terre il y a 65 millions d&apos; années était encore
-          plus gros, puisqu&apos; il mesurait probablement 10 kilomètres de diamètre (fréquence de
-          collision : 1 tous les 100 millions d&apos; années). La catastrophe a dû se dérouler selon
-          les événements suivants (d&apos; après un scénario proposé pour la collision d&apos; un
-          astéroïde de 10 kilomètres de diamètre) :
-        </p>
+        <div className="dino-container">
+          <img className="dino" src={dino} alt="extinction des dinosaures" />
+          <p>
+            L&apos; objet céleste qui a frappé la Terre il y a 65 millions d&apos; années était
+            encore plus gros, puisqu&apos; il mesurait probablement 10 kilomètres de diamètre
+            (fréquence de collision : 1 tous les 100 millions d&apos; années). La catastrophe a dû
+            se dérouler selon les événements suivants (d&apos; après un scénario proposé pour la
+            collision d&apos; un astéroïde de 10 kilomètres de diamètre) :
+          </p>
+        </div>
         <ul>
           <li className="marge-large">
             L&apos; énergie libérée lors de l&apos; impact (5 milliards de fois celle de la bombe
