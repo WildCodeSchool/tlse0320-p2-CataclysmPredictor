@@ -1,33 +1,28 @@
 import React from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MainApp from './MainApp';
 import ButtonBottom from '../Buttons/ButtonBottom';
 import UpButtons from '../Buttons/ButtonTop';
-import FooterContent from '../ComponentBottom/FooterContent';
-import ArticleContent from '../ComponentBottom/ArticleContent';
-import ScenariosContent from '../ComponentBottom/ScenariosContent';
-import CriteresContent from '../ComponentBottom/CriteresContent';
 import MainTitle from './MainTitle';
 import NeoDisplay from './NeoDisplay';
 import Calend from '../Calendrier/Calend';
 import './GlobalContainer.css';
+import ArticleContent from '../ComponentBottom/ArticleContent';
+import ScenariosContent from '../ComponentBottom/ScenariosContent';
+import Presentation from '../ComponentBottom/Presentation';
+import LegalMentions from '../ComponentBottom/LegalMentions';
 
 class GlobalContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayBottomContent: {
-        displayFooter: false,
-        displayArticle: false,
-        displayScenarios: false,
-        displayCriteres: false
-      },
       date: null,
       data: null,
       isPeriodeChecked: false
     };
+
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
-    this.handleDisplayContent = this.handleDisplayContent.bind(this);
     this.reset = this.reset.bind(this);
     this.periodeChecked = this.periodeChecked.bind(this);
   }
@@ -41,29 +36,6 @@ class GlobalContainer extends React.Component {
     if (prevState.date !== date) {
       this.loadNeoByDate();
     }
-  }
-
-  handleDisplayContent(panelToDisplay) {
-    const { displayBottomContent } = this.state;
-    const { [panelToDisplay]: isPanelDisplayed } = displayBottomContent;
-    this.setState(prevState => ({
-      ...prevState,
-      displayBottomContent: {
-        ...prevState.displayBottomContent,
-        [panelToDisplay]: !isPanelDisplayed
-      }
-    }));
-    // Le code ci-dessus permet d'aller chercher la valeur de state situer dans L OBJET DE UNE PROPRIÉTÉ DU STATE DE LA CLASSE ici displayFooter ou display article par exemple
-    const keys = Object.keys(displayBottomContent);
-    keys
-      .filter(item => item !== panelToDisplay)
-      .map(item =>
-        this.setState(prevState => ({
-          ...prevState,
-          displayBottomContent: { ...prevState.displayBottomContent, [item]: false }
-        }))
-      );
-    // Le code ci-dessus permet de mettre toute les valeur de state de l'objet displayBottomContent à false quand un est sélectionné.
   }
 
   periodeChecked() {
@@ -96,61 +68,42 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
-    const { isPeriodeChecked, displayBottomContent, date, data } = this.state;
-    const {
-      displayFooter,
-      displayArticle,
-      displayCriteres,
-      displayScenarios
-    } = displayBottomContent;
+    const { isPeriodeChecked, date, data } = this.state;
     return (
       <div className="App">
-        <MainTitle />
-        <UpButtons periodeChecked={this.periodeChecked} />
-        <div className="flex">
-          <MainApp />
-          <div className="flex direction">
-            {date ? (
-              <h2 className="colorText">
-                Astéroïdes en approche à partir du :&#141;
-                {date}
-              </h2>
-            ) : null}
-            {data ? <NeoDisplay data={data} /> : null}
-          </div>
-        </div>
-        <div className="button-bottom">
-          <ButtonBottom
-            handleDisplayContent={this.handleDisplayContent}
-            panelToHandle="displayArticle"
-            name="Astéroïdes"
-          />
-          <ButtonBottom
-            handleDisplayContent={this.handleDisplayContent}
-            panelToHandle="displayScenarios"
-            name="Scénarios"
-          />
-          <ButtonBottom
-            handleDisplayContent={this.handleDisplayContent}
-            panelToHandle="displayCriteres"
-            name="Critères de danger"
-          />
-          <ButtonBottom
-            handleDisplayContent={this.handleDisplayContent}
-            panelToHandle="displayFooter"
-            name="Liens Utiles"
-          />
-        </div>
-        {displayFooter ? <FooterContent /> : null}
-        {displayArticle ? <ArticleContent /> : null}
-        {displayScenarios ? <ScenariosContent /> : null}
-        {displayCriteres ? <CriteresContent /> : null}
-        <div />
-        {isPeriodeChecked ? (
-          <Calend reset={this.reset} periodeChecked={this.periodeChecked} />
-        ) : null}
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <MainTitle />
+              <UpButtons periodeChecked={this.periodeChecked} />
+              <div className="flex">
+                <MainApp />
+                <div className="flex direction">
+                  {date ? (
+                    <h2 className="colorText">
+                      Astéroïdes en approche à partir du :&#141;
+                      {date}
+                    </h2>
+                  ) : null}
+                  {data ? <NeoDisplay data={data} /> : null}
+                </div>
+              </div>
+              <div className="button-bottom">
+                <ButtonBottom name="Menu" />
+                {isPeriodeChecked ? (
+                  <Calend reset={this.reset} periodeChecked={this.periodeChecked} />
+                ) : null}
+              </div>
+            </Route>
+            <Route path="/article-asteroide" component={ArticleContent} />
+            <Route path="/article-scenarios" component={ScenariosContent} />
+            <Route path="/mentions-legales" component={LegalMentions} />
+            <Route path="/presentation" component={Presentation} />
+          </Switch>
+        </Router>
       </div>
     );
   }
 }
+
 export default GlobalContainer;
