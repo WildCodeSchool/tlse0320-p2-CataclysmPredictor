@@ -110,6 +110,7 @@ class GlobalContainer extends React.Component {
       jourF = localState.daySelect;
     }
     this.setState({ date: `${anneeF}-${moisF}-${jourF}` });
+    this.loadNeoByDate();
   }
 
   loadNeoByDate() {
