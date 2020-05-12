@@ -52,13 +52,31 @@ class GlobalContainer extends React.Component {
 
   setData(localState) {
     const { buttonChecked } = this.state;
-    this.setState({ data: localState });
     const keys = Object.keys(buttonChecked);
-    const buttonActive = keys.filter(key => buttonChecked[key] == true);
-    this.setState(prevState => ({
-      ...prevState,
-      buttonChecked: { ...prevState.buttonChecked, [buttonActive]: false }
-    }));
+    const buttonActive = keys.filter(key => buttonChecked[key] === true);
+
+    switch (buttonActive[0]) {
+      case 'isBiggerChecked':
+        localState.neoArray.sort(
+          (a, b) =>
+            a.estimated_diameter.meters.estimated_diameter_max -
+            b.estimated_diameter.meters.estimated_diameter_max
+        );
+        localState.neoArray.splice(10, localState.neoArray.length);
+
+        break;
+      case 'isCloserChecked':
+        localState.neoArray.sort(
+          (a, b) =>
+            a.close_approach_data[0].miss_distance.lunar -
+            b.close_approach_data[0].miss_distance.lunar
+        );
+        localState.neoArray.splice(10, localState.neoArray.length);
+        break;
+      default:
+        break;
+    }
+    this.setState({ data: localState });
   }
 
   handleDisplayContent(panelToDisplay) {

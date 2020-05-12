@@ -23,6 +23,7 @@ class MonthsCalendar extends React.Component {
 
   monthClick() {
     const { annee, mois, object } = this.state;
+    const { data } = this.props;
 
     const yearAndMonth = `${annee}-${mois}`;
     const weekFive = `${yearAndMonth}-28`;
@@ -40,23 +41,27 @@ class MonthsCalendar extends React.Component {
         })
         .then(data => {
           const newtab = Object.entries(data.near_earth_objects);
+          // filtre les trues
 
           for (let i = 0; i < newtab.length; i += 1) {
             for (let j = 0; j < newtab[i].length; j += 1) {
               for (let k = 0; k < newtab[i][j].length; k += 1) {
-                if (typeof newtab[i][j][k] === 'object') {
-                  object.neoArray.push(newtab[i][j][k]);
+                const neo = newtab[i][j][k];
+                if (typeof neo === 'object') {
+                  neo.is_potentially_hazardous_asteroid
+                    ? object.neoArray.push(newtab[i][j][k])
+                    : console.log('');
                 }
               }
             }
           }
+          this.props.data(object);
         });
     }
   }
 
   render() {
-    const { annee, mois, object } = this.state;
-    const { data } = this.props;
+    const { annee, mois } = this.state;
 
     return (
       <div className="containCalend">
@@ -84,7 +89,6 @@ class MonthsCalendar extends React.Component {
                 onMouseEnter={() => this.setState({ mois: item.id })}
                 onClick={() => {
                   this.monthClick();
-                  data(object);
                 }}
               >
                 {item.month}
