@@ -1,0 +1,22 @@
+.button-bottom {
+  display: flex;
+  justify-content: space-around;
+}
+.grid {
+  display: grid;
+  margin: auto 0 auto 0;
+  width: 90%;
+}
+.colorText {
+  color: rgb(89, 247, 247);
+  margin-right: 20px;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.direction {
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
