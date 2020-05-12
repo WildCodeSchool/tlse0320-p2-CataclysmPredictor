@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import MainApp from './MainApp';
 import ButtonBottom from '../Buttons/ButtonBottom';
 import UpButtons from '../Buttons/ButtonTop';
@@ -24,12 +25,14 @@ class GlobalContainer extends React.Component {
       },
       date: null,
       data: null,
-      isPeriodeChecked: false
+      isPeriodeChecked: false,
+      displayAlert: false
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
     this.reset = this.reset.bind(this);
     this.periodeChecked = this.periodeChecked.bind(this);
+    this.showAlert = this.showAlert.bind(this);
   }
 
   componentDidMount() {
@@ -41,6 +44,11 @@ class GlobalContainer extends React.Component {
     if (prevState.date !== date) {
       this.loadNeoByDate();
     }
+  }
+
+  showAlert() {
+    const { displayAlert } = this.state;
+    this.setState({ displayAlert: !displayAlert });
   }
 
   handleDisplayContent(panelToDisplay) {
@@ -96,6 +104,7 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
+    const { displayAlert } = this.state;
     const { isPeriodeChecked, displayBottomContent, date, data } = this.state;
     const {
       displayFooter,
@@ -109,14 +118,15 @@ class GlobalContainer extends React.Component {
         <UpButtons periodeChecked={this.periodeChecked} />
         <div className="flex">
           <MainApp />
-          <div className="flex direction">
+          {displayAlert ? <h3 className="colorText absolute">Alert</h3> : null}
+          <div className="flex direction end">
             {date ? (
               <h2 className="colorText">
                 Astéroïdes en approche à partir du :&#141;
                 {date}
               </h2>
             ) : null}
-            {data ? <NeoDisplay data={data} /> : null}
+            {data ? <NeoDisplay data={data} showAlert={this.showAlert} /> : null}
           </div>
         </div>
         <div className="button-bottom">
@@ -153,4 +163,10 @@ class GlobalContainer extends React.Component {
     );
   }
 }
+
+GlobalContainer.propTypes = {
+  date: PropTypes.string.isRequired,
+  data: PropTypes.shape.isRequired
+};
+
 export default GlobalContainer;
