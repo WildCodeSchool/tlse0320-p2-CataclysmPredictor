@@ -50,9 +50,10 @@ class GlobalContainer extends React.Component {
     }
   }
 
-  setData(localState) {
+  setData(localState, year, month) {
     const { buttonChecked } = this.state;
     const keys = Object.keys(buttonChecked);
+    const monthChoice = `${year}-${month}`;
     const buttonActive = keys.filter(key => buttonChecked[key] === true);
 
     switch (buttonActive[0]) {
@@ -62,7 +63,7 @@ class GlobalContainer extends React.Component {
             a.estimated_diameter.meters.estimated_diameter_max -
             b.estimated_diameter.meters.estimated_diameter_max
         );
-        localState.neoArray.splice(10, localState.neoArray.length);
+        // localState.neoArray.splice(10, localState.neoArray.length);
 
         break;
       case 'isCloserChecked':
@@ -71,12 +72,17 @@ class GlobalContainer extends React.Component {
             a.close_approach_data[0].miss_distance.lunar -
             b.close_approach_data[0].miss_distance.lunar
         );
-        localState.neoArray.splice(10, localState.neoArray.length);
+        // localState.neoArray.splice(10, localState.neoArray.length);
         break;
       default:
         break;
     }
     this.setState({ data: localState });
+    this.setState({ date: monthChoice });
+    this.setState(prevState => ({
+      ...prevState,
+      buttonChecked: { ...prevState.buttonChecked, [buttonActive]: false }
+    }));
   }
 
   handleDisplayContent(panelToDisplay) {
@@ -109,7 +115,8 @@ class GlobalContainer extends React.Component {
       ...prevState,
       buttonChecked: { ...prevState.buttonChecked, [buttonActive]: !isActive }
     }));
-    const keys = Object.keys(buttonChecked)
+    const keys = Object.keys(buttonChecked);
+    keys
       .filter(item => item !== buttonActive)
       .map(item =>
         this.setState(prevState => ({
@@ -210,7 +217,7 @@ class GlobalContainer extends React.Component {
           />
         ) : null}
         {isCloserChecked || isBiggerChecked || isDangerousChecked ? (
-          <MonthsCalendar data={this.setData} />
+          <MonthsCalendar dataMethod={this.setData} />
         ) : null}
       </div>
     );

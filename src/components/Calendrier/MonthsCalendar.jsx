@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './calend.css';
 import axios from 'axios';
 import ArrMonths from '../Const';
@@ -23,7 +24,7 @@ class MonthsCalendar extends React.Component {
 
   monthClick() {
     const { annee, mois, object } = this.state;
-    const { data } = this.props;
+    const { dataMethod } = this.props;
 
     const yearAndMonth = `${annee}-${mois}`;
     const weekFive = `${yearAndMonth}-28`;
@@ -48,14 +49,14 @@ class MonthsCalendar extends React.Component {
               for (let k = 0; k < newtab[i][j].length; k += 1) {
                 const neo = newtab[i][j][k];
                 if (typeof neo === 'object') {
-                  neo.is_potentially_hazardous_asteroid
-                    ? object.neoArray.push(newtab[i][j][k])
-                    : console.log('');
+                  if (neo.is_potentially_hazardous_asteroid) {
+                    object.neoArray.push(newtab[i][j][k]);
+                  }
                 }
               }
             }
           }
-          this.props.data(object);
+          dataMethod(object, annee, mois);
         });
     }
   }
@@ -103,5 +104,8 @@ class MonthsCalendar extends React.Component {
     );
   }
 }
+MonthsCalendar.propTypes = {
+  dataMethod: PropTypes.shape.isRequired
+};
 
 export default MonthsCalendar;

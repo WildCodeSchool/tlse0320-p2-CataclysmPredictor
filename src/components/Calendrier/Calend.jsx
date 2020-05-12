@@ -134,7 +134,8 @@ class Calend extends React.Component {
 
 Calend.propTypes = {
   reset: PropTypes.func.isRequired,
-  handleCheckedButton: PropTypes.func.isRequired
+  handleCheckedButton: PropTypes.func.isRequired,
+  buttonActive: PropTypes.string.isRequired
 };
 
 export default Calend;

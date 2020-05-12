@@ -47,6 +47,7 @@ class NeoDisplay extends React.Component {
       return carry;
     }, []);
     const filter = flattenMatrix.filter(item => item.danger === true);
+    filter.splice(10, filter.length);
     const magnitude = filter.map(neo => neo.magnitude);
     const magnitudeTri = magnitude.sort((a, b) => a - b);
     filter.map(neo =>
