@@ -5,10 +5,16 @@
 .colorText {
   color: rgb(89, 247, 247);
   margin-bottom: 0;
+  margin-top: 0;
 }
 .flex {
   display: flex;
   margin: 5px 10px;
+}
+.space-between {
+  justify-content: space-between;
+  width: 99%;
+  align-items: start;
 }
 .direction {
   flex-direction: column;
@@ -34,16 +40,18 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 .border-right {
-  border-left: 1px solid rgb(89, 247, 247);
+  border-left: 1px solid rgb(255, 255, 255);
+  border-bottom: 1px solid rgb(253, 253, 253);
 }
 .color {
   color: whitesmoke;
   margin-top: 0;
+  margin-bottom: 0;
 }
 .position {
-  position: absolute;
-  top: 35vh;
-  left: 35%;
+  position: fixed;
+  top: 15%;
+  left: 20%;
 }
 
 .padding {
@@ -82,6 +90,9 @@
   background: none;
   margin: 0;
   padding: 0;
+}
+.focus:hover {
+  border: 1px solid rgb(89, 247, 247);
 }
 .absolute {
   position: absolute;

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../ComponentMain/GlobalContainer.css';
+import '../ComponentMain/animation.css';
 
-function Id({ dataNeo, setDisplay }) {
+function Id({ dataNeo, neoClick }) {
   return (
-    <div className="border position padding layout1">
+    <div className="border position padding layout1 scale-in-hor-center">
       <table className="color table">
         <thead>
           <tr>
@@ -12,7 +13,7 @@ function Id({ dataNeo, setDisplay }) {
               <h2 className="color">Informations</h2>
             </td>
             <td>
-              <button type="submit" className="color fake-button" onClick={setDisplay}>
+              <button type="submit" className="color fake-button" onClick={() => neoClick()}>
                 close [X]
               </button>
             </td>
@@ -26,7 +27,6 @@ function Id({ dataNeo, setDisplay }) {
           <tr>
             <td>Diamètre :</td>
             <td>{`${dataNeo.size} Km`}</td>
-            <td>soit ....</td>
           </tr>
           <tr>
             <td>Vitesse :</td>
@@ -39,7 +39,6 @@ function Id({ dataNeo, setDisplay }) {
           <tr>
             <td>Distance :</td>
             <td>{`${dataNeo.distanceKm} Km`}</td>
-            <td>{`${dataNeo.distanceLunar} Terre => Lune`}</td>
           </tr>
         </tbody>
       </table>
@@ -48,7 +47,7 @@ function Id({ dataNeo, setDisplay }) {
 }
 Id.propTypes = {
   dataNeo: PropTypes.shape.isRequired,
-  setDisplay: PropTypes.shape.isRequired
+  neoClick: PropTypes.shape.isRequired
 };
 
 export default Id;

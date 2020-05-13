@@ -163,15 +163,19 @@ class GlobalContainer extends React.Component {
                 <MainApp />
                 {date && data ? (
                   <div className="flex direction width scale-in-hor-center border-right">
-                    <h2 className="colorText">
-                      Astéroïdes en approche à partir du :&#141;
-                      {date}
-                    </h2>
+                    <div className="flex space-between">
+                      <p className="color">Axe de passage</p>
+                      <h2 className="colorText">
+                        Astéroïdes en approche à partir du :&#141;
+                        {date}
+                      </h2>
+                    </div>
                     <NeoDisplay
                       data={data}
                       displayAlert={displayAlert}
                       showAlert={this.showAlert}
                     />
+                    <p className="color">Distance minimale relevée</p>
                   </div>
                 ) : null}
               </div>
