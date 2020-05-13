@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import FooterContent from '../ComponentBottom/FooterContent';
 
-function ButtonBottom({ handleDisplayContent, panelToHandle, name }) {
+function ButtonBottom() {
+  const [displayFooter, setDisplayFooter] = useState(false);
   return (
     <div>
-      <button
-        type="submit"
-        className="button-nav"
-        value="item"
-        onClick={() => handleDisplayContent(panelToHandle)}
-      >
-        {name}
+      <button type="submit" className="button-nav" onClick={() => setDisplayFooter(!displayFooter)}>
+        Menu
       </button>
+      {displayFooter ? <FooterContent /> : null}
     </div>
   );
 }

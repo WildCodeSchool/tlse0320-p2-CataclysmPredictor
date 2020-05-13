@@ -47,6 +47,7 @@ class NeoDisplay extends React.Component {
       return carry;
     }, []);
     const filter = flattenMatrix.filter(item => item.danger === true);
+    filter.splice(10, filter.length);
     const magnitude = filter.map(neo => neo.magnitude);
     const magnitudeTri = magnitude.sort((a, b) => a - b);
     filter.map(neo =>
@@ -79,18 +80,20 @@ class NeoDisplay extends React.Component {
 
   render() {
     const { arrFilter } = this.state;
+    const { showAlert } = this.props;
 
     return (
       <div className="grid">
         {arrFilter.map(neo => (
-          <Neo keys={neo.name} dataNeo={neo} />
+          <Neo keys={neo.name} dataNeo={neo} showAlert={showAlert} />
         ))}
       </div>
     );
   }
 }
 NeoDisplay.propTypes = {
-  data: PropTypes.shape.isRequired
+  data: PropTypes.shape.isRequired,
+  showAlert: PropTypes.func.isRequired
 };
 
 export default NeoDisplay;

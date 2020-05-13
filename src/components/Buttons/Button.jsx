@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Button({ name, periodeChecked }) {
+function Button({ name, handleCheckedButton, buttonActive }) {
   return (
     <div>
-      <button type="button" className="button-nav" onClick={periodeChecked}>
+      <button
+        type="button"
+        className="button-nav"
+        onClick={() => handleCheckedButton(buttonActive)}
+      >
         {name}
       </button>
     </div>
@@ -12,7 +16,8 @@ function Button({ name, periodeChecked }) {
 }
 Button.propTypes = {
   name: PropTypes.string.isRequired,
-  periodeChecked: PropTypes.shape.isRequired
+  handleCheckedButton: PropTypes.func.isRequired,
+  buttonActive: PropTypes.string.isRequired
 };
 
 export default Button;
