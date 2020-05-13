@@ -17,6 +17,9 @@
 }
 .direction {
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   justify-content: start;
+}
+.width {
+  width: 95%;
 }

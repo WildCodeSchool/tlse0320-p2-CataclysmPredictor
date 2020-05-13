@@ -73,12 +73,16 @@ class GlobalContainer extends React.Component {
       <div className="App">
         <Router>
           <Switch>
-            <Route exact path="/">
+            <Route path="/article-asteroide" component={ArticleContent} />
+            <Route path="/article-dinosaures" component={ScenariosContent} />
+            <Route path="/mentions-legales" component={LegalMentions} />
+            <Route path="/presentation" component={Presentation} />
+            <Route path="/">
               <MainTitle />
               <UpButtons periodeChecked={this.periodeChecked} />
               <div className="flex">
                 <MainApp />
-                <div className="flex direction">
+                <div className="flex direction width">
                   {date ? (
                     <h2 className="colorText">
                       Astéroïdes en approche à partir du :&#141;
@@ -95,10 +99,6 @@ class GlobalContainer extends React.Component {
                 ) : null}
               </div>
             </Route>
-            <Route path="/article-asteroide" component={ArticleContent} />
-            <Route path="/article-scenarios" component={ScenariosContent} />
-            <Route path="/mentions-legales" component={LegalMentions} />
-            <Route path="/presentation" component={Presentation} />
           </Switch>
         </Router>
       </div>

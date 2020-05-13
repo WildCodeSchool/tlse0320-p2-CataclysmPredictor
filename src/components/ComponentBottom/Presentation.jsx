@@ -1,9 +1,11 @@
 import React from 'react';
 import './Content.css';
+import { Link } from 'react-router-dom';
 
 function Presentation() {
   return (
     <div>
+      <Link to="/">Home</Link>
       <h2>Qui sommes-nous ?</h2>
       <p>
         Nous sommes 4 étudiants en développement web JavaScript, React et NodeJS à la
