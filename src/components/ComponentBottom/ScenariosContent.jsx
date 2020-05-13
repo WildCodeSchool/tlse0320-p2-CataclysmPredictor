@@ -1,5 +1,6 @@
 import React from 'react';
 import './Content.css';
+import '../ComponentMain/GlobalContainer.css';
 import { Link } from 'react-router-dom';
 import dino from '../../img/dino.jpg';
 import asteroide2 from '../../img/asteroide2.jpg';
@@ -99,12 +100,16 @@ function ScenariosContent() {
           des fossiles d&apos; animaux contemporains de la crise.
         </p>
         <a
-          className="link"
+          className="link underline"
           href="https://www.futura-sciences.com/planete/dossiers/dinosaure-enquete-disparition-dinosaures-269/page/12/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           Source
         </a>
-        <Link to="/">Revenir à la page d&aspos; accueil</Link>
+        <Link className="link block border" to="/">
+          Revenir à la page d&apos; accueil
+        </Link>
       </article>
     </div>
   );

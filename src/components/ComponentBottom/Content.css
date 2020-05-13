@@ -12,7 +12,6 @@
 .link {
   text-decoration: none;
   color: white;
-  width: 100%;
 }
 .marge-large {
   margin-top: 20px;
@@ -82,13 +81,29 @@
 }
 .link {
   color: blanchedalmond;
-  text-decoration: underline;
-  padding-top: 30px;
-  padding-left: 96%;
 }
 .planetsimg {
   width: 100%;
   height: auto;
   margin: auto;
   margin-bottom: 30px;
+}
+.block {
+  display: block;
+  font-size: 1.1em;
+  text-align: center;
+  width: 20%;
+  margin: 50px auto 10px auto;
+  padding: 10px;
+}
+.block:hover {
+  transition: 0.3s;
+  box-shadow: 0 0 20px rgb(89, 247, 247);
+}
+.underline {
+  text-decoration: underline;
+}
+.avatar {
+  border-radius: 50%;
+  width: 100px;
 }

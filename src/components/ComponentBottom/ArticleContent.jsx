@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Content.css';
+import '../ComponentMain/GlobalContainer.css';
 import planets from '../../img/planets.jpg';
 
 function ArticleContent() {
@@ -26,7 +27,7 @@ function ArticleContent() {
           de l&apos; observatoire de Palerme, en Sicile. Depuis, on en a dénombré plus de 523.000,
           dont la majorité se situe dans la zone comprise entre Mars et Jupiter, appelée la ceinture
           d’astéroïdes. D&apos; autres astéroïdes sont découverts en dehors de cette zone, soit
-          parce qu&apo; sils possèdent une orbite qui les fait s&apos; éloigner de la ceinture
+          parce qu&apos; sils possèdent une orbite qui les fait s&apos; éloigner de la ceinture
           principale, soit parce qu&apos; ils sont dans une autre zone du Système solaire.
         </p>
         <h4>On distingue notamment :</h4>
@@ -58,12 +59,16 @@ function ArticleContent() {
           </li>
         </ul>
         <a
-          className="link"
+          className="link underline"
           href="https://www.futura-sciences.com/sciences/definitions/asteroide-asteroide-870/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           Source
         </a>
-        <Link to="/">Revenir à la page d&aspos; accueil</Link>
+        <Link className="link block border" to="/">
+          Revenir à la page d&apos; accueil
+        </Link>
       </article>
     </div>
   );
