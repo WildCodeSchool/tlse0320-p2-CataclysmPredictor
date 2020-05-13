@@ -82,4 +82,8 @@
   position: absolute;
   top: auto;
   left: auto;
+  justify-content: start;
+}
+.width {
+  width: 95%;
 }

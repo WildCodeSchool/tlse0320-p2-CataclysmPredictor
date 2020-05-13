@@ -1,30 +1,31 @@
 import React from 'react';
 import './Content.css';
+import { Link } from 'react-router-dom';
 
 function FooterContent() {
   return (
     <div className="footer">
       <ul className="list-none">
         <li className="marge-large">
-          <a href="out" className="link">
-            Mentions légales
-          </a>
+          <Link to="/article-asteroide" className="link">
+            Qu&apos; est ce qu&apos; un astéroïde ?
+          </Link>
         </li>
         <li className="marge-large">
-          <a href="out" className="link">
-            Nous Contacter
-          </a>
+          <Link to="/article-dinosaures" className="link">
+            Retour sur l&apos; extinction des dinosaures
+          </Link>
         </li>
         <li className="marge-large">
-          <a href="out" className="link">
-            Qui sommes nous ?
-          </a>
+          <Link to="/mentions-legales" className="link">
+            Mentions Légales
+          </Link>
         </li>
-      </ul>
-      <ul className="list-none">
-        <li className="marge-large link">Nous rejoindre</li>
-        <li className="marge-large inline" />
-        <li className="marge-large inline" />
+        <li className="marge-large">
+          <Link to="/presentation" className="link">
+            Qui sommes-nous ?
+          </Link>
+        </li>
       </ul>
     </div>
   );
