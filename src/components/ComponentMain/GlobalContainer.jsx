@@ -12,6 +12,8 @@ import ArticleContent from '../ComponentBottom/ArticleContent';
 import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import Presentation from '../ComponentBottom/Presentation';
 import LegalMentions from '../ComponentBottom/LegalMentions';
+import MonthsCalendar from '../Calendrier/MonthsCalendar';
+
 
 class GlobalContainer extends React.Component {
   constructor(props) {
@@ -19,12 +21,21 @@ class GlobalContainer extends React.Component {
     this.state = {
       date: null,
       data: null,
-      isPeriodeChecked: false
+      buttonChecked: {
+        isPeriodeChecked: false,
+        isBiggerChecked: false,
+        isCloserChecked: false,
+        isDangerousChecked: false
+      }
+      displayAlert: false
     };
 
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
+    this.handleCheckedButton = this.handleCheckedButton.bind(this);
+    this.setData = this.setData.bind(this);
     this.reset = this.reset.bind(this);
-    this.periodeChecked = this.periodeChecked.bind(this);
+    this.showAlert = this.showAlert.bind(this);
+
   }
 
   componentDidMount() {
@@ -41,6 +52,62 @@ class GlobalContainer extends React.Component {
   periodeChecked() {
     const { isPeriodeChecked: isChecked } = this.state;
     this.setState({ isPeriodeChecked: !isChecked });
+
+  setData(localState, year, month) {
+    const { buttonChecked } = this.state;
+    const keys = Object.keys(buttonChecked);
+    const monthChoice = `${year}-${month}`;
+    const buttonActive = keys.filter(key => buttonChecked[key] === true);
+
+    switch (buttonActive[0]) {
+      case 'isBiggerChecked':
+        localState.neoArray.sort(
+          (a, b) =>
+            a.estimated_diameter.meters.estimated_diameter_max -
+            b.estimated_diameter.meters.estimated_diameter_max
+        );
+        // localState.neoArray.splice(10, localState.neoArray.length);
+
+        break;
+      case 'isCloserChecked':
+        localState.neoArray.sort(
+          (a, b) =>
+            a.close_approach_data[0].miss_distance.lunar -
+            b.close_approach_data[0].miss_distance.lunar
+        );
+        // localState.neoArray.splice(10, localState.neoArray.length);
+        break;
+      default:
+        break;
+    }
+    this.setState({ data: localState });
+    this.setState({ date: monthChoice });
+    this.setState(prevState => ({
+      ...prevState,
+      buttonChecked: { ...prevState.buttonChecked, [buttonActive]: false }
+    }));
+
+  showAlert() {
+    const { displayAlert } = this.state;
+    this.setState({ displayAlert: !displayAlert });
+  }
+
+  handleCheckedButton(buttonActive) {
+    const { buttonChecked } = this.state;
+    const { [buttonActive]: isActive } = buttonChecked;
+    this.setState(prevState => ({
+      ...prevState,
+      buttonChecked: { ...prevState.buttonChecked, [buttonActive]: !isActive }
+    }));
+    const keys = Object.keys(buttonChecked);
+    keys
+      .filter(item => item !== buttonActive)
+      .map(item =>
+        this.setState(prevState => ({
+          ...prevState,
+          buttonChecked: { ...prevState.buttonChecked, [item]: false }
+        }))
+      );
   }
 
   reset(localState) {
@@ -52,6 +119,7 @@ class GlobalContainer extends React.Component {
       jourF = localState.daySelect;
     }
     this.setState({ date: `${anneeF}-${moisF}-${jourF}` });
+    this.loadNeoByDate();
   }
 
   loadNeoByDate() {
@@ -68,7 +136,14 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
-    const { isPeriodeChecked, date, data } = this.state;
+
+    const { buttonChecked, date, data, displayAlert } = this.state;
+    const {
+      isPeriodeChecked,
+      isBiggerChecked,
+      isCloserChecked,
+      isDangerousChecked
+    } = buttonChecked;
     return (
       <div className="App">
         <Router>
@@ -79,7 +154,7 @@ class GlobalContainer extends React.Component {
             <Route path="/presentation" component={Presentation} />
             <Route path="/">
               <MainTitle />
-              <UpButtons periodeChecked={this.periodeChecked} />
+              <UpButtons buttonChecked={buttonChecked} handleCheckedButton={this.handleCheckedButton} />
               <div className="flex">
                 <MainApp />
                 <div className="flex direction width">
@@ -89,13 +164,20 @@ class GlobalContainer extends React.Component {
                       {date}
                     </h2>
                   ) : null}
-                  {data ? <NeoDisplay data={data} /> : null}
+                  {data ? <NeoDisplay data={data} showAlert={this.showAlert} displayAlert={displayAlert} /> : null}
                 </div>
               </div>
               <div className="button-bottom">
                 <ButtonBottom name="Menu" />
                 {isPeriodeChecked ? (
-                  <Calend reset={this.reset} periodeChecked={this.periodeChecked} />
+                  <Calend
+                    reset={this.reset}
+                    handleCheckedButton={this.handleCheckedButton}
+                    ButtonActive="isPeriodeChecked"
+                  />
+                ) : null}
+                {isCloserChecked || isBiggerChecked || isDangerousChecked ? (
+                  <MonthsCalendar dataMethod={this.setData} />
                 ) : null}
               </div>
             </Route>
