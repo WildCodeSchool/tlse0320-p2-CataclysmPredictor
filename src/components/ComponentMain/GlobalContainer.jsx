@@ -8,6 +8,7 @@ import ArticleContent from '../ComponentBottom/ArticleContent';
 import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import CriteresContent from '../ComponentBottom/CriteresContent';
 import MainTitle from './MainTitle';
+import NeoDisplay from './NeoDisplay';
 import Calend from '../Calendrier/Calend';
 import './GlobalContainer.css';
 
@@ -21,7 +22,7 @@ class GlobalContainer extends React.Component {
         displayScenarios: false,
         displayCriteres: false
       },
-      date: '2015-08-09',
+      date: null,
       data: null,
       isPeriodeChecked: false
     };
@@ -29,6 +30,17 @@ class GlobalContainer extends React.Component {
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
     this.reset = this.reset.bind(this);
     this.periodeChecked = this.periodeChecked.bind(this);
+  }
+
+  componentDidMount() {
+    this.loadNeoByDate();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { date } = this.state;
+    if (prevState.date !== date) {
+      this.loadNeoByDate();
+    }
   }
 
   handleDisplayContent(panelToDisplay) {
@@ -72,7 +84,7 @@ class GlobalContainer extends React.Component {
 
   loadNeoByDate() {
     const { date } = this.state;
-    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=DEMO_KEY`;
+    const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&api_key=BapitUNP1XW9Ln8ki9YvBXgJlUeLj1UDofZ5ewc8`;
     axios
       .get(url)
       .then(res => {
@@ -84,19 +96,29 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
-    const { isPeriodeChecked, displayBottomContent } = this.state;
+    const { isPeriodeChecked, displayBottomContent, date, data } = this.state;
     const {
       displayFooter,
       displayArticle,
       displayCriteres,
       displayScenarios
     } = displayBottomContent;
-
     return (
       <div className="App">
         <MainTitle />
         <UpButtons periodeChecked={this.periodeChecked} />
-        <MainApp />
+        <div className="flex">
+          <MainApp />
+          <div className="flex direction">
+            {date ? (
+              <h2 className="colorText">
+                Astéroïdes en approche à partir du :&#141;
+                {date}
+              </h2>
+            ) : null}
+            {data ? <NeoDisplay data={data} /> : null}
+          </div>
+        </div>
         <div className="button-bottom">
           <ButtonBottom
             handleDisplayContent={this.handleDisplayContent}
