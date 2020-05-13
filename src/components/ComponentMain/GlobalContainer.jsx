@@ -31,12 +31,15 @@ class GlobalContainer extends React.Component {
         isCloserChecked: false,
         isDangerousChecked: false
       }
+      displayAlert: false
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
     this.handleCheckedButton = this.handleCheckedButton.bind(this);
     this.setData = this.setData.bind(this);
     this.reset = this.reset.bind(this);
+    this.showAlert = this.showAlert.bind(this);
+
   }
 
   componentDidMount() {
@@ -49,6 +52,7 @@ class GlobalContainer extends React.Component {
       this.loadNeoByDate();
     }
   }
+
 
   setData(localState, year, month) {
     const { buttonChecked } = this.state;
@@ -83,6 +87,10 @@ class GlobalContainer extends React.Component {
       ...prevState,
       buttonChecked: { ...prevState.buttonChecked, [buttonActive]: false }
     }));
+
+  showAlert() {
+    const { displayAlert } = this.state;
+    this.setState({ displayAlert: !displayAlert });
   }
 
   handleDisplayContent(panelToDisplay) {
@@ -152,13 +160,15 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
-    const { buttonChecked, displayBottomContent, date, data } = this.state;
+
+    const { buttonChecked, displayBottomContent, date, data, displayAlert } = this.state;
     const {
       isPeriodeChecked,
       isBiggerChecked,
       isCloserChecked,
       isDangerousChecked
     } = buttonChecked;
+
     const {
       displayFooter,
       displayArticle,
@@ -172,14 +182,15 @@ class GlobalContainer extends React.Component {
         <UpButtons buttonChecked={buttonChecked} handleCheckedButton={this.handleCheckedButton} />
         <div className="flex">
           <MainApp />
-          <div className="flex direction">
+          {displayAlert ? <h3 className="colorText absolute">Alert</h3> : null}
+          <div className="flex direction end">
             {date ? (
               <h2 className="colorText">
                 Astéroïdes en approche à partir du :&#141;
                 {date}
               </h2>
             ) : null}
-            {data ? <NeoDisplay data={data} /> : null}
+            {data ? <NeoDisplay data={data} showAlert={this.showAlert} /> : null}
           </div>
         </div>
         <div className="button-bottom">
@@ -223,4 +234,5 @@ class GlobalContainer extends React.Component {
     );
   }
 }
+
 export default GlobalContainer;
