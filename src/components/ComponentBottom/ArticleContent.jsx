@@ -63,6 +63,7 @@ function ArticleContent() {
         >
           Source
         </a>
+        <Link to="/">Revenir à la page d&aspos; accueil</Link>
       </article>
     </div>
   );

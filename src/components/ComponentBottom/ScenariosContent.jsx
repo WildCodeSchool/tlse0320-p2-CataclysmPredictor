@@ -7,7 +7,6 @@ import asteroide2 from '../../img/asteroide2.jpg';
 function ScenariosContent() {
   return (
     <div>
-      <Link to="/">Home</Link>
       <article className="article-content color-text">
         <h1 className="title">Scénarios catastrophes</h1>
         <p className="chapeau">
@@ -105,6 +104,7 @@ function ScenariosContent() {
         >
           Source
         </a>
+        <Link to="/">Revenir à la page d&aspos; accueil</Link>
       </article>
     </div>
   );
