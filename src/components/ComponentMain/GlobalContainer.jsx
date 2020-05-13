@@ -13,6 +13,7 @@ import ArticleContent from '../ComponentBottom/ArticleContent';
 import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import Presentation from '../ComponentBottom/Presentation';
 import LegalMentions from '../ComponentBottom/LegalMentions';
+import './animation.css';
 
 class GlobalContainer extends React.Component {
   constructor(props) {
@@ -154,23 +155,34 @@ class GlobalContainer extends React.Component {
             <Route path="/presentation" component={Presentation} />
             <Route path="/">
               <MainTitle />
-              <UpButtons periodeChecked={this.periodeChecked} />
+              <UpButtons
+                buttonChecked={buttonChecked}
+                handleCheckedButton={this.handleCheckedButton}
+              />
               <div className="flex">
                 <MainApp />
-                <div className="flex direction width">
-                  {date ? (
+                {date && data ? (
+                  <div className="flex direction width scale-in-hor-center border-right">
                     <h2 className="colorText">
                       Astéroïdes en approche à partir du :&#141;
                       {date}
                     </h2>
-                  ) : null}
-                  {data ? <NeoDisplay data={data} displayAlert={displayAlert} /> : null}
-                </div>
+                    <NeoDisplay
+                      data={data}
+                      displayAlert={displayAlert}
+                      showAlert={this.showAlert}
+                    />
+                  </div>
+                ) : null}
               </div>
               <div className="button-bottom">
                 <ButtonBottom name="Menu" />
                 {isPeriodeChecked ? (
-                  <Calend reset={this.reset} periodeChecked={this.periodeChecked} />
+                  <Calend
+                    reset={this.reset}
+                    handleCheckedButton={this.handleCheckedButton}
+                    ButtonActive="isPeriodeChecked"
+                  />
                 ) : null}
                 {isCloserChecked || isBiggerChecked || isDangerousChecked ? (
                   <MonthsCalendar dataMethod={this.setData} />

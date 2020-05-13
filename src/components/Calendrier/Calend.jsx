@@ -2,6 +2,7 @@ import React from 'react';
 import './calend.css';
 import PropTypes from 'prop-types';
 import ArrMonths from '../Const';
+import '../ComponentMain/animation.css';
 
 class Calend extends React.Component {
   constructor(props) {
@@ -71,7 +72,7 @@ class Calend extends React.Component {
     const { annee, mois, shMounth, showDay, moiEnCour, daySelect } = this.state;
     const { reset, handleCheckedButton, buttonActive } = this.props;
     return (
-      <div className="containCalend border">
+      <div className="containCalend border scale-in-hor-center">
         <div className="year">
           <button type="button" className="btnSelect" onClick={() => this.addYear(-10)}>
             &#60;&#60;

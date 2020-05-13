@@ -24,7 +24,7 @@ function Neo({ dataNeo, showAlert }) {
     gridColumn: dataNeo.indiceDistance
   };
   return (
-    <div style={neoStyle}>
+    <div className="focus text-flicker-in-glow" style={neoStyle}>
       <button
         type="submit"
         className="fake-button"
