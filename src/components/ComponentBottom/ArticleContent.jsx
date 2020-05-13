@@ -1,12 +1,13 @@
 import React from 'react';
 import './Content.css';
+import planets from '../../img/planets.jpg';
 
 function ArticleContent() {
   return (
     <div>
       <article className="article-content">
-        <h2>Définition</h2>
-        <p>
+        <h2 className="title">Définition</h2>
+        <p className="chapeau">
           Un astéroïde est un corps céleste composé de roches et de métaux, dont la taille peut
           aller de quelques centimètres à plusieurs kilomètres. Contrairement à ce que l&apos; on
           pense, il n&apos; erre pas de façon erratique dans l&apos; espace, mais tourne autour
@@ -16,8 +17,9 @@ function ArticleContent() {
           pas pu s&apos; agglomérer pour former une planète, en raison notamment de l&apos;
           influence de Jupiter. Les astéroïdes sont parfois appelés planète mineure.
         </p>
+        <img className="planetsimg" src={planets} alt="planètes" />
         <h2>Les familles d&apos; astéroïdes</h2>
-        <p>
+        <p className="chapeau">
           Le premier astéroïde, Cérès, a été découvert en 1801 par Giuseppe Piazzi, alors directeur
           de l&apos; observatoire de Palerme, en Sicile. Depuis, on en a dénombré plus de 523.000,
           dont la majorité se situe dans la zone comprise entre Mars et Jupiter, appelée la ceinture
@@ -53,9 +55,12 @@ function ArticleContent() {
             étroitement par la Nasa.
           </li>
         </ul>
-        <p>
-          source : https://www.futura-sciences.com/sciences/definitions/asteroide-asteroide-870/
-        </p>
+        <a
+          className="link"
+          href="https://www.futura-sciences.com/sciences/definitions/asteroide-asteroide-870/"
+        >
+          Source
+        </a>
       </article>
     </div>
   );

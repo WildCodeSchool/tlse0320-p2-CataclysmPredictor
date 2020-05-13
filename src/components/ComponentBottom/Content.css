@@ -32,8 +32,6 @@
   margin: 20px;
 }
 .article-content {
-  background: linear-gradient(rgb(89, 247, 247, 0.5), rgb(89, 247, 247, 0.1));
-  border-radius: 12px 0 12px 0;
   width: 80%;
   text-align: justify;
   position: relative;
@@ -43,16 +41,54 @@
   padding-right: 50px;
   padding-top: 50px;
   padding-bottom: 50px;
+  color: blanchedalmond;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(89, 247, 247);
+  border-radius: 12px 0 12px 0;
+  background-color: rgba(0, 0, 0, 0.8);
 }
-
+.title {
+  font-size: 40px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.chapeau {
+  padding-bottom: 30px;
+}
 .dino-container {
   display: flex;
   flex-direction: row;
-  align-content: space-around;
+  padding-bottom: 30px;
+  padding-top: 30px;
 }
-
+.asteroide-container {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
 .dino {
-  width: 40%;
+  width: 30%;
   height: auto;
-  border-radius: 12px 0 12px 0;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+.asteroide2 {
+  width: 30%;
+  height: auto;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+.link {
+  color: blanchedalmond;
+  text-decoration: underline;
+  padding-top: 30px;
+  padding-left: 96%;
+}
+.planetsimg {
+  width: 100%;
+  height: auto;
+  margin: auto;
+  margin-bottom: 30px;
 }

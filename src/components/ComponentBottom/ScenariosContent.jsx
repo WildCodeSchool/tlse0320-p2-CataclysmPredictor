@@ -1,13 +1,14 @@
 import React from 'react';
 import './Content.css';
 import dino from '../../img/dino.jpg';
+import asteroide2 from '../../img/asteroide2.jpg';
 
 function ScenariosContent() {
   return (
     <div>
-      <article className="article-content">
-        <h2>Scénarios catastrophes</h2>
-        <p>
+      <article className="article-content color-text">
+        <h1 className="title">Scénarios catastrophes</h1>
+        <p className="chapeau">
           Dans cet article, nous rentrons dans le domaine des suppositions. Les scénarios proposés
           ne sont donc que des possibilités et ne correspondent pas à une vérité scientifique
           immuable. Les scientifiques qui ont travaillé à la reconstitution des événements se sont
@@ -18,24 +19,30 @@ function ScenariosContent() {
           diamètre sont incertaines.
         </p>
         <h2>Effets d&apos; un impact d&apos; astéroïde selon son diamètre</h2>
-        <p>
-          Les effets dévastateurs d&apos; un impact augmentent évidemment selon le diamètre de
-          l&apos; impacteur et les estimations sont les suivantes :
-        </p>
-        <ul>
-          <li className="marge-large">
-            De 1 à 9 mètres de diamètre (fréquence de collision = en moyenne 1 par an) : dégâts
-            locaux.
-          </li>
-          <li className="marge-large">
-            De 10 à 100 mètres (1 tous les 100 à 10.000 ans) : dégâts à l&apos; échelle d&apos; une
-            région, avec un cratère important.
-          </li>
-          <li className="marge-large">
-            De 100 mètres à 1 kilomètre (1 tous les 10.000 à 100.000 ans) : dégâts à l&apos; échelle
-            d&apos; un continent, donc théoriquement repérables au cours des temps géologiques.
-          </li>
-        </ul>
+        <div className="asteroide-container">
+          <img className="asteroide2" src={asteroide2} alt="asteroide" />
+          <div>
+            <p>
+              Les effets dévastateurs d&apos; un impact augmentent évidemment selon le diamètre de
+              l&apos; impacteur et les estimations sont les suivantes :
+            </p>
+            <ul>
+              <li className="marge-large">
+                De 1 à 9 mètres de diamètre (fréquence de collision = en moyenne 1 par an) : dégâts
+                locaux.
+              </li>
+              <li className="marge-large">
+                De 10 à 100 mètres (1 tous les 100 à 10.000 ans) : dégâts à l&apos; échelle d&apos;
+                une région, avec un cratère important.
+              </li>
+              <li className="marge-large">
+                De 100 mètres à 1 kilomètre (1 tous les 10.000 à 100.000 ans) : dégâts à l&apos;
+                échelle d&apos; un continent, donc théoriquement repérables au cours des temps
+                géologiques.
+              </li>
+            </ul>
+          </div>
+        </div>
         <h2>Retour sur l&apos; extinction des dinosaures</h2>
         <div className="dino-container">
           <img className="dino" src={dino} alt="extinction des dinosaures" />
@@ -90,10 +97,12 @@ function ScenariosContent() {
           kilomètres, la dévastation immédiate dut être totale. Impossible donc d&apos; y retrouver
           des fossiles d&apos; animaux contemporains de la crise.
         </p>
-        <p>
-          source :
-          https://www.futura-sciences.com/planete/dossiers/dinosaure-enquete-disparition-dinosaures-269/page/12/
-        </p>
+        <a
+          className="link"
+          href="https://www.futura-sciences.com/planete/dossiers/dinosaure-enquete-disparition-dinosaures-269/page/12/"
+        >
+          Source
+        </a>
       </article>
     </div>
   );
