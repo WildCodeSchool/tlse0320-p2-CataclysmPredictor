@@ -144,7 +144,6 @@ class GlobalContainer extends React.Component {
       isCloserChecked,
       isDangerousChecked
     } = buttonChecked;
-
     return (
       <div className="App">
         <Router>
