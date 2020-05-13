@@ -3,6 +3,7 @@
   justify-content: space-around;
 }
 .grid {
+  display: grid;
   margin: auto 0 auto 0;
   width: 90%;
 }
@@ -16,9 +17,9 @@
 }
 .direction {
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   justify-content: start;
 }
-
-@media screen and (max-width: 850px) {
+.width {
+  width: 95%;
 }

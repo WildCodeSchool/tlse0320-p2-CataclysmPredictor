@@ -29,13 +29,3 @@
   transition: 0.3s;
   box-shadow: 0 0 20px rgb(89, 247, 247);
 }
-
-@media screen and (max-width: 850px) {
-  .button-nav {
-    width: 6em;
-    height: 2.7em;
-    font-size: 1em;
-    letter-spacing: normal;
-    padding: 3px;
-  }
-}
