@@ -11,6 +11,7 @@ import MainTitle from './MainTitle';
 import NeoDisplay from './NeoDisplay';
 import Calend from '../Calendrier/Calend';
 import './GlobalContainer.css';
+import MonthsCalendar from '../Calendrier/MonthsCalendar';
 
 class GlobalContainer extends React.Component {
   constructor(props) {
@@ -24,14 +25,21 @@ class GlobalContainer extends React.Component {
       },
       date: null,
       data: null,
-      isPeriodeChecked: false,
+      buttonChecked: {
+        isPeriodeChecked: false,
+        isBiggerChecked: false,
+        isCloserChecked: false,
+        isDangerousChecked: false
+      }
       displayAlert: false
     };
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
     this.handleDisplayContent = this.handleDisplayContent.bind(this);
+    this.handleCheckedButton = this.handleCheckedButton.bind(this);
+    this.setData = this.setData.bind(this);
     this.reset = this.reset.bind(this);
-    this.periodeChecked = this.periodeChecked.bind(this);
     this.showAlert = this.showAlert.bind(this);
+
   }
 
   componentDidMount() {
@@ -44,6 +52,41 @@ class GlobalContainer extends React.Component {
       this.loadNeoByDate();
     }
   }
+
+
+  setData(localState, year, month) {
+    const { buttonChecked } = this.state;
+    const keys = Object.keys(buttonChecked);
+    const monthChoice = `${year}-${month}`;
+    const buttonActive = keys.filter(key => buttonChecked[key] === true);
+
+    switch (buttonActive[0]) {
+      case 'isBiggerChecked':
+        localState.neoArray.sort(
+          (a, b) =>
+            a.estimated_diameter.meters.estimated_diameter_max -
+            b.estimated_diameter.meters.estimated_diameter_max
+        );
+        // localState.neoArray.splice(10, localState.neoArray.length);
+
+        break;
+      case 'isCloserChecked':
+        localState.neoArray.sort(
+          (a, b) =>
+            a.close_approach_data[0].miss_distance.lunar -
+            b.close_approach_data[0].miss_distance.lunar
+        );
+        // localState.neoArray.splice(10, localState.neoArray.length);
+        break;
+      default:
+        break;
+    }
+    this.setState({ data: localState });
+    this.setState({ date: monthChoice });
+    this.setState(prevState => ({
+      ...prevState,
+      buttonChecked: { ...prevState.buttonChecked, [buttonActive]: false }
+    }));
 
   showAlert() {
     const { displayAlert } = this.state;
@@ -73,9 +116,22 @@ class GlobalContainer extends React.Component {
     // Le code ci-dessus permet de mettre toute les valeur de state de l'objet displayBottomContent à false quand un est sélectionné.
   }
 
-  periodeChecked() {
-    const { isPeriodeChecked: isChecked } = this.state;
-    this.setState({ isPeriodeChecked: !isChecked });
+  handleCheckedButton(buttonActive) {
+    const { buttonChecked } = this.state;
+    const { [buttonActive]: isActive } = buttonChecked;
+    this.setState(prevState => ({
+      ...prevState,
+      buttonChecked: { ...prevState.buttonChecked, [buttonActive]: !isActive }
+    }));
+    const keys = Object.keys(buttonChecked);
+    keys
+      .filter(item => item !== buttonActive)
+      .map(item =>
+        this.setState(prevState => ({
+          ...prevState,
+          buttonChecked: { ...prevState.buttonChecked, [item]: false }
+        }))
+      );
   }
 
   reset(localState) {
@@ -87,6 +143,7 @@ class GlobalContainer extends React.Component {
       jourF = localState.daySelect;
     }
     this.setState({ date: `${anneeF}-${moisF}-${jourF}` });
+    this.loadNeoByDate();
   }
 
   loadNeoByDate() {
@@ -103,18 +160,26 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
-    const { displayAlert } = this.state;
-    const { isPeriodeChecked, displayBottomContent, date, data } = this.state;
+
+    const { buttonChecked, displayBottomContent, date, data, displayAlert } = this.state;
+    const {
+      isPeriodeChecked,
+      isBiggerChecked,
+      isCloserChecked,
+      isDangerousChecked
+    } = buttonChecked;
+
     const {
       displayFooter,
       displayArticle,
       displayCriteres,
       displayScenarios
     } = displayBottomContent;
+
     return (
       <div className="App">
         <MainTitle />
-        <UpButtons periodeChecked={this.periodeChecked} />
+        <UpButtons buttonChecked={buttonChecked} handleCheckedButton={this.handleCheckedButton} />
         <div className="flex">
           <MainApp />
           {displayAlert ? <h3 className="colorText absolute">Alert</h3> : null}
@@ -156,7 +221,14 @@ class GlobalContainer extends React.Component {
         {displayCriteres ? <CriteresContent /> : null}
         <div />
         {isPeriodeChecked ? (
-          <Calend reset={this.reset} periodeChecked={this.periodeChecked} />
+          <Calend
+            reset={this.reset}
+            handleCheckedButton={this.handleCheckedButton}
+            ButtonActive="isPeriodeChecked"
+          />
+        ) : null}
+        {isCloserChecked || isBiggerChecked || isDangerousChecked ? (
+          <MonthsCalendar dataMethod={this.setData} />
         ) : null}
       </div>
     );
