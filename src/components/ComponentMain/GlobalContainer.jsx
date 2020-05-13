@@ -14,7 +14,6 @@ import Presentation from '../ComponentBottom/Presentation';
 import LegalMentions from '../ComponentBottom/LegalMentions';
 import MonthsCalendar from '../Calendrier/MonthsCalendar';
 
-
 class GlobalContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +25,7 @@ class GlobalContainer extends React.Component {
         isBiggerChecked: false,
         isCloserChecked: false,
         isDangerousChecked: false
-      }
+      },
       displayAlert: false
     };
 
@@ -35,7 +34,6 @@ class GlobalContainer extends React.Component {
     this.setData = this.setData.bind(this);
     this.reset = this.reset.bind(this);
     this.showAlert = this.showAlert.bind(this);
-
   }
 
   componentDidMount() {
@@ -48,10 +46,6 @@ class GlobalContainer extends React.Component {
       this.loadNeoByDate();
     }
   }
-
-  periodeChecked() {
-    const { isPeriodeChecked: isChecked } = this.state;
-    this.setState({ isPeriodeChecked: !isChecked });
 
   setData(localState, year, month) {
     const { buttonChecked } = this.state;
@@ -86,6 +80,12 @@ class GlobalContainer extends React.Component {
       ...prevState,
       buttonChecked: { ...prevState.buttonChecked, [buttonActive]: false }
     }));
+  }
+
+  periodeChecked() {
+    const { isPeriodeChecked: isChecked } = this.state;
+    this.setState({ isPeriodeChecked: !isChecked });
+  }
 
   showAlert() {
     const { displayAlert } = this.state;
@@ -136,7 +136,6 @@ class GlobalContainer extends React.Component {
   }
 
   render() {
-
     const { buttonChecked, date, data, displayAlert } = this.state;
     const {
       isPeriodeChecked,
@@ -154,7 +153,10 @@ class GlobalContainer extends React.Component {
             <Route path="/presentation" component={Presentation} />
             <Route path="/">
               <MainTitle />
-              <UpButtons buttonChecked={buttonChecked} handleCheckedButton={this.handleCheckedButton} />
+              <UpButtons
+                buttonChecked={buttonChecked}
+                handleCheckedButton={this.handleCheckedButton}
+              />
               <div className="flex">
                 <MainApp />
                 <div className="flex direction width">
@@ -164,7 +166,13 @@ class GlobalContainer extends React.Component {
                       {date}
                     </h2>
                   ) : null}
-                  {data ? <NeoDisplay data={data} showAlert={this.showAlert} displayAlert={displayAlert} /> : null}
+                  {data ? (
+                    <NeoDisplay
+                      data={data}
+                      showAlert={this.showAlert}
+                      displayAlert={displayAlert}
+                    />
+                  ) : null}
                 </div>
               </div>
               <div className="button-bottom">
