@@ -33,4 +33,10 @@
   grid-area: btn;
   height: 300px;
   z-index: 5;
+  opacity: 0.4;
+  transition: 1s;
+}
+.button-block:hover {
+  opacity: 1;
+  transition: 1s;
 }
