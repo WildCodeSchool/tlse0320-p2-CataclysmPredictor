@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './calend.css';
 import axios from 'axios';
 import ArrMonths from '../Const';
+import '../ComponentMain/animation.css';
 
 class MonthsCalendar extends React.Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class MonthsCalendar extends React.Component {
     const { annee, mois } = this.state;
 
     return (
-      <div className="containCalend">
+      <div className="containCalend scale-in-hor-center">
         <div className="year">
           <button type="button" className="btnSelect" onClick={() => this.addYear(-10)}>
             &#60;&#60;

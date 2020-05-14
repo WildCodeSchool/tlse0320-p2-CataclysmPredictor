@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../ComponentMain/GlobalContainer.css';
+import '../ComponentMain/animation.css';
 
 function MiniId({ dataNeo }) {
   return (
-    <div className="absolute border layout1">
+    <div className="absolute border layout1 scale-in-hor-center">
       <table className="color table">
         <tbody>
           <tr>

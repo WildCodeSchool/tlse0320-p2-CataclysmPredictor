@@ -8,11 +8,12 @@ import MainTitle from './MainTitle';
 import NeoDisplay from './NeoDisplay';
 import Calend from '../Calendrier/Calend';
 import './GlobalContainer.css';
+import MonthsCalendar from '../Calendrier/MonthsCalendar';
 import ArticleContent from '../ComponentBottom/ArticleContent';
 import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import Presentation from '../ComponentBottom/Presentation';
 import LegalMentions from '../ComponentBottom/LegalMentions';
-import MonthsCalendar from '../Calendrier/MonthsCalendar';
+import './animation.css';
 
 class GlobalContainer extends React.Component {
   constructor(props) {
@@ -20,13 +21,13 @@ class GlobalContainer extends React.Component {
     this.state = {
       date: null,
       data: null,
+      displayAlert: false,
       buttonChecked: {
         isPeriodeChecked: false,
         isBiggerChecked: false,
         isCloserChecked: false,
         isDangerousChecked: false
-      },
-      displayAlert: false
+      }
     };
 
     this.loadNeoByDate = this.loadNeoByDate.bind(this);
@@ -82,11 +83,6 @@ class GlobalContainer extends React.Component {
     }));
   }
 
-  periodeChecked() {
-    const { isPeriodeChecked: isChecked } = this.state;
-    this.setState({ isPeriodeChecked: !isChecked });
-  }
-
   showAlert() {
     const { displayAlert } = this.state;
     this.setState({ displayAlert: !displayAlert });
@@ -108,6 +104,11 @@ class GlobalContainer extends React.Component {
           buttonChecked: { ...prevState.buttonChecked, [item]: false }
         }))
       );
+  }
+
+  periodeChecked() {
+    const { isPeriodeChecked: isChecked } = this.state;
+    this.setState({ isPeriodeChecked: !isChecked });
   }
 
   reset(localState) {
@@ -159,21 +160,23 @@ class GlobalContainer extends React.Component {
               />
               <div className="flex">
                 <MainApp />
-                <div className="flex direction width">
-                  {date ? (
-                    <h2 className="colorText">
-                      Astéroïdes en approche à partir du :&#141;
-                      {date}
-                    </h2>
-                  ) : null}
-                  {data ? (
+                {date && data ? (
+                  <div className="flex direction width scale-in-hor-center border-right">
+                    <div className="flex space-between">
+                      <p className="color">Axe de passage</p>
+                      <h2 className="colorText">
+                        Astéroïdes en approche à partir du :&#141;
+                        {date}
+                      </h2>
+                    </div>
                     <NeoDisplay
                       data={data}
-                      showAlert={this.showAlert}
                       displayAlert={displayAlert}
+                      showAlert={this.showAlert}
                     />
-                  ) : null}
-                </div>
+                    <p className="color">Distance minimale relevée</p>
+                  </div>
+                ) : null}
               </div>
               <div className="button-bottom">
                 <ButtonBottom name="Menu" />
