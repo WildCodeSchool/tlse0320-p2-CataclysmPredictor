@@ -26,11 +26,11 @@
   box-shadow: 1px 1px 3px rgb(89, 247, 247);
   background: black;
   opacity: 0.8;
-  width: 35%;
+  width: 100%;
   text-align: center;
   position: absolute;
-  top: 33%;
-  left: 30%;
+  top: 90%;
+  left: 260%;
 }
 .inline {
   display: inline-block;
@@ -39,7 +39,8 @@
 .article-content {
   width: 80%;
   text-align: justify;
-  position: relative;
+  position: absolute;
+  left: 7%;
   margin: auto;
   margin-top: 50px;
   padding-left: 50px;

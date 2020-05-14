@@ -1,10 +1,11 @@
 import React from 'react';
 import './Content.css';
+import '../ComponentMain/animation.css';
 import { Link } from 'react-router-dom';
 
 function FooterContent() {
   return (
-    <div className="footer">
+    <div className="footer scale-in-hor-center">
       <ul className="list-none">
         <li className="marge-large">
           <Link to="/article-asteroide" className="link">

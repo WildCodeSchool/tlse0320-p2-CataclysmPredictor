@@ -10,7 +10,6 @@
 .flex {
   display: flex;
   margin: 5px 10px;
-  height: 98vh;
 }
 .column {
   display: flex;
@@ -120,4 +119,9 @@
   grid-template-areas:
     'btn centre'
     'footer centre';
+}
+.mainApp {
+  position: absolute;
+  top: 35%;
+  width: 98%;
 }

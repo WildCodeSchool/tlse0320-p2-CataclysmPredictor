@@ -12,6 +12,7 @@ import ScenariosContent from '../ComponentBottom/ScenariosContent';
 import Presentation from '../ComponentBottom/Presentation';
 import LegalMentions from '../ComponentBottom/LegalMentions';
 import './animation.css';
+import MainTitle from './MainTitle';
 
 class GlobalContainer extends React.Component {
   constructor(props) {
@@ -151,11 +152,12 @@ class GlobalContainer extends React.Component {
             <Route path="/mentions-legales" component={LegalMentions} />
             <Route path="/presentation" component={Presentation} />
             <Route path="/">
+              <MainTitle />
               <UpButtons
                 buttonChecked={buttonChecked}
                 handleCheckedButton={this.handleCheckedButton}
               />
-              <div className="flex">
+              <div className="flex mainApp">
                 <MainApp />
                 {date && data ? (
                   <div className="flex direction width scale-in-hor-center border-right">

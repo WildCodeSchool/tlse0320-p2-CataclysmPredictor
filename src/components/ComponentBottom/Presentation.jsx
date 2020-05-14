@@ -6,10 +6,11 @@ import justine from '../../img/justine.png';
 import nicolas from '../../img/nicolas.png';
 import aline from '../../img/aline.png';
 import '../ComponentMain/GlobalContainer.css';
+import '../ComponentMain/animation.css';
 
 function Presentation() {
   return (
-    <div className="article-content color-text">
+    <div className="article-content color-text scale-in-hor-center">
       <h2>Qui sommes-nous ?</h2>
       <p>
         Nous sommes 4 étudiants en développement web JavaScript à la&#141;

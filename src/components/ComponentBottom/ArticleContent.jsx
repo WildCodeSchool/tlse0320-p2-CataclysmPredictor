@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Content.css';
+import '../ComponentMain/animation.css';
 import '../ComponentMain/GlobalContainer.css';
 import planets from '../../img/planets.jpg';
 
@@ -8,7 +9,7 @@ function ArticleContent() {
   return (
     <div>
       <Link to="/">Home</Link>
-      <article className="article-content">
+      <article className="article-content scale-in-hor-center">
         <h2 className="title">Définition</h2>
         <p className="chapeau">
           Un astéroïde est un corps céleste composé de roches et de métaux, dont la taille peut

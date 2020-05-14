@@ -1,6 +1,7 @@
 import React from 'react';
 import './Content.css';
 import '../ComponentMain/GlobalContainer.css';
+import '../ComponentMain/animation.css';
 import { Link } from 'react-router-dom';
 import dino from '../../img/dino.jpg';
 import asteroide2 from '../../img/asteroide2.jpg';
@@ -8,7 +9,7 @@ import asteroide2 from '../../img/asteroide2.jpg';
 function ScenariosContent() {
   return (
     <div>
-      <article className="article-content color-text">
+      <article className="article-content color-text scale-in-hor-center">
         <h1 className="title">Scénarios catastrophes</h1>
         <p className="chapeau">
           Dans cet article, nous rentrons dans le domaine des suppositions. Les scénarios proposés

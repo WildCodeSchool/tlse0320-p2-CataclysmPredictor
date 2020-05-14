@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Content.css';
 import '../ComponentMain/GlobalContainer.css';
+import '../ComponentMain/animation.css';
 
 function LegalMentions() {
   return (
-    <div className="article-content color-text">
+    <div className="article-content color-text scale-in-hor-center">
       <h2>Conditions d&apos; utilisation</h2>
       <p>
         Ce site est proposé en différents langages web (HTML, HTML5, Javascript, CSS, etc…) pour un
