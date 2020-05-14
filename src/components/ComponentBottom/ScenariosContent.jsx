@@ -14,9 +14,9 @@ function ScenariosContent() {
           Dans cet article, nous rentrons dans le domaine des suppositions. Les scénarios proposés
           ne sont donc que des possibilités et ne correspondent pas à une vérité scientifique
           immuable. Les scientifiques qui ont travaillé à la reconstitution des événements se sont
-          heurtés à limpossibilité de procéder par analogie, puisque aucun autre exemple de
+          heurtés à l&apos; impossibilité de procéder par analogie, puisque aucun autre exemple de
           phénomène d&apos; impact d&apos; une ampleur comparable n&apos; est connu. Les modèles
-          d&apos; impact d&apos; objets de petites dimensions donnent quelques indications sur les
+          d&apos; impact d&apos;objets de petites dimensions donnent quelques indications sur les
           effets environnementaux, mais les extrapolations à des objets de plusieurs kilomètres de
           diamètre sont incertaines.
         </p>
@@ -95,7 +95,7 @@ function ScenariosContent() {
           formation d&apos; un énorme tsunami se propageant avec une vague aussi élevée que la
           profondeur du milieu marin rencontré (une centaine de mètres), et à une vitesse de 0,5
           km/s (près de 2 000 km/h). Ce raz-de-marée colossal a balayé les côtes du sud de l&apos;
-          Amérique du Nord et de l&apos; Amérique centrale. Dans un rayon de plusieurs milliers de
+          Amérique du Nord et de l&apos;Amérique centrale. Dans un rayon de plusieurs milliers de
           kilomètres, la dévastation immédiate dut être totale. Impossible donc d&apos; y retrouver
           des fossiles d&apos; animaux contemporains de la crise.
         </p>

@@ -27,8 +27,8 @@ function ArticleContent() {
           de l&apos; observatoire de Palerme, en Sicile. Depuis, on en a dénombré plus de 523.000,
           dont la majorité se situe dans la zone comprise entre Mars et Jupiter, appelée la ceinture
           d’astéroïdes. D&apos; autres astéroïdes sont découverts en dehors de cette zone, soit
-          parce qu&apos; sils possèdent une orbite qui les fait s&apos; éloigner de la ceinture
-          principale, soit parce qu&apos; ils sont dans une autre zone du Système solaire.
+          parce qu&apos; ils possèdent une orbite qui les fait s&apos; éloigner de la ceinture
+          principale, soit parce qu&apos; ils sont dans une autre zone du Système Solaire.
         </p>
         <h4>On distingue notamment :</h4>
         <ul>
