@@ -10,6 +10,12 @@
   display: flex;
   margin: 5px 10px;
 }
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .space-between {
   justify-content: space-between;
 }

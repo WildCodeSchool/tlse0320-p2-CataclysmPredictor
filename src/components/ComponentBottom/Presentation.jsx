@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './Content.css';
 import anthony from '../../img/anthony.png';
 import justine from '../../img/justine.png';
+import nicolas from '../../img/nicolas.png';
+import aline from '../../img/aline.png';
 import '../ComponentMain/GlobalContainer.css';
 
 function Presentation() {
@@ -10,7 +12,7 @@ function Presentation() {
     <div className="article-content color-text">
       <h2>Qui sommes-nous ?</h2>
       <p>
-        Nous sommes 4 étudiants en développement web JavaScript, React et NodeJS à la
+        Nous sommes 4 étudiants en développement web JavaScript à la&#141;
         <a
           className="link underline"
           href=" https://www.wildcodeschool.com/fr-FR"
@@ -20,8 +22,9 @@ function Presentation() {
           Wild Code School
         </a>
       </p>
-      <ul>
-        <li>
+      <ul className="flex list space-between">
+        <li className="column">
+          <h3>Justine</h3>
           <img src={justine} alt="avatar" className="avatar" />
           <a
             className="link underline"
@@ -29,20 +32,39 @@ function Presentation() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            Justine
+            Github
+          </a>
+          <a
+            className="link underline"
+            href="https://www.linkedin.com/in/justine-gautreau-20367192/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            LinkedIn
           </a>
         </li>
-        <li>
+        <li className="column">
+          <h3>Nicolas</h3>
+          <img src={nicolas} alt="avatar" className="avatar" />
           <a
             className="link underline"
             href="https://github.com/Mr-gateau"
             rel="noopener noreferrer"
             target="_blank"
           >
-            Nicolas
+            Github
+          </a>
+          <a
+            className="link underline"
+            href="https://www.linkedin.com/in/nicolas-tagot-b51882aa/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            LinkedIn
           </a>
         </li>
-        <li>
+        <li className="column">
+          <h3>Anthony</h3>
           <img src={anthony} alt="avatar" className="avatar" />
           <a
             className="link underline"
@@ -50,17 +72,35 @@ function Presentation() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            Anthony
+            Github
+          </a>
+          <a
+            className="link underline"
+            href="https://www.linkedin.com/in/anthony-gensane-92795452/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            LinkedIn
           </a>
         </li>
-        <li>
+        <li className="column">
+          <h3>Aline</h3>
+          <img src={aline} alt="avatar" className="avatar" />
           <a
             className="link underline"
             href="https://github.com/Alpasc"
             rel="noopener noreferrer"
             target="_blank"
           >
-            Aline
+            Github
+          </a>
+          <a
+            className="link underline"
+            href="https://www.linkedin.com/in/aline-pascal-de-raykeer-493862177/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            LinkedIn
           </a>
         </li>
       </ul>
