@@ -21,6 +21,7 @@
 }
 
 .button-block {
+  position: relative;
   border-radius: 12px 0 12px 0;
   border: 1px solid rgb(89, 247, 247);
   color: rgb(89, 247, 247);
@@ -29,6 +30,7 @@
   box-shadow: 1px 1px 3px rgb(89, 247, 247);
   margin: 25px;
   width: 200px;
+  top: 11%;
   letter-spacing: 1px;
   grid-area: btn;
   height: 300px;
