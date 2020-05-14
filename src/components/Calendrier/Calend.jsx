@@ -2,6 +2,7 @@ import React from 'react';
 import './calend.css';
 import PropTypes from 'prop-types';
 import ArrMonths from '../Const';
+import '../ComponentMain/animation.css';
 
 class Calend extends React.Component {
   constructor(props) {
@@ -69,9 +70,9 @@ class Calend extends React.Component {
 
   render() {
     const { annee, mois, shMounth, showDay, moiEnCour, daySelect } = this.state;
-    const { reset, periodeChecked } = this.props;
+    const { reset, handleCheckedButton, buttonActive } = this.props;
     return (
-      <div className="containCalend border">
+      <div className="containCalend border scale-in-hor-center">
         <div className="year">
           <button type="button" className="btnSelect" onClick={() => this.addYear(-10)}>
             &#60;&#60;
@@ -113,7 +114,7 @@ class Calend extends React.Component {
                   onClick={() => {
                     this.setState({ showDay: false });
                     reset(this.state);
-                    periodeChecked();
+                    handleCheckedButton(buttonActive);
                   }}
                 >
                   {jour}
@@ -134,7 +135,8 @@ class Calend extends React.Component {
 
 Calend.propTypes = {
   reset: PropTypes.func.isRequired,
-  periodeChecked: PropTypes.func.isRequired
+  handleCheckedButton: PropTypes.func.isRequired,
+  buttonActive: PropTypes.string.isRequired
 };
 
 export default Calend;

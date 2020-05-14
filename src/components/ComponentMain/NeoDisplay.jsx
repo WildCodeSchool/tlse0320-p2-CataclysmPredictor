@@ -1,15 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Neo from './Neo';
+import Id from '../Id/Id';
 import './GlobalContainer.css';
 
 class NeoDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrFilter: []
+      arrFilter: [],
+      neoActive: null,
+      displayID: false
     };
     this.formatNeosData = this.formatNeosData.bind(this);
+    this.infoNeoActive = this.infoNeoActive.bind(this);
+    this.neoClick = this.neoClick.bind(this);
   }
 
   componentDidMount() {
@@ -47,6 +52,7 @@ class NeoDisplay extends React.Component {
       return carry;
     }, []);
     const filter = flattenMatrix.filter(item => item.danger === true);
+    filter.splice(10, filter.length);
     const magnitude = filter.map(neo => neo.magnitude);
     const magnitudeTri = magnitude.sort((a, b) => a - b);
     filter.map(neo =>
@@ -77,20 +83,39 @@ class NeoDisplay extends React.Component {
     this.setState({ arrFilter: filter });
   }
 
+  infoNeoActive(neoInfo) {
+    this.setState({ neoActive: neoInfo });
+  }
+
+  neoClick() {
+    const { displayID } = this.state;
+    this.setState({ displayID: !displayID });
+  }
+
   render() {
-    const { arrFilter } = this.state;
+    const { arrFilter, neoActive, displayID } = this.state;
+    const { showAlert } = this.props;
 
     return (
       <div className="grid">
         {arrFilter.map(neo => (
-          <Neo keys={neo.name} dataNeo={neo} />
+          <Neo
+            keys={neo.name}
+            dataNeo={neo}
+            showAlert={showAlert}
+            infoNeoActive={this.infoNeoActive}
+            neoHover={this.neoHover}
+            neoClick={this.neoClick}
+          />
         ))}
+        {displayID ? <Id dataNeo={neoActive} neoClick={this.neoClick} /> : null}
       </div>
     );
   }
 }
 NeoDisplay.propTypes = {
-  data: PropTypes.shape.isRequired
+  data: PropTypes.shape.isRequired,
+  showAlert: PropTypes.func.isRequired
 };
 
 export default NeoDisplay;

@@ -2,21 +2,126 @@
   display: flex;
   justify-content: space-around;
 }
+.colorText {
+  color: rgb(89, 247, 247);
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.flex {
+  display: flex;
+  margin: 5px 10px;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+  width: 99%;
+  align-items: start;
+}
+.direction {
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: start;
+  width: 100%;
+}
+.right-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .grid {
   display: grid;
   margin: auto 0 auto 0;
   width: 90%;
 }
-.colorText {
-  color: rgb(89, 247, 247);
-  margin-right: 20px;
+.border {
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(89, 247, 247);
+  border-radius: 12px 0 12px 0;
+  background-color: rgba(0, 0, 0, 0.8);
 }
-.flex {
-  display: flex;
-  justify-content: space-between;
+.border-right {
+  border-left: 1px solid rgb(255, 255, 255);
+  border-bottom: 1px solid rgb(253, 253, 253);
 }
-.direction {
-  flex-direction: column;
-  align-items: center;
+.color {
+  color: whitesmoke;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.position {
+  position: fixed;
+  top: 15%;
+  left: 20%;
+}
+
+.padding {
+  padding: 20px;
+}
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.list li {
+  line-height: 2em;
+}
+/*td, tr {
+    margin: 20px;
+    border: solid 1px
+ }*/
+.table {
+  text-align: right;
+  border-spacing: 30px;
+  color: white;
+}
+.table tbody tr td:nth-child(2) {
+  text-align: left;
+  color: rgb(139, 138, 138);
+}
+.table tbody tr td:nth-child(3) {
+  text-align: right;
+  color: rgb(139, 138, 138);
+}
+.layout1 {
+  z-index: 99;
+}
+.fake-button {
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+.focus:hover {
+  border: 1px solid rgb(89, 247, 247);
+}
+.absolute {
+  position: absolute;
+  top: auto;
+  left: auto;
   justify-content: start;
+}
+
+.width {
+  width: 95%;
+}
+
+.contain-appli {
+  display: grid;
+  grid-template-columns: 270px auto 50px;
+  grid-template-areas:
+    'btn centre'
+    'footer centre';
+}
+.mainApp {
+  position: absolute;
+  top: 35%;
+  width: 98%;
 }

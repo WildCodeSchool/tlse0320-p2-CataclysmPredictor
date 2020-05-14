@@ -2,19 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import './Buttons.css';
+import ButtonBottom from './ButtonBottom';
 
-const UpButtons = ({ periodeChecked }) => {
+const UpButtons = ({ handleCheckedButton }) => {
   return (
-    <div className="upButtons">
-      <Button name="Période" className="calendar" periodeChecked={periodeChecked} />
-      <Button name="Les plus gros" className="big" />
-      <Button name="Les plus proches" className="close" />
-      <Button name="Les plus dangereux" className="dangerous" />
+    <div className="button-block">
+      <ButtonBottom name="Menu" />
+      <p>Choisir une date :</p>
+      <Button
+        name="Calendrier"
+        className="calendar"
+        handleCheckedButton={handleCheckedButton}
+        buttonActive="isPeriodeChecked"
+      />
+      <p>Voir dans le mois :</p>
+      <Button
+        name="les plus gros"
+        className="big"
+        handleCheckedButton={handleCheckedButton}
+        buttonActive="isBiggerChecked"
+      />
+      <Button
+        name="les plus proche"
+        className="close"
+        handleCheckedButton={handleCheckedButton}
+        buttonActive="isCloserChecked"
+      />
     </div>
   );
 };
 UpButtons.propTypes = {
-  periodeChecked: PropTypes.shape.isRequired
+  handleCheckedButton: PropTypes.func.isRequired
 };
 
 export default UpButtons;

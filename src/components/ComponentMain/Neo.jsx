@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import meteor from '../../img/meteor.png';
+import MiniId from '../Id/MiniId';
 import './mainApp.css';
+import './GlobalContainer.css';
 
-function Neo({ dataNeo }) {
+function Neo({ dataNeo, showAlert, infoNeoActive, neoClick }) {
   const defSize = size => {
     if (size < 7 && size >= 3) {
       return 45;
@@ -14,14 +16,55 @@ function Neo({ dataNeo }) {
     return 55;
   };
   const neoStyle = {
-    width: defSize(dataNeo.indiceSize),
+    width: `${defSize(dataNeo.indiceSize)}px`,
     gridRow: dataNeo.indiceMagnitude,
     gridColumn: dataNeo.indiceDistance
   };
-  return <img className="spin" src={meteor} alt={dataNeo.name} style={neoStyle} />;
+  const [miniID, displayMiniId] = useState(false);
+  return (
+    <div className="text-flicker-in-glow" style={neoStyle}>
+      <button
+        type="submit"
+        className="fake-button"
+        onClick={() => {
+          neoClick();
+          displayMiniId(miniID);
+        }}
+        onMouseOver={() => {
+          showAlert();
+          infoNeoActive(dataNeo);
+          displayMiniId(!miniID);
+        }}
+        onFocus={() => {
+          showAlert();
+          infoNeoActive(dataNeo);
+          displayMiniId(!miniID);
+        }}
+        onMouseOut={() => {
+          showAlert();
+          displayMiniId(!miniID);
+        }}
+        onBlur={() => {
+          showAlert();
+          displayMiniId(!miniID);
+        }}
+      >
+        <img
+          className="spin focus"
+          src={meteor}
+          alt={dataNeo.name}
+          width={defSize(dataNeo.indiceSize)}
+        />
+      </button>
+      {miniID ? <MiniId dataNeo={dataNeo} /> : null}
+    </div>
+  );
 }
 Neo.propTypes = {
-  dataNeo: PropTypes.shape.isRequired
+  dataNeo: PropTypes.shape.isRequired,
+  showAlert: PropTypes.func.isRequired,
+  infoNeoActive: PropTypes.func.isRequired,
+  neoClick: PropTypes.func.isRequired
 };
 
 export default Neo;
