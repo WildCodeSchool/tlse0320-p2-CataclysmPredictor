@@ -1,8 +1,3 @@
-.upButtons {
-  display: flex;
-  justify-content: space-around;
-}
-
 .button-nav {
   border-radius: 12px 0 12px 0;
   border: 1px solid rgb(89, 247, 247);
@@ -23,4 +18,27 @@
   color: rgb(89, 247, 247);
   transition: 0.3s;
   box-shadow: 0 0 20px rgb(89, 247, 247);
+}
+
+.button-block {
+  position: relative;
+  border-radius: 12px 0 12px 0;
+  border: 1px solid rgb(89, 247, 247);
+  color: rgb(89, 247, 247);
+  font: bold 18px Electrolize;
+  padding: 15px;
+  box-shadow: 1px 1px 3px rgb(89, 247, 247);
+  margin: 25px;
+  width: 200px;
+  top: 11%;
+  letter-spacing: 1px;
+  grid-area: btn;
+  height: 300px;
+  z-index: 5;
+  opacity: 0.4;
+  transition: 1s;
+}
+.button-block:hover {
+  opacity: 1;
+  transition: 1s;
 }

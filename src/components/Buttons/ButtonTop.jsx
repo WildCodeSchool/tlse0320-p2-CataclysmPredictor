@@ -2,33 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import './Buttons.css';
+import ButtonBottom from './ButtonBottom';
 
 const UpButtons = ({ handleCheckedButton }) => {
   return (
-    <div className="upButtons">
+    <div className="button-block">
+      <ButtonBottom name="Menu" />
+      <p>Choisir une date :</p>
       <Button
-        name="Période"
+        name="Calendrier"
         className="calendar"
         handleCheckedButton={handleCheckedButton}
         buttonActive="isPeriodeChecked"
       />
+      <p>Voir dans le mois :</p>
       <Button
-        name="Les plus gros"
+        name="les plus gros"
         className="big"
         handleCheckedButton={handleCheckedButton}
         buttonActive="isBiggerChecked"
       />
       <Button
-        name="Les plus proches"
+        name="les plus proche"
         className="close"
         handleCheckedButton={handleCheckedButton}
         buttonActive="isCloserChecked"
-      />
-      <Button
-        name="Les plus dangereux"
-        className="dangerous"
-        handleCheckedButton={handleCheckedButton}
-        buttonActive="isDangerousChecked"
       />
     </div>
   );

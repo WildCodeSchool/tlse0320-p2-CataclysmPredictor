@@ -2,9 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MainApp from './MainApp';
-import ButtonBottom from '../Buttons/ButtonBottom';
 import UpButtons from '../Buttons/ButtonTop';
-import MainTitle from './MainTitle';
 import NeoDisplay from './NeoDisplay';
 import Calend from '../Calendrier/Calend';
 import './GlobalContainer.css';
@@ -145,7 +143,7 @@ class GlobalContainer extends React.Component {
       isDangerousChecked
     } = buttonChecked;
     return (
-      <div className="App">
+      <div className="contain-appli">
         <Router>
           <Switch>
             <Route path="/article-asteroide" component={ArticleContent} />
@@ -153,7 +151,6 @@ class GlobalContainer extends React.Component {
             <Route path="/mentions-legales" component={LegalMentions} />
             <Route path="/presentation" component={Presentation} />
             <Route path="/">
-              <MainTitle />
               <UpButtons
                 buttonChecked={buttonChecked}
                 handleCheckedButton={this.handleCheckedButton}
@@ -178,19 +175,17 @@ class GlobalContainer extends React.Component {
                   </div>
                 ) : null}
               </div>
-              <div className="button-bottom">
-                <ButtonBottom name="Menu" />
-                {isPeriodeChecked ? (
-                  <Calend
-                    reset={this.reset}
-                    handleCheckedButton={this.handleCheckedButton}
-                    ButtonActive="isPeriodeChecked"
-                  />
-                ) : null}
-                {isCloserChecked || isBiggerChecked || isDangerousChecked ? (
-                  <MonthsCalendar dataMethod={this.setData} />
-                ) : null}
-              </div>
+
+              {isPeriodeChecked ? (
+                <Calend
+                  reset={this.reset}
+                  handleCheckedButton={this.handleCheckedButton}
+                  ButtonActive="isPeriodeChecked"
+                />
+              ) : null}
+              {isCloserChecked || isBiggerChecked || isDangerousChecked ? (
+                <MonthsCalendar dataMethod={this.setData} />
+              ) : null}
             </Route>
           </Switch>
         </Router>

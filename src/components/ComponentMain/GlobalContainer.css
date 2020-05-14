@@ -10,6 +10,7 @@
 .flex {
   display: flex;
   margin: 5px 10px;
+  height: 98vh;
 }
 .column {
   display: flex;
@@ -111,4 +112,12 @@
 
 .width {
   width: 95%;
+}
+
+.contain-appli {
+  display: grid;
+  grid-template-columns: 270px auto 50px;
+  grid-template-areas:
+    'btn centre'
+    'footer centre';
 }
