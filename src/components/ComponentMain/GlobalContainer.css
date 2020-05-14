@@ -5,10 +5,23 @@
 .colorText {
   color: rgb(89, 247, 247);
   margin-bottom: 0;
+  margin-top: 0;
 }
 .flex {
   display: flex;
   margin: 5px 10px;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+  width: 99%;
+  align-items: start;
 }
 .direction {
   flex-direction: column;
@@ -34,14 +47,19 @@
   border-radius: 12px 0 12px 0;
   background-color: rgba(0, 0, 0, 0.8);
 }
+.border-right {
+  border-left: 1px solid rgb(255, 255, 255);
+  border-bottom: 1px solid rgb(253, 253, 253);
+}
 .color {
   color: whitesmoke;
   margin-top: 0;
+  margin-bottom: 0;
 }
 .position {
-  position: absolute;
-  top: 35vh;
-  left: 35%;
+  position: fixed;
+  top: 15%;
+  left: 20%;
 }
 
 .padding {
@@ -78,12 +96,32 @@
 .fake-button {
   border: none;
   background: none;
+  margin: 0;
+  padding: 0;
+}
+.focus:hover {
+  border: 1px solid rgb(89, 247, 247);
 }
 .absolute {
   position: absolute;
   top: auto;
   left: auto;
+  justify-content: start;
 }
+
 .width {
   width: 95%;
+}
+
+.contain-appli {
+  display: grid;
+  grid-template-columns: 270px auto 50px;
+  grid-template-areas:
+    'btn centre'
+    'footer centre';
+}
+.mainApp {
+  position: absolute;
+  top: 35%;
+  width: 98%;
 }

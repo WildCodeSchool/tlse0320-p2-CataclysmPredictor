@@ -7,8 +7,8 @@
   border-radius: 12px 0 12px 0;
   border: 1px solid rgb(89, 247, 247);
   position: absolute;
-  top: 27%;
-  left: 4%;
+  left: 33%;
+  top: 20%;
 }
 .year {
   display: flex;

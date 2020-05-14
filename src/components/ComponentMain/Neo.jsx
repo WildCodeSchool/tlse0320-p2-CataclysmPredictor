@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import meteor from '../../img/meteor.png';
+import MiniId from '../Id/MiniId';
 import './mainApp.css';
 import './GlobalContainer.css';
-import Id from '../Id/Id';
-import MiniId from '../Id/MiniId';
 
-function Neo({ dataNeo, showAlert }) {
-  const [displayID, setDisplayID] = useState(false);
-  const [displayMiniId, setDisplayMiniId] = useState(false);
+function Neo({ dataNeo, showAlert, infoNeoActive, neoClick }) {
   const defSize = size => {
     if (size < 7 && size >= 3) {
       return 45;
@@ -23,39 +20,51 @@ function Neo({ dataNeo, showAlert }) {
     gridRow: dataNeo.indiceMagnitude,
     gridColumn: dataNeo.indiceDistance
   };
+  const [miniID, displayMiniId] = useState(false);
   return (
-    <div style={neoStyle}>
+    <div className="text-flicker-in-glow" style={neoStyle}>
       <button
         type="submit"
         className="fake-button"
-        onClick={() => setDisplayID(!displayID)}
+        onClick={() => {
+          neoClick();
+          displayMiniId(miniID);
+        }}
         onMouseOver={() => {
-          setDisplayMiniId(!displayMiniId);
           showAlert();
+          infoNeoActive(dataNeo);
+          displayMiniId(!miniID);
         }}
         onFocus={() => {
-          setDisplayMiniId(!displayMiniId);
           showAlert();
+          infoNeoActive(dataNeo);
+          displayMiniId(!miniID);
         }}
         onMouseOut={() => {
-          setDisplayMiniId(!displayMiniId);
           showAlert();
+          displayMiniId(!miniID);
         }}
         onBlur={() => {
-          setDisplayMiniId(!displayMiniId);
           showAlert();
+          displayMiniId(!miniID);
         }}
       >
-        <img className="spin" src={meteor} alt={dataNeo.name} width={defSize(dataNeo.indiceSize)} />
+        <img
+          className="spin focus"
+          src={meteor}
+          alt={dataNeo.name}
+          width={defSize(dataNeo.indiceSize)}
+        />
       </button>
-      {displayMiniId ? <MiniId dataNeo={dataNeo} /> : null}
-      {displayID ? <Id dataNeo={dataNeo} setDisplay={() => setDisplayID(!displayID)} /> : null}
+      {miniID ? <MiniId dataNeo={dataNeo} /> : null}
     </div>
   );
 }
 Neo.propTypes = {
   dataNeo: PropTypes.shape.isRequired,
-  showAlert: PropTypes.func.isRequired
+  showAlert: PropTypes.func.isRequired,
+  infoNeoActive: PropTypes.func.isRequired,
+  neoClick: PropTypes.func.isRequired
 };
 
 export default Neo;
